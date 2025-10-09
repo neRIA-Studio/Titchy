@@ -1,5 +1,7 @@
 <script lang="ts">
   import "$lib/styles/global.scss";
+
+  import { Hamburger } from "@lucide/svelte";
   import { Checkbox, Loading } from "$lib/basic/index.js";
 </script>
 
@@ -25,11 +27,12 @@
       <Loading style="circle" />
       <Loading style="pinwheel" />
       <Loading style="arrow" />
-      <Loading style="arrows" />
-      <Loading style="arrow" linear />
-      <Loading style="ellipses" count={3} />
-      <Loading text="Searching" style="ellipses" count={0} />
-      <Loading text="Searching" style="ellipses" count={3} />
+      <Loading style="throbber" linear />
+      <Loading style="custom" icon={Hamburger} linear />
+      <Loading style="ellipses" />
+      <Loading style="ellipses" char="z" />
+      <Loading style="ellipses" text="Uploading" />
+      <Loading style="ellipses" text="Searching" count={0} />
     </div>
   </div>
 </div>
@@ -60,6 +63,7 @@
     .showcase {
       gap: 15px;
       flex-direction: row;
+      flex-wrap: wrap;
       align-items: center;
     }
   }

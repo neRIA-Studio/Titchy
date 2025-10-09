@@ -1,33 +1,36 @@
 <script lang="ts">
-  import { Loader, LoaderCircle, LoaderPinwheel, RefreshCw, RotateCw } from "@lucide/svelte";
+  import { type Icon, Loader, LoaderCircle, LoaderPinwheel, RotateCw } from "@lucide/svelte";
 
   interface Props {
     fill?: boolean;
   }
 
   interface Props1 extends Props {
-    style?:     'ellipses';
-    char?:      string;
-    text?:      string;
-    count?:     number;
-    linear?:    never;
+    style?:  'ellipses';
+    char?:   string;
+    text?:   string;
+    count?:  number;
+    linear?: never;
+    icon?:   never;
   }
 
   interface Props2 extends Props {
-    style?:     'throbber' | 'circle' | 'pinwheel' | 'arrow' | 'arrows';
-    char?:      never;
-    text?:      never;
-    count?:     never;
-    linear?:    boolean;
+    style?:  'throbber' | 'circle' | 'pinwheel' | 'arrow' | 'custom';
+    char?:   never;
+    text?:   never;
+    count?:  never;
+    linear?: boolean;
+    icon?:   typeof Icon;
   }
 
   const {
     fill,
-    style = 'ellipses',
+    style = 'throbber',
     char = '•',
     text,
     count = 3,
     linear,
+    icon,
   }:(Props1 | Props2) = $props();
 </script>
 
@@ -53,8 +56,8 @@
       ? LoaderPinwheel
       : style === 'arrow'
       ? RotateCw
-      : style === 'arrows'
-      ? RefreshCw
+      : style === 'custom'
+      ? icon
       : null}
     <div class="spinner" class:linear>
       <Icon />
