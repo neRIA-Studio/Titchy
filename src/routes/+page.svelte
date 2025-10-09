@@ -6,26 +6,11 @@
 <div class="items">
   <div class="item">
     <h1>Checkbox:</h1>
-    <div class="showcase-grid">
-      <div class="row-title">
-        <span>Active</span>
-      </div>
-      <div class="showcase">
-        <Checkbox active style="hollow" />
-        <Checkbox active style="check" />
-        <Checkbox active style="radio" />
-        <Checkbox active style="custom">Y</Checkbox>
-      </div>
-
-      <div class="row-title">
-        <span>Inactive</span>
-      </div>
-      <div class="showcase">
-        <Checkbox style="hollow" />
-        <Checkbox style="check" />
-        <Checkbox style="radio" />
-        <Checkbox style="custom">N</Checkbox>
-      </div>
+    <div class="showcase">
+      <Checkbox active style="hollow" />
+      <Checkbox active style="check" />
+      <Checkbox active style="radio" />
+      <Checkbox active style="custom">Hi</Checkbox>
     </div>
   </div>
 </div>
@@ -50,26 +35,14 @@
 
     h1 { margin: 0; }
 
-    .showcase-grid{
-      display: grid;
-      grid-template-columns: max-content 1fr;
-      gap: 10px;
+    .showcase {
+      gap: 15px;
+      flex-direction: row;
+      align-items: center;
 
-      .row-title {
-        color: C(secondary, 80%);
-        align-items: end;
-        justify-content: center;
-      }
-
-      .showcase {
-        gap: 15px;
-        flex-direction: row;
-        align-items: center;
-
-        :global(>:last-child) {
-          --checkbox-color: cyan;
-          font-family: monospace;
-        }
+      :global(>:last-child) {
+        --checkbox-color: cyan;
+        font-family: monospace;
       }
     }
   }
