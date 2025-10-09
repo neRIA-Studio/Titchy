@@ -1,11 +1,12 @@
 <script lang="ts">
-  import "$lib/styles/global.css";
-  import { Checkbox } from "$lib/basic/index.js";
+  import "$lib/styles/global.scss";
+  import { Checkbox, Loading } from "$lib/basic/index.js";
 </script>
 
 <div class="items">
   <div class="item">
-    <h1>Checkbox:</h1>
+    <h1>Checkbox</h1>
+    <hr />
     <div class="showcase">
       <Checkbox />
       <Checkbox active style="hollow" />
@@ -15,6 +16,22 @@
       <Checkbox active style="custom">Hi</Checkbox>
     </div>
   </div>
+
+  <div class="item">
+    <h1>Loading</h1>
+    <hr />
+    <div class="showcase">
+      <Loading style="throbber" />
+      <Loading style="circle" />
+      <Loading style="pinwheel" />
+      <Loading style="arrow" />
+      <Loading style="arrows" />
+      <Loading style="arrow" linear />
+      <Loading style="ellipses" count={3} />
+      <Loading text="Searching" style="ellipses" count={0} />
+      <Loading text="Searching" style="ellipses" count={3} />
+    </div>
+  </div>
 </div>
 
 <style lang="scss">
@@ -22,11 +39,13 @@
 
   .items {
     flex: 1;
-    align-items: center;
+    align-self: center;
     justify-content: center;
+    gap: 10px;
   }
 
   .item {
+    font-family: Cascadia Code, monospace;
     background-color: #000;
     align-items: center;
     justify-content: center;
@@ -36,16 +55,12 @@
     border-radius: 10px;
 
     h1 { margin: 0; }
+    hr { width: 100%; }
 
     .showcase {
       gap: 15px;
       flex-direction: row;
       align-items: center;
-
-      :global(>:last-child) {
-        --checkbox-color: cyan;
-        font-family: monospace;
-      }
     }
   }
 </style>
