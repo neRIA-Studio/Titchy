@@ -7,8 +7,10 @@
   <div class="item">
     <h1>Checkbox:</h1>
     <div class="showcase">
+      <Checkbox />
       <Checkbox active style="hollow" />
       <Checkbox active style="check" />
+      <Checkbox active style="x" />
       <Checkbox active style="radio" />
       <Checkbox active style="custom">Hi</Checkbox>
     </div>

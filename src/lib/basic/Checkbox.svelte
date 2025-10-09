@@ -1,14 +1,14 @@
 <script lang="ts">
-  import { Check, Circle } from "@lucide/svelte";
+  import { Check, Circle, X } from "@lucide/svelte";
   import type { HTMLButtonAttributes } from "svelte/elements";
   import { blur } from "svelte/transition";
 
   interface Props {
     active?: boolean;
-    style: 'hollow' | 'check' | 'radio' | 'custom';
+    style?: 'hollow' | 'check' | 'x' | 'radio' | 'custom';
   }
 
-  let { active = $bindable(false), style, ...rest }:Props & HTMLButtonAttributes = $props();
+  let { active = $bindable(false), style = 'hollow', ...rest }:Props & HTMLButtonAttributes = $props();
 </script>
 
 {#snippet active_symbol()}
@@ -17,6 +17,8 @@
       {null}
     {:else if style === 'check'}
       <Check />
+    {:else if style === 'x'}
+      <X />
     {:else if style === 'radio'}
       <Circle />
     {:else if style === 'custom'}
@@ -82,6 +84,10 @@
       }
 
       &.check :global(svg) {
+        @include size(calc($size / 1.5), $both:true);
+      }
+
+      &.x :global(svg) {
         @include size(calc($size / 1.5), $both:true);
       }
 
