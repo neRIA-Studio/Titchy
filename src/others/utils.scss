@@ -1,0 +1,40 @@
+/* ================================= Mixins ================================= */
+
+@mixin width($value, $min: false, $max: false, $both: false) {
+  width: $value;
+  @if $min or $both { min-width: $value; }
+  @if $max or $both { max-width: $value; }
+}
+
+@mixin height($value, $min: false, $max: false, $both: false) {
+  height: $value;
+  @if $min or $both { min-height: $value; }
+  @if $max or $both { max-height: $value; }
+}
+
+@mixin size($value, $min: false, $max: false, $both: false) {
+  @include width ($value, $min, $max, $both);
+  @include height($value, $min, $max, $both);
+}
+
+/* ================================ Functions =============================== */
+
+@function mix($colors...) {
+  @return color-mix(in srgb, $colors);
+}
+
+@function set-alpha($color, $alpha: 100%) {
+  @return mix($color $alpha, transparent);
+}
+
+@function V($value) {
+  @return var(--x-value-#{$value});
+}
+
+@function C($color, $alpha: 100%) {
+  @if $alpha == 100% {
+    @return var(--x-color-#{$color});
+  } @else {
+    @return set-alpha(var(--x-color-#{$color}), $alpha);
+  }
+}
