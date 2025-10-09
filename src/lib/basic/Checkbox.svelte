@@ -12,17 +12,17 @@
 </script>
 
 {#snippet active_symbol()}
+  {@const Symbol =
+      style === 'hollow' ? null
+    : style === 'check'  ? Check
+    : style === 'x'      ? X
+    : style === 'radio'  ? Circle
+    : style === 'custom' ? null
+    : null}
+
   <div class={["active-symbol", style]} transition:blur={{ duration:300 }}>
-    {#if      style === 'hollow'}
-      {null}
-    {:else if style === 'check'}
-      <Check />
-    {:else if style === 'x'}
-      <X />
-    {:else if style === 'radio'}
-      <Circle />
-    {:else if style === 'custom'}
-      {null}
+    {#if Symbol}
+      <Symbol />
     {/if}
   </div>
 {/snippet}
@@ -45,7 +45,7 @@
   @use "@/others/utils.scss" as *;
 
   $size:  var(--checkbox-size, 30px);
-  $color: var(--checkbox-color, C(accent));
+  $color: var(--checkbox-accent-color, C(accent));
 
   .titchy.checkbox {
     @include size($size, $both:true);
