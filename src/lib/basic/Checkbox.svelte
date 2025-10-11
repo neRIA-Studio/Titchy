@@ -3,6 +3,8 @@
   import type { HTMLButtonAttributes } from "svelte/elements";
   import { blur } from "svelte/transition";
 
+  import { Button } from ".";
+
   interface Props {
     active?: boolean;
     style?: 'hollow' | 'check' | 'x' | 'radio' | 'custom';
@@ -27,11 +29,9 @@
   </div>
 {/snippet}
 
-<button
-  data-variant={active ? "main" : "hollow"}
+<Button
   {...rest}
-  class={["titchy", "checkbox", `style-${style}`, rest.class]}
-  class:active
+  class={["checkbox", { active }, rest.class]}
   onclick={rest.onclick ?? (() => active =! active)}
 >
   {#if style === 'custom'}
@@ -39,7 +39,7 @@
   {:else if active}
     {@render active_symbol()}
   {/if}
-</button>
+</Button>
 
 <style lang="scss">
   @use "@/others/utils.scss" as *;
@@ -47,25 +47,25 @@
   $size:  var(--checkbox-size, 30px);
   $color: var(--checkbox-accent-color, C(accent));
 
-  .titchy.checkbox {
+  :global
+  .titchy.button.checkbox {
     @include size($size, $both:true);
 
-    font-weight: 900;
-    align-items: center;
-    justify-content: center;
-    border: 2px solid C(secondary, 2.5%);
-    border-radius: V(radius-1);
+    padding: 0;
     overflow: hidden;
 
-    &.active {
-      color: $color;
-      background-color: set-alpha($color, 10%);
-      &:hover { background-color: set-alpha($color, 20%); }
-    }
+    align-items: center;
+    justify-content: center;
 
     &:not(.active) {
       background-color: C(primary);
       &:hover { background-color: C(tertiary); }
+    }
+
+    &:is(.active) {
+      color: $color;
+      background-color: set-alpha($color, 15%);
+      &:hover { background-color: set-alpha($color, 25%); }
     }
 
     .active-symbol {

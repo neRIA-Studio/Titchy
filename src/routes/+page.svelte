@@ -1,11 +1,24 @@
 <script lang="ts">
-  import "$lib/styles/global.scss";
+  import "@/others/global.scss";
 
-  import { Hamburger } from "@lucide/svelte";
-  import { Checkbox, Loading } from "$lib/basic/index.js";
+  import { Ban, Hamburger } from "@lucide/svelte";
+  import { Button, Checkbox, Loading } from "$lib/basic/index.js";
 </script>
 
 <div class="items">
+  <div class="item">
+    <h1>Button</h1>
+    <hr />
+    <div class="showcase">
+      <Button variant="primary">
+        <Hamburger /> Order
+      </Button>
+      <Button variant="secondary">
+        <Ban /> Cancel
+      </Button>
+    </div>
+  </div>
+
   <div class="item">
     <h1>Checkbox</h1>
     <hr />
@@ -58,7 +71,7 @@
     border-radius: 10px;
 
     h1 { margin: 0; }
-    hr { width: 100%; }
+    hr { width: 100%; margin: 0; }
 
     .showcase {
       gap: 15px;
