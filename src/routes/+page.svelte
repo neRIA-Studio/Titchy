@@ -16,6 +16,12 @@
       <Button variant="secondary">
         <Ban /> Cancel
       </Button>
+      <Button variant="primary" disabled>
+        <Hamburger /> Disabled
+      </Button>
+      <Button variant="secondary" disabled>
+        <Ban /> Cancel
+      </Button>
     </div>
   </div>
 
