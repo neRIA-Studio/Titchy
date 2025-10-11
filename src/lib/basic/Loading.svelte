@@ -36,13 +36,13 @@
 
 <span class="titchy loading" class:fill>
   {#if style === 'ellipses'}
-    {#if text}
+    {#if text?.length}
       <span class="text">
         {text}
       </span>
     {/if}
     {#each { length:count }, i (i)}
-      <span class="dot" style:animation-delay="{0.2 * i}s">
+      <span class="dot" class:has-text={text?.length} style:animation-delay="{0.2 * i}s">
         {char}
       </span>
     {/each}
@@ -73,6 +73,7 @@
   $text-color: var(--loading-text-color, C(accent));
   $text-shine-color: var(--loading-text-shine-color, set-alpha($text-color, 25%));
 
+  :global
   .titchy.loading {
     display: inline-flex;
     flex-direction: row;
@@ -88,7 +89,6 @@
     }
 
     .text {
-      top: -3px;
       color: transparent;
       background: linear-gradient(to right, $text-color 70%, $text-shine-color, $text-color);
       -webkit-background-clip: text;
@@ -100,7 +100,10 @@
     .dot {
       color: $dots-color;
       opacity: 0.25;
+      transform-origin: bottom;
       animation: bounce 1.2s infinite;
+
+      &.has-text { top: 5px; }
     }
 
     .spinner {
@@ -122,12 +125,16 @@
 
   @keyframes bounce {
     0%, 80%, 100% {
-      transform: translateY(0);
+      transform: none;
       opacity: 0.25;
     }
 
+    20% {
+      transform: scaleY(2);
+    }
+
     40% {
-      transform: translateY(-0.75em);
+      transform: translateY(-0.66em);
       opacity: 1;
     }
   }
