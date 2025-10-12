@@ -6,5 +6,5 @@ Ah, by the way, it's for Svelte
 # Usage
 
 ```bash
-npm install @neria/tirchy
+npm install @neria/titchy
 ```
