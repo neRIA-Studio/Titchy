@@ -3,32 +3,41 @@
 
   interface Props {
     fill?: boolean;
+    duration?: number;
   }
 
   interface Props1 extends Props {
-    style?:  'ellipses';
-    char?:   string;
-    text?:   string;
-    count?:  number;
-    linear?: never;
-    icon?:   never;
+    style?:   'ellipses';
+    char?:    string;
+    text?:    string;
+    count?:   number;
+    delay?:   number;
+    stretch?: boolean;
+    linear?:  never;
+    icon?:    never;
   }
 
   interface Props2 extends Props {
-    style?:  'throbber' | 'circle' | 'pinwheel' | 'arrow' | 'custom';
-    char?:   never;
-    text?:   never;
-    count?:  never;
-    linear?: boolean;
-    icon?:   typeof Icon;
+    style?:    'throbber' | 'circle' | 'pinwheel' | 'arrow' | 'custom';
+    char?:     never;
+    text?:     never;
+    count?:    never;
+    delay?:    never;
+    stretch?:  never;
+    linear?:   boolean;
+    icon?:     typeof Icon;
   }
 
   const {
     fill,
+    duration,
+
     style = 'throbber',
     char = '•',
     text,
     count = 3,
+    delay = 200,
+    stretch,
     linear,
     icon,
   }:(Props1 | Props2) = $props();
@@ -42,7 +51,13 @@
       </span>
     {/if}
     {#each { length:count }, i (i)}
-      <span class="dot" class:has-text={text?.length} style:animation-delay="{0.2 * i}s">
+      <span
+        class="dot"
+        class:stretch
+        class:has-text={text?.length}
+        style:animation-delay="{delay * i}ms"
+        style:animation-duration="{duration}ms"
+        >
         {char}
       </span>
     {/each}
@@ -59,7 +74,11 @@
       : style === 'custom'
       ? icon
       : null}
-    <div class="spinner" class:linear>
+    <div
+      class="spinner"
+      class:linear
+      style:animation-duration="{duration}ms"
+    >
       <Icon />
     </div>
   {/if}
@@ -103,6 +122,7 @@
       transform-origin: bottom;
       animation: bounce 1.2s infinite;
 
+      &.stretch  { animation: bounce-with-stretch 1.2s infinite; }
       &.has-text { top: 5px; }
     }
 
@@ -124,6 +144,18 @@
   }
 
   @keyframes bounce {
+    0%, 80%, 100% {
+      transform: none;
+      opacity: 0.25;
+    }
+
+    40% {
+      transform: translateY(-0.66em);
+      opacity: 1;
+    }
+  }
+
+  @keyframes bounce-with-stretch {
     0%, 80%, 100% {
       transform: none;
       opacity: 0.25;

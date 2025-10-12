@@ -49,7 +49,7 @@
       <Loading style="throbber" linear />
       <Loading style="custom" icon={Hamburger} linear />
       <Loading style="ellipses" />
-      <Loading style="ellipses" char="z" />
+      <Loading style="ellipses" char="z" stretch />
       <Loading style="ellipses" text="Uploading" />
       <Loading style="ellipses" text="Searching" count={0} />
     </div>
