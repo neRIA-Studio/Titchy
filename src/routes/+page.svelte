@@ -1,7 +1,7 @@
 <script lang="ts">
   import "@/others/global.scss";
 
-  import { Ban, Hamburger } from "@lucide/svelte";
+  import { Cookie, Hamburger, Pizza } from "@lucide/svelte";
   import { Button, Checkbox, Loading } from "$lib/basic/index.js";
 </script>
 
@@ -11,16 +11,24 @@
     <hr />
     <div class="showcase">
       <Button variant="primary">
-        <Hamburger /> Order
+        <Hamburger /> Primary
       </Button>
       <Button variant="secondary">
-        <Ban /> Cancel
+        <Pizza /> Secondary
       </Button>
+      <Button variant="tertiary">
+        <Cookie /> Tertiary
+      </Button>
+    </div>
+    <div class="showcase">
       <Button variant="primary" disabled>
-        <Hamburger /> Disabled
+        <Hamburger /> Primary
       </Button>
       <Button variant="secondary" disabled>
-        <Ban /> Cancel
+        <Pizza /> Secondary
+      </Button>
+      <Button variant="tertiary" disabled>
+        <Cookie /> Tertiary
       </Button>
     </div>
   </div>
@@ -48,6 +56,8 @@
       <Loading style="arrow" />
       <Loading style="throbber" linear />
       <Loading style="custom" icon={Hamburger} linear />
+    </div>
+    <div class="showcase">
       <Loading style="ellipses" />
       <Loading style="ellipses" char="z" stretch />
       <Loading style="ellipses" text="Uploading" />
@@ -73,7 +83,7 @@
     justify-content: center;
     gap: 10px;
     padding: 15px;
-    border: 2px solid #1f1f1f;
+    border: 2px solid C(tertiary);
     border-radius: 10px;
 
     h1 { margin: 0; }
@@ -84,6 +94,7 @@
       flex-direction: row;
       flex-wrap: wrap;
       align-items: center;
+      justify-content: center;
     }
   }
 </style>
