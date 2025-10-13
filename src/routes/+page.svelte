@@ -2,12 +2,14 @@
   import "@/others/global.scss";
 
   import { Cookie, Hamburger, Pizza } from "@lucide/svelte";
-  import { Button, Checkbox, Loading } from "$lib/basic/index.js";
+  import { Button, Checkbox, Loading } from "$lib";
 </script>
 
 <div class="items">
   <div class="item">
-    <h1>Button</h1>
+    <h1 id="button">
+      Button
+    </h1>
     <hr />
     <div class="showcase">
       <Button variant="primary">
@@ -34,7 +36,9 @@
   </div>
 
   <div class="item">
-    <h1>Checkbox</h1>
+    <h1 id="checkbox">
+      Checkbox
+    </h1>
     <hr />
     <div class="showcase">
       <Checkbox />
@@ -48,7 +52,9 @@
   </div>
 
   <div class="item">
-    <h1>Loading</h1>
+    <h1 id="loading">
+      Loading
+    </h1>
     <hr />
     <div class="showcase">
       <Loading variant="spinner" symbol="throbber" />

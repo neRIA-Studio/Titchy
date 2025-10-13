@@ -57,14 +57,12 @@
 
   :global
   .titchy.button.checkbox {
-    @include size($size, $both:true);
-
-    padding: 0;
-    border: none;
-    overflow: hidden;
-
-    align-items: center;
-    justify-content: center;
+    &.checkbox {
+      @include size($size, $both:true);
+      padding: 0;
+      border: none;
+      overflow: hidden;
+    }
 
     &:is(.active) {
       color: $accent-color;
