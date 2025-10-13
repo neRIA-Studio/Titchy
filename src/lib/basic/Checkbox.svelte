@@ -1,32 +1,35 @@
 <script lang="ts">
   import type { ComponentProps } from 'svelte';
   import { blur } from "svelte/transition";
-  import { Check, Circle, X } from "@lucide/svelte";
+  import { Check, Circle, type Icon, X } from "@lucide/svelte";
 
   import { Button } from ".";
 
   interface Props {
     active?: boolean;
-    symbol?: 'hollow' | 'check' | 'x' | 'radio' | 'custom';
+    symbol?: 'hollow' | 'check' | 'x' | 'radio' | 'custom' | typeof Icon;
   }
 
   let {
     active = $bindable(false),
-    symbol: style = 'hollow',
+    symbol = 'hollow',
     ...rest
-  }:Props & ComponentProps<typeof Button> = $props();
+  }: Props & ComponentProps<typeof Button> = $props();
 </script>
 
 {#snippet active_symbol()}
   {@const Symbol =
-      style === 'hollow' ? null
-    : style === 'check'  ? Check
-    : style === 'x'      ? X
-    : style === 'radio'  ? Circle
-    : style === 'custom' ? null
-    : null}
+      symbol === 'hollow' ? null
+    : symbol === 'check'  ? Check
+    : symbol === 'x'      ? X
+    : symbol === 'radio'  ? Circle
+    : symbol === 'custom' ? null
+    : symbol}
 
-  <div class={["active-symbol", style]} transition:blur={{ duration:300 }}>
+  <div
+    class={["active-symbol", typeof symbol === 'string' ? symbol : "custom"]}
+    transition:blur={{ duration:300 }}
+  >
     {#if Symbol}
       <Symbol />
     {/if}
@@ -39,7 +42,7 @@
   class={["checkbox", { active }, rest.class]}
   onclick={rest.onclick ?? (() => active =! active)}
 >
-  {#if style === 'custom'}
+  {#if symbol === 'custom'}
     {@render rest.children?.()}
   {:else if active}
     {@render active_symbol()}
@@ -73,8 +76,6 @@
       align-items: center;
       justify-content: center;
 
-      :global(svg) { stroke-width: 4px; }
-
       &.hollow {
         @include size(calc($size / 1.5), $both:true);
         border-radius: calc(V(radius-1) / 1.5);
@@ -82,16 +83,21 @@
       }
 
       &.check :global(svg) {
+        stroke-width: 4px;
         @include size(calc($size / 1.5), $both:true);
       }
 
       &.x :global(svg) {
+        stroke-width: 4px;
         @include size(calc($size / 1.5), $both:true);
       }
 
       &.radio :global(svg) {
+        stroke-width: 4px;
         @include size(calc($size / 1.75), $both:true);
       }
+
+      // &.custom :global(svg) { }
     }
   }
 </style>
