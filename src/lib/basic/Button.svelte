@@ -8,7 +8,7 @@
   const {
     variant = 'primary',
     ...rest
-  }:Props & HTMLButtonAttributes = $props();
+  }: Props & HTMLButtonAttributes = $props();
 </script>
 
 <button
@@ -54,7 +54,7 @@
     &.primary {
       color: $accent-color;
       background-color: set-alpha($accent-color, 20%);
-      border: 1px solid set-alpha($highlight-color, 5%);
+      border: 2px solid set-alpha($highlight-color, 7.5%);
 
       &:hover:not(:disabled) {
         background-color: set-alpha($accent-color, 30%);
@@ -64,7 +64,7 @@
     &.secondary {
       color: $accent-color;
       background-color: set-alpha($highlight-color, 10%);
-      border: 1px solid set-alpha($highlight-color, 5%);
+      border: 2px solid set-alpha($highlight-color, 5%);
 
       &:hover:not(:disabled) {
         background-color: set-alpha($highlight-color, 15%);
@@ -73,7 +73,7 @@
 
     &.tertiary {
       color: $accent-color;
-      border: 1px solid $accent-color;
+      border: 2px solid set-alpha($accent-color, 35%);
 
       &:hover:not(:disabled) {
         background-color: set-alpha($accent-color, 10%);

@@ -48,7 +48,7 @@
     symbol,
     linear,
     icon,
-  }:(Props1 | Props2) = $props();
+  }: (Props1 | Props2) = $props();
 </script>
 
 <span class="titchy loading" class:fill>

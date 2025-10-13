@@ -42,6 +42,7 @@
       <Checkbox active symbol="check" />
       <Checkbox active symbol="x" />
       <Checkbox active symbol="radio" />
+      <Checkbox active symbol={Hamburger} />
       <Checkbox active symbol="custom">Hi</Checkbox>
     </div>
   </div>
