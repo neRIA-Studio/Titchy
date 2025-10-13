@@ -79,8 +79,7 @@
 
     &:disabled {
       cursor: not-allowed;
-      opacity: 0.2;
-      filter: saturate(0.66);
+      opacity: 0.35;
     }
   }
 </style>

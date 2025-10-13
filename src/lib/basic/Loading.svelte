@@ -9,7 +9,7 @@
   interface Props1 extends Props {
     style?:   'ellipses';
     char?:    string;
-    text?:    string;
+    text?:    string | boolean;
     count?:   number;
     delay?:   number;
     stretch?: boolean;
@@ -45,16 +45,16 @@
 
 <span class="titchy loading" class:fill>
   {#if style === 'ellipses'}
-    {#if text?.length}
+    {#if text}
       <span class="text">
-        {text}
+        {text === true ? "Loading" : text}
       </span>
     {/if}
     {#each { length:count }, i (i)}
       <span
         class="dot"
         class:stretch
-        class:has-text={text?.length}
+        class:has-text={text}
         style:animation-delay="{delay * i}ms"
         style:animation-duration="{duration}ms"
         >

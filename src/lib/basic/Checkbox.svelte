@@ -30,6 +30,7 @@
 {/snippet}
 
 <Button
+  variant="secondary"
   {...rest}
   class={["checkbox", { active }, rest.class]}
   onclick={rest.onclick ?? (() => active =! active)}
@@ -45,42 +46,35 @@
   @use "@/others/utils.scss" as *;
 
   $size:  var(--checkbox-size, 30px);
-  $color: var(--checkbox-accent-color, C(accent));
+  $accent-color: var(--checkbox-accent-color, C(accent));
 
   :global
   .titchy.button.checkbox {
     @include size($size, $both:true);
 
     padding: 0;
+    border: none;
     overflow: hidden;
 
     align-items: center;
     justify-content: center;
 
-    &:not(.active) {
-      background-color: C(primary);
-      &:hover { background-color: C(tertiary); }
-    }
-
     &:is(.active) {
-      color: $color;
-      background-color: set-alpha($color, 15%);
-      &:hover { background-color: set-alpha($color, 25%); }
+      color: $accent-color;
+      background-color: set-alpha($accent-color, 15%);
+      &:hover { background-color: set-alpha($accent-color, 20%); }
     }
 
     .active-symbol {
       align-items: center;
       justify-content: center;
 
-      :global(svg) {
-        color: $color;
-        stroke-width: 4px;
-      }
+      :global(svg) { stroke-width: 4px; }
 
       &.hollow {
         @include size(calc($size / 1.5), $both:true);
         border-radius: calc(V(radius-1) / 1.5);
-        background-color: $color;
+        background-color: $accent-color;
       }
 
       &.check :global(svg) {
