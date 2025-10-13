@@ -1,16 +1,20 @@
 <script lang="ts">
-  import { Check, Circle, X } from "@lucide/svelte";
-  import type { HTMLButtonAttributes } from "svelte/elements";
+  import type { ComponentProps } from 'svelte';
   import { blur } from "svelte/transition";
+  import { Check, Circle, X } from "@lucide/svelte";
 
   import { Button } from ".";
 
   interface Props {
     active?: boolean;
-    style?: 'hollow' | 'check' | 'x' | 'radio' | 'custom';
+    symbol?: 'hollow' | 'check' | 'x' | 'radio' | 'custom';
   }
 
-  let { active = $bindable(false), style = 'hollow', ...rest }:Props & HTMLButtonAttributes = $props();
+  let {
+    active = $bindable(false),
+    symbol: style = 'hollow',
+    ...rest
+  }:Props & ComponentProps<typeof Button> = $props();
 </script>
 
 {#snippet active_symbol()}

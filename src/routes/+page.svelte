@@ -38,11 +38,11 @@
     <hr />
     <div class="showcase">
       <Checkbox />
-      <Checkbox active style="hollow" />
-      <Checkbox active style="check" />
-      <Checkbox active style="x" />
-      <Checkbox active style="radio" />
-      <Checkbox active style="custom">Hi</Checkbox>
+      <Checkbox active symbol="hollow" />
+      <Checkbox active symbol="check" />
+      <Checkbox active symbol="x" />
+      <Checkbox active symbol="radio" />
+      <Checkbox active symbol="custom">Hi</Checkbox>
     </div>
   </div>
 
@@ -50,18 +50,18 @@
     <h1>Loading</h1>
     <hr />
     <div class="showcase">
-      <Loading style="throbber" />
-      <Loading style="circle" />
-      <Loading style="pinwheel" />
-      <Loading style="arrow" />
-      <Loading style="throbber" linear />
-      <Loading style="custom" icon={Hamburger} linear />
+      <Loading variant="spinner" symbol="throbber" />
+      <Loading variant="spinner" symbol="circle" />
+      <Loading variant="spinner" symbol="pinwheel" />
+      <Loading variant="spinner" symbol="arrow" />
+      <Loading variant="spinner" symbol="throbber" linear />
+      <Loading variant="spinner" symbol="custom" icon={Hamburger} linear />
     </div>
     <div class="showcase">
-      <Loading style="ellipses" />
-      <Loading style="ellipses" char="z" stretch />
-      <Loading style="ellipses" text="Uploading" />
-      <Loading style="ellipses" text="Searching" count={0} />
+      <Loading variant="ellipses" />
+      <Loading variant="ellipses" char="z" stretch />
+      <Loading variant="ellipses" text="Uploading" />
+      <Loading variant="ellipses" text="Searching" count={0} />
     </div>
   </div>
 </div>
@@ -78,6 +78,7 @@
 
   .item {
     font-family: Cascadia Code, monospace;
+    color: C(secondary);
     background-color: #000;
     align-items: center;
     justify-content: center;
@@ -87,7 +88,7 @@
     border-radius: 10px;
 
     h1 { margin: 0; }
-    hr { width: 100%; margin: 0; }
+    hr { width: 100%; margin: 0; border: 1px solid C(secondary); }
 
     .showcase {
       gap: 15px;

@@ -5,7 +5,10 @@
     variant?: 'primary' | 'secondary' | 'tertiary';
   }
 
-  let { variant = 'primary', ...rest }:Props & HTMLButtonAttributes = $props();
+  const {
+    variant = 'primary',
+    ...rest
+  }:Props & HTMLButtonAttributes = $props();
 </script>
 
 <button
@@ -25,7 +28,7 @@
   :global
   .titchy.button {
     cursor: pointer;
-    padding: 7.5px 10px;
+    padding: 7.5px;
 
     flex-direction: row;
     align-items: center;

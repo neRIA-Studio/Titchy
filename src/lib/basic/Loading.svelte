@@ -7,48 +7,57 @@
   }
 
   interface Props1 extends Props {
-    style?:   'ellipses';
+    variant?: 'ellipses';
+
     char?:    string;
     text?:    string | boolean;
     count?:   number;
     delay?:   number;
     stretch?: boolean;
+
+    symbol?:  never;
     linear?:  never;
     icon?:    never;
   }
 
   interface Props2 extends Props {
-    style?:    'throbber' | 'circle' | 'pinwheel' | 'arrow' | 'custom';
-    char?:     never;
-    text?:     never;
-    count?:    never;
-    delay?:    never;
-    stretch?:  never;
-    linear?:   boolean;
-    icon?:     typeof Icon;
+    variant?: 'spinner';
+
+    char?:    never;
+    text?:    never;
+    count?:   never;
+    delay?:   never;
+    stretch?: never;
+
+    symbol?:  'throbber' | 'circle' | 'pinwheel' | 'arrow' | 'custom';
+    linear?:  boolean;
+    icon?:    typeof Icon;
   }
 
   const {
     fill,
     duration,
 
-    style = 'throbber',
+    variant = 'spinner',
     char = '•',
     text,
     count = 3,
     delay = 200,
     stretch,
+
+    symbol,
     linear,
     icon,
   }:(Props1 | Props2) = $props();
 </script>
 
 <span class="titchy loading" class:fill>
-  {#if style === 'ellipses'}
+  {#if variant === 'ellipses'}
     {#if text}
       <span class="text">
         {text === true ? "Loading" : text}
       </span>
+
     {/if}
     {#each { length:count }, i (i)}
       <span
@@ -61,17 +70,17 @@
         {char}
       </span>
     {/each}
-  {:else}
+  {:else if variant === 'spinner'}
     {@const Icon =
-        style === 'throbber'
+        symbol === 'throbber'
       ? Loader
-      : style === 'circle'
+      : symbol === 'circle'
       ? LoaderCircle
-      : style === 'pinwheel'
+      : symbol === 'pinwheel'
       ? LoaderPinwheel
-      : style === 'arrow'
+      : symbol === 'arrow'
       ? RotateCw
-      : style === 'custom'
+      : symbol === 'custom'
       ? icon
       : null}
     <div
