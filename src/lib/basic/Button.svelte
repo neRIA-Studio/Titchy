@@ -2,7 +2,7 @@
   import type { HTMLButtonAttributes } from "svelte/elements";
 
   interface Props {
-    variant?: 'primary' | 'secondary';
+    variant?: 'primary' | 'secondary' | 'tertiary';
   }
 
   let { variant = 'primary', ...rest }:Props & HTMLButtonAttributes = $props();
@@ -19,21 +19,24 @@
   @use "@/others/utils.scss" as *;
 
   $accent-color: var(--button-accent-color, C(accent));
-  $text-color: var(--button-text-color, C(primary));
+  $shadow-color: var(--button-shadow-color, C(primary));
+  $highlight-color: var(--button-shadow-color, C(secondary));
 
   :global
   .titchy.button {
     cursor: pointer;
-    padding: 4px;
+    padding: 7.5px 10px;
 
     flex-direction: row;
     align-items: center;
     justify-content: center;
     gap: 7.5px;
 
-    color: $text-color;
-    background-color: $accent-color;
     border-radius: V(radius-1);
+
+    backdrop-filter: blur(8px);
+    filter: drop-shadow(0 0 5px $shadow-color);
+    box-shadow: 0 0 10px $shadow-color;
 
     &:hover:not(:disabled) {
       transform: scale(1.05);
@@ -42,18 +45,36 @@
 
     &:active:not(:disabled) {
       transform: scale(0.95);
-      opacity: 0.8;
+      opacity: 0.75;
     }
 
     &.primary {
-      padding: 6px;
+      color: $accent-color;
+      background-color: set-alpha($accent-color, 20%);
+      border: 1px solid set-alpha($highlight-color, 5%);
+
+      &:hover:not(:disabled) {
+        background-color: set-alpha($accent-color, 30%);
+      }
     }
 
     &.secondary {
       color: $accent-color;
-      background-color: $text-color;
+      background-color: set-alpha($highlight-color, 10%);
+      border: 1px solid set-alpha($highlight-color, 5%);
 
-      border: 2px solid $accent-color;
+      &:hover:not(:disabled) {
+        background-color: set-alpha($highlight-color, 15%);
+      }
+    }
+
+    &.tertiary {
+      color: $accent-color;
+      border: 1px solid $accent-color;
+
+      &:hover:not(:disabled) {
+        background-color: set-alpha($accent-color, 10%);
+      }
     }
 
     &:disabled {
