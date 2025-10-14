@@ -24,8 +24,8 @@
 	"type": "module",
 	"exports": {
 		".": {
-			"types": "./dist/index.d.ts",
-			"svelte": "./dist/index.js"
+			"types": "./dist/components/index.d.ts",
+			"svelte": "./dist/components/index.js"
 		},
 		"./styles": {
 			"default": "./dist/styles/global.css"

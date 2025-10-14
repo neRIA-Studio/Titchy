@@ -2,7 +2,7 @@
   import "@/others/global.scss";
 
   import { Cookie, Hamburger, Pizza } from "@lucide/svelte";
-  import { Button, Checkbox, Loading } from "$lib";
+  import { Button, Checkbox, Loading } from "$lib/components";
 </script>
 
 <div class="items">
