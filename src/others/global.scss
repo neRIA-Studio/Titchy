@@ -12,21 +12,21 @@
   --x-value-radius-1: 10px;
 }
 
+:root {
+  interpolate-size: allow-keywords;
+}
+
 .titchy, .titchy * {
   &:where(
     header, footer,
     nav, main, section, div,
     form, label, button, a[type=button],
-    article, summary, details
+    article, details, summary, content
   ) {
     all: unset;
     display: flex;
     flex-direction: column;
   }
 
-  & {
-    position: relative;
-    // box-sizing: border-box;
-    transition: all 200ms ease-out;
-  }
+  & { @include default(); }
 }

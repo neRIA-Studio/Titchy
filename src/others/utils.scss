@@ -17,6 +17,13 @@
   @include height($value, $min, $max, $both);
 }
 
+@mixin default() {
+  position: relative;
+  box-sizing: border-box;
+  transition: all 200ms ease-out;
+  transition-behavior: allow-discrete;
+}
+
 /* ================================ Functions =============================== */
 
 @function mix($colors...) {
