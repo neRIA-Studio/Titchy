@@ -2,11 +2,11 @@
   import "@/others/global.scss";
 
   import { Cookie, Hamburger, Pizza } from "@lucide/svelte";
-  import { Button, Checkbox, Loading } from "$lib/components";
+  import { Button, Checkbox, Details, Loading } from "$lib/components";
 </script>
 
 <div class="items">
-  <div class="item">
+  <div class="item button">
     <h1 id="button">
       Button
     </h1>
@@ -35,7 +35,7 @@
     </div>
   </div>
 
-  <div class="item">
+  <div class="item checkbox">
     <h1 id="checkbox">
       Checkbox
     </h1>
@@ -51,7 +51,34 @@
     </div>
   </div>
 
-  <div class="item">
+  <div class="item details">
+    <h1 id="details">
+      Details
+    </h1>
+    <hr />
+    <div class="showcase">
+      <Details summary="Hello! #1" name="details-showcase">
+        These are more details.
+      </Details>
+      <Details summary="Hello! #2" name="details-showcase">
+        They can also be mutually exclusive.
+      </Details>
+      <Details summary="Summary blah blah blah." open>
+        <Details summary="BOO!" open>
+          <span>
+            <Loading variant="ellipses" char="HA" duration={800} />
+            You should've seen your face!
+            <br /> <br />
+            They're also stackable.
+            <br />
+            Doing so handsomely as well.
+          </span>
+        </Details>
+      </Details>
+    </div>
+  </div>
+
+  <div class="item loading">
     <h1 id="loading">
       Loading
     </h1>
@@ -103,6 +130,14 @@
       flex-wrap: wrap;
       align-items: center;
       justify-content: center;
+    }
+  }
+
+  .details {
+    .showcase {
+      align-self: stretch;
+      flex-direction: column;
+      align-items: stretch;
     }
   }
 </style>
