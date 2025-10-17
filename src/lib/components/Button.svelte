@@ -73,7 +73,7 @@
 
     &.tertiary {
       color: $accent-color;
-      border: 2px solid set-alpha($accent-color, 35%);
+      border: 2px solid set-alpha($accent-color, 50%);
 
       &:hover:not(:disabled) {
         background-color: set-alpha($accent-color, 10%);
@@ -82,7 +82,7 @@
 
     &:disabled {
       cursor: not-allowed;
-      opacity: 0.35;
+      opacity: 0.3;
     }
   }
 </style>

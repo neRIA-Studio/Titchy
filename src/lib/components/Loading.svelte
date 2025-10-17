@@ -12,7 +12,7 @@
     char?:    string;
     text?:    string | boolean;
     count?:   number;
-    delay?:   number;
+    delay?:   number | "auto";
     stretch?: boolean;
 
     symbol?:  never;
@@ -36,13 +36,13 @@
 
   const {
     fill,
-    duration,
+    duration = 1000,
 
     variant = 'spinner',
     char = '•',
     text,
     count = 3,
-    delay = 200,
+    delay = "auto",
     stretch,
 
     symbol,
@@ -64,9 +64,9 @@
         class="dot"
         class:stretch
         class:has-text={text}
-        style:animation-delay="{delay * i}ms"
+        style:animation-delay="{(delay === 'auto' ? duration / (count+1) : delay) * i }ms"
         style:animation-duration="{duration}ms"
-        >
+      >
         {char}
       </span>
     {/each}
@@ -121,29 +121,36 @@
       background: linear-gradient(to right, $text-color 70%, $text-shine-color, $text-color);
       -webkit-background-clip: text;
       background-clip: text;
-      animation: swipe 900ms linear infinite;
       background-size: 300% 100%;
+
+      animation-name: swipe;
+      animation-duration: 1s;
+      animation-timing-function: ease;
+      animation-iteration-count: infinite;
     }
 
     .dot {
       color: $dots-color;
       opacity: 0.25;
       transform-origin: bottom;
-      animation: bounce 1.2s infinite;
 
-      &.stretch  { animation: bounce-with-stretch 1.2s infinite; }
+      animation-name: bounce;
+      animation-timing-function: ease;
+      animation-iteration-count: infinite;
+
+      &.stretch  { animation-name: bounce-with-stretch; }
       &.has-text { top: 5px; }
     }
 
     .spinner {
       color: $spinner-color;
       display: inline-flex;
-      animation: spin 1.2s infinite;
 
-      &.linear {
-        animation-duration: 1s;
-        animation-timing-function: linear;
-      }
+      animation-name: spin;
+      animation-timing-function: ease;
+      animation-iteration-count: infinite;
+
+      &.linear { animation-timing-function: linear; }
     }
   }
 
