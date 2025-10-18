@@ -1,8 +1,10 @@
 <script lang="ts">
   import type { Snippet } from "svelte";
   import type { HTMLDetailsAttributes } from "svelte/elements";
+  import { ChevronLast, ChevronRight, ChevronsLeftRight, ChevronsRight, CircleChevronRight, SquareChevronRight, type Icon } from "@lucide/svelte";
 
   interface Props {
+    chevron?: 'single' | 'double' | 'circle' | 'square' | 'dashed' | typeof Icon;
     summary: Snippet | string;
     content?: Snippet | string;
     children?: Snippet;
@@ -11,6 +13,7 @@
 
   let {
     open = $bindable(false),
+    chevron,
     summary,
     content,
     children,
@@ -23,8 +26,20 @@
   {...rest}
   {open}
   class={["titchy", "details", rest.class]}
+  class:has-chevron={chevron}
 >
   <summary>
+    {#if chevron}
+      {@const Chevron =
+          chevron === 'single' ? ChevronRight
+        : chevron === 'double' ? ChevronsRight
+        : chevron === 'circle' ? CircleChevronRight
+        : chevron === 'square' ? SquareChevronRight
+        : chevron === 'dashed' ? ChevronLast
+        : chevron}
+
+      <Chevron class="chevron" />
+    {/if}
     {#if typeof summary === 'string'}
       {summary}
     {:else}
@@ -95,9 +110,20 @@
       opacity: 0;
       filter: blur(15px);
     }
+
+    &.has-chevron > summary {
+      &::before { content: none; }
+
+      > svg.chevron {
+        @include size(12px);
+        stroke-width: 4px;
+        color: $accent-color;
+      }
+    }
   }
 
-  details[open] {
+  :global
+  .titchy.details[open] {
     > summary {
       border-bottom-width: 2px;
       background-color: set-alpha($accent-color, 7.5%);
@@ -118,6 +144,10 @@
       transform: scale(1);
       opacity: 1;
       filter: none;
+    }
+
+    &.has-chevron > summary {
+      > svg.chevron { rotate: 90deg; }
     }
   }
 </style>

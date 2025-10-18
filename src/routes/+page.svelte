@@ -63,8 +63,8 @@
       <Details summary="Hello! #2" name="details-showcase">
         They can also be mutually exclusive.
       </Details>
-      <Details summary="Summary blah blah blah." open>
-        <Details summary="BOO!" open>
+      <Details summary="Summary blah blah blah.">
+        <Details summary="BOO!" chevron="single">
           <span>
             <Loading variant="ellipses" char="HA" duration={800} />
             You should've seen your face!
