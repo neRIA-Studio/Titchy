@@ -40,8 +40,8 @@
     border-radius: V(radius-1);
 
     backdrop-filter: blur(8px);
-    filter: drop-shadow(0 0 5px $shadow-color);
-    box-shadow: 0 0 10px $shadow-color;
+    // filter: drop-shadow(0 0 5px $shadow-color);
+    box-shadow: 0 0 5px $shadow-color;
 
     &:hover:not(:disabled) {
       transform: scale(1.05);

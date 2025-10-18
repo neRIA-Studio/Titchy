@@ -45,7 +45,7 @@
     delay = "auto",
     stretch,
 
-    symbol,
+    symbol = "circle",
     linear,
     icon,
   }: (Props1 | Props2) = $props();

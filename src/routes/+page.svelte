@@ -98,11 +98,11 @@
     </h1>
     <hr />
     <div class="showcase">
-      <Loading variant="spinner" symbol="throbber" />
       <Loading variant="spinner" symbol="circle" />
+      <Loading variant="spinner" symbol="throbber" />
       <Loading variant="spinner" symbol="pinwheel" />
       <Loading variant="spinner" symbol="arrow" />
-      <Loading variant="spinner" symbol="throbber" linear />
+      <Loading variant="spinner" symbol="circle" linear />
       <Loading variant="spinner" symbol="custom" icon={Hamburger} linear />
     </div>
     <div class="showcase">
