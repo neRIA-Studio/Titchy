@@ -1,7 +1,7 @@
 <script lang="ts">
   import "@/others/global.scss";
 
-  import { Cookie, Hamburger, Pizza } from "@lucide/svelte";
+  import { Check, Cookie, Croissant, Hamburger, Pizza, X } from "@lucide/svelte";
   import { Button, Checkbox, Details, Loading } from "$lib/components";
 </script>
 
@@ -18,8 +18,11 @@
       <Button variant="secondary">
         <Pizza /> Secondary
       </Button>
-      <Button variant="tertiary">
-        <Cookie /> Tertiary
+      <Button variant="outline">
+        <Cookie /> Outline
+      </Button>
+      <Button variant="blank">
+        <Croissant /> Blank
       </Button>
     </div>
     <div class="showcase">
@@ -29,8 +32,19 @@
       <Button variant="secondary" disabled>
         <Pizza /> Secondary
       </Button>
-      <Button variant="tertiary" disabled>
-        <Cookie /> Tertiary
+      <Button variant="outline" disabled>
+        <Cookie /> Outline
+      </Button>
+      <Button variant="blank" disabled>
+        <Croissant /> Blank
+      </Button>
+    </div>
+    <div class="showcase">
+      <Button variant="primary" rounded>
+        <Check />
+      </Button>
+      <Button variant="secondary" rounded>
+        <X />
       </Button>
     </div>
   </div>

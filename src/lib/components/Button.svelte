@@ -2,18 +2,20 @@
   import type { HTMLButtonAttributes } from "svelte/elements";
 
   interface Props {
-    variant?: 'primary' | 'secondary' | 'tertiary';
+    variant?: 'primary' | 'secondary' | 'outline' | 'blank';
+    rounded?: boolean;
   }
 
   const {
     variant = 'primary',
+    rounded,
     ...rest
   }: Props & HTMLButtonAttributes = $props();
 </script>
 
 <button
   {...rest}
-  class={["titchy", "button", variant, rest.class]}
+  class={["titchy", "button", variant, { rounded }, rest.class]}
 >
   {@render rest.children?.()}
 </button>
@@ -71,13 +73,26 @@
       }
     }
 
-    &.tertiary {
+    &.outline {
       color: $accent-color;
       border: 2px solid set-alpha($accent-color, 50%);
 
       &:hover:not(:disabled) {
         background-color: set-alpha($accent-color, 10%);
       }
+    }
+
+    &.blank {
+      color: $highlight-color;
+      border: 2px solid transparent;
+
+      &:hover:not(:disabled) {
+        background-color: set-alpha($highlight-color, 5%);
+      }
+    }
+
+    &.rounded {
+      border-radius: max(100dvw, 100dvh);
     }
 
     &:disabled {
