@@ -65,7 +65,7 @@
 
   :global
   .titchy.details {
-    overflow: hidden;
+    // overflow: hidden;
     min-height: fit-content;
 
     border: 2px solid $accent-color;
@@ -87,6 +87,11 @@
       border-width: 0;
       border-style: solid;
       border-color: set-alpha($accent-color, 15%);
+      border-radius: calc(V(radius-1) - 2px);
+
+      &:focus-visible {
+        outline-offset: V(spacing-2);
+      }
 
       &::before {
         content: "";
@@ -125,8 +130,10 @@
   :global
   .titchy.details[open] {
     > summary {
-      border-bottom-width: 2px;
       background-color: set-alpha($accent-color, 7.5%);
+      border-bottom-width: 2px;
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
 
       &::before {
         background-color: set-alpha($accent-color, 35%);

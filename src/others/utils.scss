@@ -17,6 +17,13 @@
   @include height($value, $mode);
 }
 
+@mixin focused() {
+  outline-offset: V(spacing-1);
+  outline-width: V(spacing-1);
+  outline-style: solid;
+  outline-color: C(secondary, 25%);
+}
+
 @mixin default() {
   position: relative;
   box-sizing: border-box;
@@ -24,18 +31,17 @@
   transition: all 200ms ease-out;
   transition-behavior: allow-discrete;
 
-  outline-color: C(secondary, 15%);
+  outline-color: transparent;
 
   &:focus-visible {
-    outline-width: 2.5px;
-    outline-style: solid;
+    @include focused();
   }
 }
 
 /* ================================ Functions =============================== */
 
 @function mix($colors...) {
-  @return color-mix(in srgb, $colors);
+  @return color-mix(in oklab, $colors);
 }
 
 @function set-alpha($color, $alpha: 100%) {
