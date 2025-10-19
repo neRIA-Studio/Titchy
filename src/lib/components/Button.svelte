@@ -30,28 +30,18 @@
   :global
   .titchy.button {
     cursor: pointer;
-    padding: 7.5px;
+    padding: V(spacing-1);
 
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    gap: 7.5px;
+    gap: V(spacing-1);
 
     border-radius: V(radius-1);
 
     backdrop-filter: blur(8px);
     // filter: drop-shadow(0 0 5px $shadow-color);
     box-shadow: 0 0 5px $shadow-color;
-
-    &:hover:not(:disabled) {
-      transform: scale(1.05);
-      opacity: 1;
-    }
-
-    &:active:not(:disabled) {
-      transform: scale(0.95);
-      opacity: 0.75;
-    }
 
     &.primary {
       color: $accent-color;
@@ -93,6 +83,16 @@
 
     &.rounded {
       border-radius: max(100dvw, 100dvh);
+    }
+
+    &:hover:not(:disabled) {
+      transform: scale(1.05);
+      opacity: 1;
+    }
+
+    &:active:not(:disabled) {
+      transform: scale(0.95);
+      opacity: 0.75;
     }
 
     &:disabled {

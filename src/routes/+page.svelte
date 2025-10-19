@@ -2,7 +2,7 @@
   import "@/others/global.scss";
 
   import { Check, Cookie, Croissant, Hamburger, Pizza, X } from "@lucide/svelte";
-  import { Button, Checkbox, Details, Loading } from "$lib/components";
+  import { Button, Checkbox, Details, Field, Loading } from "$lib/components";
 </script>
 
 <div class="items">
@@ -92,6 +92,25 @@
     </div>
   </div>
 
+  <div class="item field">
+    <h1 id="field">
+      Field
+    </h1>
+    <hr />
+    <div class="showcase">
+      <Field>
+        Username
+        <input type="text" />
+      </Field>
+    </div>
+    <div class="showcase">
+      <Field horizontal>
+        <Checkbox />
+        Pineapple on pizza is a crime.
+      </Field>
+    </div>
+  </div>
+
   <div class="item loading">
     <h1 id="loading">
       Loading
@@ -148,6 +167,14 @@
   }
 
   .details {
+    .showcase {
+      align-self: stretch;
+      flex-direction: column;
+      align-items: stretch;
+    }
+  }
+
+  .field {
     .showcase {
       align-self: stretch;
       flex-direction: column;
