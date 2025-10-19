@@ -37,9 +37,7 @@
     form, label, button, a[type=button],
     article, details, summary, content
   ) {
-    all: unset;
-    display: flex;
-    flex-direction: column;
+    @include flex(true);
   }
 
   &:where(

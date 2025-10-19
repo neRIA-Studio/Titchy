@@ -38,6 +38,12 @@
   }
 }
 
+@mixin flex($reset: false) {
+  @if $reset { all: unset; }
+  display: flex;
+  flex-direction: column;
+}
+
 /* ================================ Functions =============================== */
 
 @function mix($colors...) {

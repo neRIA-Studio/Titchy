@@ -2,7 +2,7 @@
   import type { HTMLButtonAttributes } from "svelte/elements";
 
   interface Props {
-    variant?: 'primary' | 'secondary' | 'outline' | 'blank';
+    variant?: 'primary' | 'secondary' | 'outline' | 'blank' | 'wrapper';
     rounded?: boolean;
   }
 
@@ -83,6 +83,12 @@
       &:hover:not(:disabled) {
         background-color: set-alpha($highlight-color, 5%);
       }
+    }
+
+    &.wrapper {
+      @include flex(true);
+      @include default();
+      cursor: pointer;
     }
 
     &.rounded {
