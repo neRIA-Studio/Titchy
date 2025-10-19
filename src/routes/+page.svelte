@@ -100,7 +100,7 @@
     <div class="showcase">
       <Field>
         Username
-        <Input type="text" placeholder="john_doe" />
+        <Input type="text" placeholder="john_doe" icon />
       </Field>
     </div>
     <div class="showcase">
@@ -108,6 +108,27 @@
         <Checkbox />
         Pineapple on pizza is a crime.
       </Field>
+    </div>
+  </div>
+
+  <div class="item input">
+    <h1 id="input">
+      Input
+    </h1>
+    <hr />
+    <div class="showcase">
+      <Input type="email" placeholder="john_doe@example.com" />
+      <Input type="password" placeholder="• • • • • • • • • • • •" />
+    </div>
+    <div class="showcase">
+      <Input type="email" placeholder="john_doe@example.com" icon pastable />
+      <Input type="password" placeholder="• • • • • • • • • • • •" icon />
+    </div>
+    <div class="showcase">
+      <Input type="url" placeholder="example.com" icon hidable copyable pastable />
+    </div>
+    <div class="showcase">
+      <Input type="url" placeholder="example.com" icon hidable copyable pastable disabled />
     </div>
   </div>
 
