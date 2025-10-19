@@ -24,6 +24,8 @@
   :global
   .titchy.field {
     gap: V(spacing-4);
+    font-size: V(text-s);
+    > * { font-size: V(text-m); }
 
     &.horizontal {
       flex-direction: row;

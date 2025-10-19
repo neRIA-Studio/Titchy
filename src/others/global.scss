@@ -11,7 +11,7 @@
 
   /* VALUES: */
   --x-value-radius-1: 10px;
-
+  // Spacings
   --x-value-spacing-0:  0.5px;
   --x-value-spacing-1:  2.5px;
   --x-value-spacing-2:  5.0px;
@@ -20,6 +20,10 @@
   --x-value-spacing-5: 12.5px;
   --x-value-spacing-6: 15.0px;
   --x-value-spacing-7: 27.5px;
+  // Font Sizes
+  --x-value-text-s: 0.875rem;
+  --x-value-text-m: 1.000rem;
+  --x-value-text-l: 1.125rem;
 }
 
 :root {

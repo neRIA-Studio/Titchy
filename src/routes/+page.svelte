@@ -100,7 +100,7 @@
     <div class="showcase">
       <Field>
         Username
-        <Input type="url" placeholder="john_doe" />
+        <Input type="text" placeholder="john_doe" />
       </Field>
     </div>
     <div class="showcase">
@@ -166,15 +166,7 @@
     }
   }
 
-  .details {
-    .showcase {
-      align-self: stretch;
-      flex-direction: column;
-      align-items: stretch;
-    }
-  }
-
-  .field {
+  .details, .field {
     .showcase {
       align-self: stretch;
       flex-direction: column;

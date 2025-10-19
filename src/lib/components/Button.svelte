@@ -31,7 +31,7 @@
   .titchy.button {
     cursor: pointer;
     padding: V(spacing-2);
-    font-size: smaller;
+    font-size: V(text-s);
 
     min-height: 36px;
     min-width: 36px;
@@ -101,7 +101,7 @@
 
     &:disabled {
       cursor: not-allowed;
-      opacity: 0.3;
+      opacity: 0.35;
     }
   }
 </style>
