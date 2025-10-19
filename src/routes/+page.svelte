@@ -2,7 +2,7 @@
   import "@/others/global.scss";
 
   import { Check, Cookie, Croissant, Hamburger, Pizza, X } from "@lucide/svelte";
-  import { Button, Checkbox, Details, Field, Loading } from "$lib/components";
+  import { Button, Checkbox, Details, Field, Input, Loading } from "$lib/components";
 </script>
 
 <div class="items">
@@ -100,7 +100,7 @@
     <div class="showcase">
       <Field>
         Username
-        <input type="text" />
+        <Input type="url" placeholder="john_doe" />
       </Field>
     </div>
     <div class="showcase">
