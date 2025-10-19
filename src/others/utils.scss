@@ -1,27 +1,35 @@
 /* ================================= Mixins ================================= */
 
-@mixin width($value, $min: false, $max: false, $both: false) {
+@mixin width($value, $mode: 'none') {
   width: $value;
-  @if $min or $both { min-width: $value; }
-  @if $max or $both { max-width: $value; }
+  @if $mode == 'min' or $mode == 'all' { min-width: $value; }
+  @if $mode == 'max' or $mode == 'all' { max-width: $value; }
 }
 
-@mixin height($value, $min: false, $max: false, $both: false) {
+@mixin height($value, $mode: 'none') {
   height: $value;
-  @if $min or $both { min-height: $value; }
-  @if $max or $both { max-height: $value; }
+  @if $mode == 'min' or $mode == 'all' { min-height: $value; }
+  @if $mode == 'max' or $mode == 'all' { max-height: $value; }
 }
 
-@mixin size($value, $min: false, $max: false, $both: false) {
-  @include width ($value, $min, $max, $both);
-  @include height($value, $min, $max, $both);
+@mixin size($value, $mode: 'none') {
+  @include width ($value, $mode);
+  @include height($value, $mode);
 }
 
 @mixin default() {
   position: relative;
   box-sizing: border-box;
+
   transition: all 200ms ease-out;
   transition-behavior: allow-discrete;
+
+  outline-color: C(secondary, 15%);
+
+  &:focus-visible {
+    outline-width: 2.5px;
+    outline-style: solid;
+  }
 }
 
 /* ================================ Functions =============================== */

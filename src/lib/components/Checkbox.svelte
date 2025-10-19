@@ -58,7 +58,7 @@
   :global
   .titchy.button.checkbox {
     &.checkbox {
-      @include size($size, $both:true);
+      @include size($size, 'all');
       padding: 0;
       border: none;
       overflow: hidden;
@@ -75,24 +75,24 @@
       justify-content: center;
 
       &.hollow {
-        @include size(calc($size / 1.5), $both:true);
+        @include size(calc($size / 1.5), 'all');
         border-radius: calc(V(radius-1) / 1.5);
         background-color: $accent-color;
       }
 
       &.check :global(svg) {
         stroke-width: 4px;
-        @include size(calc($size / 1.5), $both:true);
+        @include size(calc($size / 1.5), 'all');
       }
 
       &.x :global(svg) {
         stroke-width: 4px;
-        @include size(calc($size / 1.5), $both:true);
+        @include size(calc($size / 1.5), 'all');
       }
 
       &.radio :global(svg) {
         stroke-width: 4px;
-        @include size(calc($size / 1.75), $both:true);
+        @include size(calc($size / 1.75), 'all');
       }
 
       // &.custom :global(svg) { }
