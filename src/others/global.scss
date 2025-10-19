@@ -10,7 +10,15 @@
 
   /* VALUES: */
   --x-value-radius-1: 10px;
-  --x-value-spacing-1: 7.5px;
+
+  --x-value-spacing-0:  0.5px;
+  --x-value-spacing-1:  2.5px;
+  --x-value-spacing-2:  5.0px;
+  --x-value-spacing-3:  7.5px;
+  --x-value-spacing-4: 10.0px;
+  --x-value-spacing-5: 12.5px;
+  --x-value-spacing-6: 15.0px;
+  --x-value-spacing-7: 27.5px;
 }
 
 :root {
@@ -27,6 +35,12 @@
     all: unset;
     display: flex;
     flex-direction: column;
+  }
+
+  &:where(
+    svg.lucide
+  ) {
+    @include size(20px);
   }
 
   & { @include default(); }

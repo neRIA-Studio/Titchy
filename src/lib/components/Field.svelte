@@ -23,7 +23,7 @@
 
   :global
   .titchy.field {
-    gap: V(spacing-1);
+    gap: V(spacing-4);
 
     &.horizontal {
       flex-direction: row;

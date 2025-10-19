@@ -30,12 +30,13 @@
   :global
   .titchy.button {
     cursor: pointer;
-    padding: V(spacing-1);
+    padding: V(spacing-3);
+    font-size: 14px;
 
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    gap: V(spacing-1);
+    gap: V(spacing-3);
 
     border-radius: V(radius-1);
 

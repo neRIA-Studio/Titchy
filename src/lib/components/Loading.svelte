@@ -151,6 +151,10 @@
       animation-iteration-count: infinite;
 
       &.linear { animation-timing-function: linear; }
+
+      > svg {
+        @include size(25px);
+      }
     }
   }
 

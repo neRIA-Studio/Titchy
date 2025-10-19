@@ -91,7 +91,7 @@
       &::before {
         content: "";
         @include default();
-        @include size(12px);
+        @include size(V(spacing-5));
         border: 2px dotted $accent-color;
         border-radius: 50%;
       }
@@ -115,7 +115,7 @@
       &::before { content: none; }
 
       > svg.chevron {
-        @include size(12px);
+        @include size(V(spacing-5));
         stroke-width: 4px;
         color: $accent-color;
       }
