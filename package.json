@@ -1,6 +1,6 @@
 {
 	"name": "titchy",
-	"version": "0.0.8",
+	"version": "0.0.9",
 	"scripts": {
 		"dev": "vite dev",
 		"build": "vite build && npm run prepack",
@@ -49,6 +49,9 @@
 		"vite": "^7.1.7"
 	},
 	"keywords": [
-		"svelte"
+		"svelte",
+		"components",
+		"ui",
+		"ui-kit"
 	]
 }
