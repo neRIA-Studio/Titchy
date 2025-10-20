@@ -1,27 +1,33 @@
 <script lang="ts">
-  import type { HTMLInputAttributes } from "svelte/elements";
-  import { Check, Clipboard, Copy, Eye, EyeOff, Hash, KeyRound, Link, Mail, Phone, Type, type Icon } from "@lucide/svelte";
+  import type { HTMLInputAttributes, MouseEventHandler } from "svelte/elements";
+  import { Check, Clipboard, Copy, Eye, EyeOff, Hash, KeyRound, Link, Mail, Phone, Scissors, Search, Type, X, type Icon } from "@lucide/svelte";
   import { Button } from ".";
   import { blur } from "svelte/transition";
 
   interface Props {
-    type?:     typeof ACCEPTED_TYPES[number];
-    icon?:     boolean | typeof Icon;
-    wrapped?:  boolean;
-    hidable?:  boolean;
-    copyable?: boolean;
+    type?:               typeof ACCEPTED_TYPES[number] | 'search';
+    icon?:               boolean | typeof Icon;
+    wrapped?:            boolean;
+    hidable?:            boolean;
+    cuttable?:           boolean;
+    copyable?:           boolean;
     /**🍝*/
-    pastable?: boolean;
+    pastable?:           boolean;
+    clearable?:          boolean;
+    'actions-on-hover'?: boolean;
   }
 
   const {
     type,
     icon,
+    disabled,
     wrapped = !!icon,
     hidable = type === 'password',
+    cuttable,
     copyable,
     pastable,
-    disabled,
+    clearable,
+    'actions-on-hover':actionsOnHover,
     ...rest
   }: Props & HTMLInputAttributes = $props();
 
@@ -35,18 +41,43 @@
     //'search', // whore
   ] satisfies HTMLInputAttributes['type'][];
 
+  const FEEDBACK_DUR = 2000;
+
   let inputElement = $state<HTMLInputElement | null>(null);
 
-  let hidden = $state<boolean>(type === 'password');
-  let copied = $state<boolean>(false);
-  let pasted = $state<boolean>(false);
+  let hidden  = $state<boolean>(type === 'password');
+  let copied  = $state<boolean>(false);
+  let cutted  = $state<boolean>(false); // I know it's just "cut"
+  let pasted  = $state<boolean>(false);
+  let cleared = $state<boolean>(false);
+
+  let actionCount = $derived(
+    Number(!!wrapped) * (
+      Number(!!hidable)   +
+      Number(!!cuttable)  +
+      Number(!!copyable)  +
+      Number(!!pastable)  +
+      Number(!!clearable)
+    )
+  );
 
   const onHide = () => {
     hidden =! hidden;
   };
 
+  const onCut = async () => {
+    setTimeout(() => cutted = false, FEEDBACK_DUR);
+    const value = inputElement?.value;
+
+    if (value && inputElement) {
+      await navigator.clipboard.writeText(value);
+      inputElement.value = "";
+      cutted = true;
+    }
+  };
+
   const onCopy = async () => {
-    setTimeout(() => copied = false, 2000);
+    setTimeout(() => copied = false, FEEDBACK_DUR);
     const value = inputElement?.value;
 
     if (value && inputElement) {
@@ -56,12 +87,21 @@
   };
 
   const onPaste = async () => {
-    setTimeout(() => pasted = false, 2000);
+    setTimeout(() => pasted = false, FEEDBACK_DUR);
     const value = await navigator.clipboard.readText();
 
     if (value && inputElement) {
       inputElement.value = value;
       pasted = true;
+    }
+  };
+
+  const onClear = () => {
+    setTimeout(() => cleared = false, FEEDBACK_DUR);
+
+    if (inputElement && inputElement.value) {
+      inputElement.value = "";
+      cleared = true;
     }
   };
 </script>
@@ -70,14 +110,15 @@
   <input
     bind:this={inputElement}
     {...rest}
-    style="--action-count: {Number(!!wrapped) * (Number(!!hidable) + Number(!!copyable) + Number(!!pastable))};--has-icon:{Number(!!icon)};{rest.style}"
-    type={hidden ? "password" : type === 'password' && !hidden || !ACCEPTED_TYPES.includes(type!) ? "text" : type}
     class={["titchy", "input", rest.class]}
+    style="--action-count: {actionCount};--has-icon:{Number(!!icon)};{rest.style}"
+    type={hidden ? "password" : type === 'password' && !hidden || !ACCEPTED_TYPES.includes(type as any) ? 'text' : type}
     inputmode={
-        type === 'number' ? 'numeric'
-      : type === 'email'  ? 'email'
-      : type === 'url'    ? 'url'
+        type === 'email'  ? 'email'
       : type === 'tel'    ? 'tel'
+      : type === 'number' ? 'numeric'
+      : type === 'url'    ? 'url'
+      : type === 'search' ? 'search'
       : "text"
     }
     {disabled}
@@ -93,6 +134,7 @@
     : type === 'tel'      ? Phone
     : type === 'number'   ? Hash
     : type === 'url'      ? Link
+    : type === 'search'   ? Search
     : null}
   {#if Icon}
     <div class="symbol">
@@ -101,35 +143,28 @@
   {/if}
 {/snippet}
 
+{#snippet action(action: MouseEventHandler<HTMLButtonElement>, condition: boolean, active: boolean, Symbol: typeof Icon, Feedback: typeof Icon)}
+  {#if condition}
+    <Button variant="wrapper" onclick={action}>
+      {#if active}
+        <div in:blur><Feedback /></div>
+      {:else}
+        <div in:blur><Symbol /></div>
+      {/if}
+    </Button>
+  {/if}
+{/snippet}
+
 {#snippet actions()}
-  <div class="actions">
-    {#if hidable}
-      <Button variant="wrapper" onclick={onHide}>
-        {#if hidden}
-          <div in:blur><EyeOff /></div>
-        {:else}
-          <div in:blur><Eye /></div>
-        {/if}
-      </Button>
-    {/if}
-    {#if copyable}
-      <Button variant="wrapper" onclick={onCopy}>
-        {#if copied}
-          <div in:blur><Check /></div>
-        {:else}
-          <div in:blur><Copy /></div>
-        {/if}
-      </Button>
-    {/if}
-    {#if pastable}
-      <Button variant="wrapper" onclick={onPaste} {disabled}>
-        {#if pasted}
-          <div in:blur><Check /></div>
-        {:else}
-          <div in:blur><Clipboard /></div>
-        {/if}
-      </Button>
-    {/if}
+  <div
+    class="actions"
+    class:on-hover={actionsOnHover}
+  >
+    {@render action(onHide,  !!hidable,   hidden,  EyeOff,    Eye  )}
+    {@render action(onCut,   !!cuttable,  cutted,  Scissors,  Check)}
+    {@render action(onCopy,  !!copyable,  copied,  Copy,      Check)}
+    {@render action(onPaste, !!pastable,  pasted,  Clipboard, Check)}
+    {@render action(onClear, !!clearable, cleared, X,         Check)}
   </div>
 {/snippet}
 
@@ -219,6 +254,9 @@
       }
     }
 
+    &:is(:hover, :focus-within)
+    .actions.on-hover { opacity: 1; }
+
     .actions {
       @include height(100%, 'all');
 
@@ -241,6 +279,8 @@
           stroke-width: 3px;
         }
       }
+
+      &.on-hover { opacity: 0; }
     }
   }
 </style>

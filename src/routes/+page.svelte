@@ -125,10 +125,13 @@
       <Input type="password" placeholder="• • • • • • • • • • • •" icon />
     </div>
     <div class="showcase">
-      <Input type="url" placeholder="example.com" icon hidable copyable pastable />
+      <Input type="search" placeholder="The Treasure" icon clearable actions-on-hover />
     </div>
     <div class="showcase">
-      <Input type="url" placeholder="example.com" icon hidable copyable pastable disabled />
+      <Input type="url" placeholder="example.com" icon hidable copyable cuttable pastable clearable />
+    </div>
+    <div class="showcase">
+      <Input type="url" placeholder="example.com" icon hidable copyable cuttable pastable clearable disabled />
     </div>
   </div>
 
@@ -192,6 +195,13 @@
       align-self: stretch;
       flex-direction: column;
       align-items: stretch;
+    }
+  }
+
+  .input {
+    .showcase {
+      align-self: stretch;
+      :global > * { flex: 1; width: 100%; }
     }
   }
 </style>
