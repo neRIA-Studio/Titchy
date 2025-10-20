@@ -7,31 +7,31 @@
 
   interface Props {
     active?: boolean;
-    symbol?: 'hollow' | 'check' | 'x' | 'radio' | 'custom' | typeof Icon;
+    icon?: 'hollow' | 'check' | 'x' | 'radio' | 'custom' | typeof Icon;
   }
 
   let {
     active = $bindable(false),
-    symbol = 'hollow',
+    icon = 'hollow',
     ...rest
   }: Props & ComponentProps<typeof Button> = $props();
 </script>
 
-{#snippet active_symbol()}
-  {@const Symbol =
-      symbol === 'hollow' ? null
-    : symbol === 'check'  ? Check
-    : symbol === 'x'      ? X
-    : symbol === 'radio'  ? Circle
-    : symbol === 'custom' ? null
-    : symbol}
+{#snippet checkmark()}
+  {@const Icon =
+      icon === 'hollow' ? null
+    : icon === 'check'  ? Check
+    : icon === 'x'      ? X
+    : icon === 'radio'  ? Circle
+    : icon === 'custom' ? null
+    : icon}
 
   <div
-    class={["active-symbol", typeof symbol === 'string' ? symbol : "custom"]}
+    class={["symbol", typeof icon === 'string' ? icon : "custom"]}
     transition:blur={{ duration:300 }}
   >
-    {#if Symbol}
-      <Symbol />
+    {#if Icon}
+      <Icon />
     {/if}
   </div>
 {/snippet}
@@ -42,10 +42,10 @@
   class={["checkbox", { active }, rest.class]}
   onclick={rest.onclick ?? (() => active =! active)}
 >
-  {#if symbol === 'custom'}
+  {#if icon === 'custom'}
     {@render rest.children?.()}
   {:else if active}
-    {@render active_symbol()}
+    {@render checkmark()}
   {/if}
 </Button>
 
@@ -70,7 +70,7 @@
       &:hover { background-color: set-alpha($accent-color, 20%); }
     }
 
-    .active-symbol {
+    .symbol {
       align-items: center;
       justify-content: center;
 

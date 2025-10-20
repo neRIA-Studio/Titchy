@@ -56,12 +56,12 @@
     <hr />
     <div class="showcase">
       <Checkbox />
-      <Checkbox active symbol="hollow" />
-      <Checkbox active symbol="check" />
-      <Checkbox active symbol="x" />
-      <Checkbox active symbol="radio" />
-      <Checkbox active symbol={Hamburger} />
-      <Checkbox active symbol="custom">Hi</Checkbox>
+      <Checkbox active icon="hollow" />
+      <Checkbox active icon="check" />
+      <Checkbox active icon="x" />
+      <Checkbox active icon="radio" />
+      <Checkbox active icon={Hamburger} />
+      <Checkbox active icon="custom">Hi</Checkbox>
     </div>
   </div>
 
@@ -78,7 +78,7 @@
         They can also be mutually exclusive.
       </Details>
       <Details summary="Summary blah blah blah.">
-        <Details summary="BOO!" chevron="single">
+        <Details summary="BOO!" icon="single">
           <span>
             <Loading variant="ellipses" char="HA" duration={800} />
             You should've seen your face!
@@ -138,12 +138,12 @@
     </h1>
     <hr />
     <div class="showcase">
-      <Loading variant="spinner" symbol="circle" />
-      <Loading variant="spinner" symbol="throbber" />
-      <Loading variant="spinner" symbol="pinwheel" />
-      <Loading variant="spinner" symbol="arrow" />
-      <Loading variant="spinner" symbol="circle" linear />
-      <Loading variant="spinner" symbol="custom" icon={Hamburger} linear />
+      <Loading variant="spinner" icon="circle" />
+      <Loading variant="spinner" icon="throbber" />
+      <Loading variant="spinner" icon="pinwheel" />
+      <Loading variant="spinner" icon="arrow" />
+      <Loading variant="spinner" icon="circle" linear />
+      <Loading variant="spinner" icon={Hamburger} linear />
     </div>
     <div class="showcase">
       <Loading variant="ellipses" />

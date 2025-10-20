@@ -15,9 +15,8 @@
     delay?:   number | "auto";
     stretch?: boolean;
 
-    symbol?:  never;
-    linear?:  never;
     icon?:    never;
+    linear?:  never;
   }
 
   interface Props2 extends Props {
@@ -29,9 +28,8 @@
     delay?:   never;
     stretch?: never;
 
-    symbol?:  'throbber' | 'circle' | 'pinwheel' | 'arrow' | 'custom';
+    icon?:    'circle' | 'throbber' | 'pinwheel' | 'arrow' | typeof Icon;
     linear?:  boolean;
-    icon?:    typeof Icon;
   }
 
   const {
@@ -42,14 +40,33 @@
     char = '•',
     text,
     count = 3,
-    delay = "auto",
+    delay = 'auto',
     stretch,
 
-    symbol = "circle",
+    icon = 'circle',
     linear,
-    icon,
   }: (Props1 | Props2) = $props();
 </script>
+
+{#snippet spinner()}
+  {@const Icon =
+      icon === 'throbber'
+    ? Loader
+    : icon === 'circle'
+    ? LoaderCircle
+    : icon === 'pinwheel'
+    ? LoaderPinwheel
+    : icon === 'arrow'
+    ? RotateCw
+    : icon}
+  <div
+    class="spinner"
+    class:linear
+    style:animation-duration="{duration}ms"
+  >
+    <Icon />
+  </div>
+{/snippet}
 
 <span class="titchy loading" class:fill>
   {#if variant === 'ellipses'}
@@ -71,25 +88,7 @@
       </span>
     {/each}
   {:else if variant === 'spinner'}
-    {@const Icon =
-        symbol === 'throbber'
-      ? Loader
-      : symbol === 'circle'
-      ? LoaderCircle
-      : symbol === 'pinwheel'
-      ? LoaderPinwheel
-      : symbol === 'arrow'
-      ? RotateCw
-      : symbol === 'custom'
-      ? icon
-      : null}
-    <div
-      class="spinner"
-      class:linear
-      style:animation-duration="{duration}ms"
-    >
-      <Icon />
-    </div>
+    {@render spinner()}
   {/if}
 </span>
 

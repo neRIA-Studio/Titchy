@@ -1,14 +1,14 @@
 <script lang="ts">
   import type { HTMLInputAttributes } from "svelte/elements";
-  import { Check, Clipboard, Copy, Eye, EyeOff, Hash, KeyRound, Link, Mail, Phone, TextCursor, type Icon } from "@lucide/svelte";
+  import { Check, Clipboard, Copy, Eye, EyeOff, Hash, KeyRound, Link, Mail, Phone, Type, type Icon } from "@lucide/svelte";
   import { Button } from ".";
   import { blur } from "svelte/transition";
 
   interface Props {
-    type?: (typeof ACCEPTED_TYPES)[number];
-    icon?: boolean | typeof Icon;
-    wrapped?: boolean;
-    hidable?: boolean;
+    type?:     typeof ACCEPTED_TYPES[number];
+    icon?:     boolean | typeof Icon;
+    wrapped?:  boolean;
+    hidable?:  boolean;
     copyable?: boolean;
     /**🍝*/
     pastable?: boolean;
@@ -73,23 +73,30 @@
     style="--action-count: {Number(!!wrapped) * (Number(!!hidable) + Number(!!copyable) + Number(!!pastable))};--has-icon:{Number(!!icon)};{rest.style}"
     type={hidden ? "password" : type === 'password' && !hidden || !ACCEPTED_TYPES.includes(type!) ? "text" : type}
     class={["titchy", "input", rest.class]}
+    inputmode={
+        type === 'number' ? 'numeric'
+      : type === 'email'  ? 'email'
+      : type === 'url'    ? 'url'
+      : type === 'tel'    ? 'tel'
+      : "text"
+    }
     {disabled}
   />
 {/snippet}
 
 {#snippet symbol()}
-  {@const Symbol = icon && typeof icon !== 'boolean' ? icon
-    : type === 'text'     ? TextCursor
+  {@const Icon =
+      icon && typeof icon !== 'boolean' ? icon
+    : type === 'text'     ? Type
     : type === 'email'    ? Mail
     : type === 'password' ? KeyRound
     : type === 'tel'      ? Phone
     : type === 'number'   ? Hash
     : type === 'url'      ? Link
-    : null
-  }
-  {#if Symbol}
+    : null}
+  {#if Icon}
     <div class="symbol">
-      <Symbol />
+      <Icon />
     </div>
   {/if}
 {/snippet}

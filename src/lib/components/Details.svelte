@@ -4,16 +4,16 @@
   import { ChevronLast, ChevronRight, ChevronsLeftRight, ChevronsRight, CircleChevronRight, SquareChevronRight, type Icon } from "@lucide/svelte";
 
   interface Props {
-    chevron?: 'single' | 'double' | 'circle' | 'square' | 'dashed' | typeof Icon;
-    summary: Snippet | string;
-    content?: Snippet | string;
-    children?: Snippet;
+    icon?:      'single' | 'double' | 'circle' | 'square' | 'dashed' | typeof Icon;
+    summary:       Snippet | string;
+    content?:      Snippet | string;
+    children?:     Snippet;
     'no-padding'?: boolean;
   }
 
   let {
     open = $bindable(false),
-    chevron,
+    icon,
     summary,
     content,
     children,
@@ -22,23 +22,27 @@
   }: Props & HTMLDetailsAttributes = $props();
 </script>
 
+{#snippet chevron()}
+  {@const Chevron =
+      icon === 'single' ? ChevronRight
+    : icon === 'double' ? ChevronsRight
+    : icon === 'circle' ? CircleChevronRight
+    : icon === 'square' ? SquareChevronRight
+    : icon === 'dashed' ? ChevronLast
+    : icon}
+
+  <Chevron class="chevron" />
+{/snippet}
+
 <details
   {...rest}
   {open}
   class={["titchy", "details", rest.class]}
-  class:has-chevron={chevron}
+  class:has-chevron={icon}
 >
   <summary>
-    {#if chevron}
-      {@const Chevron =
-          chevron === 'single' ? ChevronRight
-        : chevron === 'double' ? ChevronsRight
-        : chevron === 'circle' ? CircleChevronRight
-        : chevron === 'square' ? SquareChevronRight
-        : chevron === 'dashed' ? ChevronLast
-        : chevron}
-
-      <Chevron class="chevron" />
+    {#if icon}
+      {@render chevron()}
     {/if}
     {#if typeof summary === 'string'}
       {summary}
