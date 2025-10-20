@@ -201,8 +201,8 @@
     height: 36px;
 
     padding: 0;
-    padding-left: calc($padding + $has-icon * $icon-size);
-    padding-right: calc($padding + $action-count * ($action-size + $action-padding * 2) + ($action-count - 1) * ($action-padding));
+    padding-left: calc($padding + $has-icon * ($icon-size + 2 * $action-padding));
+    padding-right: calc($padding + $action-count * ($action-size + $action-padding * 2) + max(0, $action-count - 1) * ($action-padding));
     font-size: V(text-s);
 
     color: C(secondary);
@@ -244,7 +244,7 @@
       pointer-events: none;
 
       position: absolute;
-      left: calc(V(spacing-2) + 2px /*border*/);
+      left: calc(V(spacing-2) + 2px /*border*/ + $action-padding);
 
       align-items: center;
       justify-content: center;
