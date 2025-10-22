@@ -143,9 +143,9 @@
   {/if}
 {/snippet}
 
-{#snippet action(action: MouseEventHandler<HTMLButtonElement>, condition: boolean, active: boolean, Symbol: typeof Icon, Feedback: typeof Icon)}
+{#snippet action(action: MouseEventHandler<HTMLButtonElement>, condition: boolean, active: boolean, Symbol: typeof Icon, Feedback: typeof Icon, inheritDisabled: boolean = false)}
   {#if condition}
-    <Button variant="wrapper" onclick={action}>
+    <Button variant="wrapper" onclick={action} disabled={inheritDisabled && disabled}>
       {#if active}
         <div in:blur><Feedback /></div>
       {:else}
@@ -160,11 +160,11 @@
     class="actions"
     class:on-hover={actionsOnHover}
   >
-    {@render action(onHide,  !!hidable,   hidden,  EyeOff,    Eye  )}
-    {@render action(onCut,   !!cuttable,  cutted,  Scissors,  Check)}
-    {@render action(onCopy,  !!copyable,  copied,  Copy,      Check)}
-    {@render action(onPaste, !!pastable,  pasted,  Clipboard, Check)}
-    {@render action(onClear, !!clearable, cleared, X,         Check)}
+    {@render action(onHide,  !!hidable,   hidden,  EyeOff,    Eye  , false)}
+    {@render action(onCut,   !!cuttable,  cutted,  Scissors,  Check, true )}
+    {@render action(onCopy,  !!copyable,  copied,  Copy,      Check, false)}
+    {@render action(onPaste, !!pastable,  pasted,  Clipboard, Check, true )}
+    {@render action(onClear, !!clearable, cleared, X,         Check, true )}
   </div>
 {/snippet}
 
