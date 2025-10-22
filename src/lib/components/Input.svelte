@@ -14,7 +14,7 @@
     activeIcon:       typeof Icon;
   }
 
-  interface SideActions {
+  interface BuiltinSideActions {
     hidable?:   'none' | 'hover' | 'always';
     cuttable?:  'none' | 'hover' | 'always';
     copyable?:  'none' | 'hover' | 'always';
@@ -24,12 +24,13 @@
   }
 
   interface Props {
-    label?:              string;
-    type?:               typeof ACCEPTED_TYPES[number] | 'search';
-    icon?:               boolean | typeof Icon;
-    'side-actions'?:     SideActions;
-    wrapped?:            boolean;
-    'actions-on-hover'?: boolean;
+    label?:                 string;
+    type?:                  typeof ACCEPTED_TYPES[number] | 'search';
+    icon?:                  boolean | typeof Icon;
+    wrapped?:               boolean;
+    'side-actions'?:        BuiltinSideActions;
+    'custom-side-actions'?: (SideAction & { mode:ValueOf<BuiltinSideActions> })[];
+    'actions-on-hover'?:    boolean;
   }
 
   const {
@@ -37,8 +38,9 @@
     type,
     disabled,
     icon,
-    'side-actions': sideActions,
     wrapped = !!icon,
+    'side-actions': sideActions,
+    'custom-side-actions': customSideActions,
     'actions-on-hover':actionsOnHover,
     ...rest
   }: Props & HTMLInputAttributes = $props();
@@ -123,7 +125,7 @@
 
   /* ============================ Actions Record ============================ */
 
-  const actionsRecord = $derived<Record<keyof SideActions, SideAction>>({
+  const builtinActionsRecord = $derived<Record<keyof BuiltinSideActions, SideAction>>({
     hidable:   { func: onHide,  active: hidden,  icon: EyeOff,    activeIcon: Eye,   inheritsDisabled: false },
     cuttable:  { func: onCut,   active: cutted,  icon: Scissors,  activeIcon: Check, inheritsDisabled: true  },
     copyable:  { func: onCopy,  active: copied,  icon: Copy,      activeIcon: Check, inheritsDisabled: false },
@@ -168,7 +170,7 @@
   {/if}
 {/snippet}
 
-{#snippet action(action: SideAction, mode: ValueOf<SideActions> = 'always')}
+{#snippet action(action: SideAction, mode: ValueOf<BuiltinSideActions> = 'always')}
   {@const NormalIcon = action.icon}
   {@const ActiveIcon = action.activeIcon}
 
@@ -184,6 +186,8 @@
 {#snippet actions()}
   {@const alwaysActions = entries(sideActions ?? { }).filter(e => e[1] === 'always').map(e => e[0])}
   {@const hoverActions  = entries(sideActions ?? { }).filter(e => e[1] === 'hover' ).map(e => e[0])}
+  {@const customAlways  = customSideActions?.filter(e => e.mode === 'always') ?? []}
+  {@const customHover   = customSideActions?.filter(e => e.mode === 'hover' ) ?? []}
 
   <div
     class="actions"
@@ -191,11 +195,17 @@
   >
     <!-- Always shown icons first. -->
     {#each alwaysActions as name}
-      {@render action(actionsRecord[name], 'always')}
+      {@render action(builtinActionsRecord[name], 'always')}
+    {/each}
+    {#each customAlways as act}
+      {@render action(act, act.mode)}
     {/each}
     <!-- Then ones that show on hover. -->
     {#each hoverActions as name}
-      {@render action(actionsRecord[name], 'hover')}
+      {@render action(builtinActionsRecord[name], 'hover')}
+    {/each}
+    {#each customHover as act}
+      {@render action(act, act.mode)}
     {/each}
   </div>
 {/snippet}
