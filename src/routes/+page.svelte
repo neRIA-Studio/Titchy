@@ -125,7 +125,11 @@
       <Input type="password" placeholder="• • • • • • • • • • • •" icon />
     </div>
     <div class="showcase">
-      <Input type="search" placeholder="The Treasure" icon clearable actions-on-hover />
+      <Input label="Email" type="email" placeholder="john_doe@example.com" icon pastable />
+      <Input label="Password" type="password" placeholder="• • • • • • • • • • • •" icon />
+    </div>
+    <div class="showcase">
+      <Input label="Search" type="search" placeholder="The Treasure" icon clearable actions-on-hover />
     </div>
     <div class="showcase">
       <Input type="url" placeholder="example.com" icon hidable copyable cuttable pastable clearable />
