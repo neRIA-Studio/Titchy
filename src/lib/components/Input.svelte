@@ -296,6 +296,7 @@
     .actions {
       position: absolute;
       right: calc(V(spacing-2) + 2px /*border*/);
+      pointer-events: none;
 
       flex-direction: row-reverse;
       align-items: center;
@@ -306,6 +307,7 @@
         align-items: center;
         justify-content: center;
         padding: $action-padding;
+        pointer-events: all;
 
         > div > svg {
           color: $accent-color;
@@ -325,6 +327,7 @@
       height: $icon-size;
       justify-content: center;
       transform: translateY(-100%);
+      pointer-events: none;
 
       color: $accent-color;
       font-weight: bold;
