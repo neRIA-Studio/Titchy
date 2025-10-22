@@ -1,37 +1,49 @@
 <script lang="ts">
   import type { HTMLInputAttributes, MouseEventHandler } from "svelte/elements";
-  import { Check, Clipboard, Copy, Eye, EyeOff, Hash, KeyRound, Link, Mail, Phone, Scissors, Search, Type, X, type Icon } from "@lucide/svelte";
-  import { Button } from ".";
   import { blur } from "svelte/transition";
+  import { Check, Clipboard, Copy, Eye, EyeOff, Hash, KeyRound, Link, Mail, Phone, Scissors, Search, Type, X, type Icon } from "@lucide/svelte";
+
+  import { entries, values, type ValueOf } from "$lib/utils";
+  import { Button } from ".";
+
+  interface SideAction {
+    func:             MouseEventHandler<HTMLButtonElement>;
+    inheritsDisabled: boolean;
+    active:           boolean;
+    icon:             typeof Icon;
+    activeIcon:       typeof Icon;
+  }
+
+  interface SideActions {
+    hidable?:   'none' | 'hover' | 'always';
+    cuttable?:  'none' | 'hover' | 'always';
+    copyable?:  'none' | 'hover' | 'always';
+    /**🍝*/
+    pastable?:  'none' | 'hover' | 'always';
+    clearable?: 'none' | 'hover' | 'always';
+  }
 
   interface Props {
     label?:              string;
     type?:               typeof ACCEPTED_TYPES[number] | 'search';
     icon?:               boolean | typeof Icon;
+    'side-actions'?:     SideActions;
     wrapped?:            boolean;
-    hidable?:            boolean;
-    cuttable?:           boolean;
-    copyable?:           boolean;
-    /**🍝*/
-    pastable?:           boolean;
-    clearable?:          boolean;
     'actions-on-hover'?: boolean;
   }
 
   const {
     label,
     type,
-    icon,
     disabled,
+    icon,
+    'side-actions': sideActions,
     wrapped = !!icon,
-    hidable = type === 'password',
-    cuttable,
-    copyable,
-    pastable,
-    clearable,
     'actions-on-hover':actionsOnHover,
     ...rest
   }: Props & HTMLInputAttributes = $props();
+
+  /* =============================== Constants ============================== */
 
   const ACCEPTED_TYPES = [
     'text',
@@ -45,6 +57,8 @@
 
   const FEEDBACK_DUR = 2000;
 
+  /* ================================ States ================================ */
+
   let inputElement = $state<HTMLInputElement | null>(null);
 
   let hidden  = $state<boolean>(type === 'password');
@@ -55,13 +69,13 @@
 
   let actionCount = $derived(
     Number(!!wrapped) * (
-      Number(!!hidable)   +
-      Number(!!cuttable)  +
-      Number(!!copyable)  +
-      Number(!!pastable)  +
-      Number(!!clearable)
+      values(sideActions ?? { })
+        .filter(e => e !== 'none')
+        .length
     )
   );
+
+  /* =========================== Actions Functions ========================== */
 
   const onHide = () => {
     hidden =! hidden;
@@ -106,6 +120,16 @@
       cleared = true;
     }
   };
+
+  /* ============================ Actions Record ============================ */
+
+  const actionsRecord = $derived<Record<keyof SideActions, SideAction>>({
+    hidable:   { func: onHide,  active: hidden,  icon: EyeOff,    activeIcon: Eye,   inheritsDisabled: false },
+    cuttable:  { func: onCut,   active: cutted,  icon: Scissors,  activeIcon: Check, inheritsDisabled: true  },
+    copyable:  { func: onCopy,  active: copied,  icon: Copy,      activeIcon: Check, inheritsDisabled: false },
+    pastable:  { func: onPaste, active: pasted,  icon: Clipboard, activeIcon: Check, inheritsDisabled: true  },
+    clearable: { func: onClear, active: cleared, icon: X,         activeIcon: Check, inheritsDisabled: true  },
+  });
 </script>
 
 {#snippet input()}
@@ -144,28 +168,35 @@
   {/if}
 {/snippet}
 
-{#snippet action(action: MouseEventHandler<HTMLButtonElement>, condition: boolean, active: boolean, Symbol: typeof Icon, Feedback: typeof Icon, inheritDisabled: boolean = false)}
-  {#if condition}
-    <Button variant="wrapper" onclick={action} disabled={inheritDisabled && disabled}>
-      {#if active}
-        <div in:blur><Feedback /></div>
-      {:else}
-        <div in:blur><Symbol /></div>
-      {/if}
-    </Button>
-  {/if}
+{#snippet action(action: SideAction, mode: ValueOf<SideActions> = 'always')}
+  {@const NormalIcon = action.icon}
+  {@const ActiveIcon = action.activeIcon}
+
+  <Button class={["action", mode]} variant="wrapper" onclick={action.func} disabled={action.inheritsDisabled && disabled}>
+    {#if action.active}
+      <div in:blur><ActiveIcon /></div>
+    {:else}
+      <div in:blur><NormalIcon /></div>
+    {/if}
+  </Button>
 {/snippet}
 
 {#snippet actions()}
+  {@const alwaysActions = entries(sideActions ?? { }).filter(e => e[1] === 'always').map(e => e[0])}
+  {@const hoverActions  = entries(sideActions ?? { }).filter(e => e[1] === 'hover' ).map(e => e[0])}
+
   <div
     class="actions"
     class:on-hover={actionsOnHover}
   >
-    {@render action(onHide,  !!hidable,   hidden,  EyeOff,    Eye  , false)}
-    {@render action(onCut,   !!cuttable,  cutted,  Scissors,  Check, true )}
-    {@render action(onCopy,  !!copyable,  copied,  Copy,      Check, false)}
-    {@render action(onPaste, !!pastable,  pasted,  Clipboard, Check, true )}
-    {@render action(onClear, !!clearable, cleared, X,         Check, true )}
+    <!-- Always shown icons first. -->
+    {#each alwaysActions as name}
+      {@render action(actionsRecord[name], 'always')}
+    {/each}
+    <!-- Then ones that show on hover. -->
+    {#each hoverActions as name}
+      {@render action(actionsRecord[name], 'hover')}
+    {/each}
   </div>
 {/snippet}
 
@@ -274,6 +305,9 @@
       }
     }
 
+    &:is(:hover, :focus-within)
+    .actions .action.hover { opacity: 1; }
+
     .symbol {
       color: $highlight-color;
       pointer-events: none;
@@ -290,9 +324,6 @@
       }
     }
 
-    &:is(:hover, :focus-within)
-    .actions.on-hover { opacity: 1; }
-
     .actions {
       position: absolute;
       right: calc(V(spacing-2) + 2px /*border*/);
@@ -303,11 +334,13 @@
       justify-content: center;
       gap: $action-padding;
 
-      > button {
+      .action {
         align-items: center;
         justify-content: center;
         padding: $action-padding;
         pointer-events: all;
+
+        &.hover { opacity: 0; }
 
         > div > svg {
           color: $accent-color;
@@ -316,7 +349,6 @@
         }
       }
 
-      &.on-hover { opacity: 0; }
     }
 
     .label {

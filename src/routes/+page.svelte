@@ -121,21 +121,75 @@
       <Input type="password" placeholder="• • • • • • • • • • • •" />
     </div>
     <div class="showcase">
-      <Input type="email" placeholder="john_doe@example.com" icon pastable />
-      <Input type="password" placeholder="• • • • • • • • • • • •" icon />
+      <Input
+        type="email"
+        placeholder="john_doe@example.com"
+        icon
+        side-actions={{ pastable: 'always' }}
+      />
+      <Input
+        type="password"
+        placeholder="• • • • • • • • • • • •"
+        icon
+        side-actions={{ hidable: 'always' }}
+      />
     </div>
     <div class="showcase">
-      <Input label="Email" type="email" placeholder="john_doe@example.com" icon pastable />
-      <Input label="Password" type="password" placeholder="• • • • • • • • • • • •" icon />
+      <Input
+        label="Email"
+        type="email"
+        placeholder="john_doe@example.com"
+        icon
+        side-actions={{ pastable: 'always' }}
+      />
+      <Input
+        label="Password"
+        type="password"
+        placeholder="• • • • • • • • • • • •"
+        icon
+        side-actions={{ hidable: 'always' }}
+      />
     </div>
     <div class="showcase">
-      <Input label="Search" type="search" placeholder="The Treasure" icon clearable actions-on-hover />
+      <Input
+        label="Search"
+        type="search"
+        placeholder="The Treasure"
+        icon
+        side-actions={{
+          clearable: 'always',
+          hidable:   'hover',
+        }}
+      />
     </div>
     <div class="showcase">
-      <Input type="url" placeholder="example.com" icon hidable copyable cuttable pastable clearable />
+      <Input
+        type="url"
+        placeholder="example.com"
+        icon
+        side-actions={{
+          hidable:   'always',
+          cuttable:  'always',
+          copyable:  'always',
+          pastable:  'always',
+          clearable: 'always',
+        }}
+      />
     </div>
     <div class="showcase">
-      <Input type="url" placeholder="example.com" icon hidable copyable cuttable pastable clearable disabled />
+      <Input
+        type="url"
+        placeholder="example.com"
+        icon
+        disabled
+        side-actions={{
+          hidable:   'always',
+          cuttable:  'always',
+          copyable:  'always',
+          pastable:  'always',
+          clearable: 'always',
+        }}
+      />
     </div>
   </div>
 
