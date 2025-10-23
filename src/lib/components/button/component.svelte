@@ -28,7 +28,7 @@
 
   $accent-color: var(--button-accent-color, C(accent));
   $shadow-color: var(--button-shadow-color, C(primary));
-  $highlight-color: var(--button-shadow-color, C(secondary));
+  $highlight-color: var(--button-highlight-color, C(secondary));
 
   :global
   .titchy.button {
