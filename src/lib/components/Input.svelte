@@ -6,6 +6,17 @@
   import { entries, values, type ValueOf } from "$lib/utils";
   import { Button } from ".";
 
+  interface Props {
+    self?:                  HTMLInputElement;
+    label?:                 string;
+    type?:                  typeof ACCEPTED_TYPES[number] | 'search';
+    icon?:                  boolean | typeof Icon;
+    wrapped?:               boolean;
+    'side-actions'?:        BuiltinSideActions;
+    'custom-side-actions'?: (SideAction & { mode:ValueOf<BuiltinSideActions> })[];
+    'actions-on-hover'?:    boolean;
+  }
+
   interface SideAction {
     func:             MouseEventHandler<HTMLButtonElement>;
     inheritsDisabled: boolean;
@@ -23,17 +34,10 @@
     clearable?: 'none' | 'hover' | 'always';
   }
 
-  interface Props {
-    label?:                 string;
-    type?:                  typeof ACCEPTED_TYPES[number] | 'search';
-    icon?:                  boolean | typeof Icon;
-    wrapped?:               boolean;
-    'side-actions'?:        BuiltinSideActions;
-    'custom-side-actions'?: (SideAction & { mode:ValueOf<BuiltinSideActions> })[];
-    'actions-on-hover'?:    boolean;
-  }
+  let {
+    self  = $bindable(),
+    value = $bindable(),
 
-  const {
     label,
     type,
     disabled,
@@ -61,8 +65,6 @@
 
   /* ================================ States ================================ */
 
-  let inputElement = $state<HTMLInputElement | null>(null);
-
   let hidden  = $state<boolean>(type === 'password');
   let copied  = $state<boolean>(false);
   let cutted  = $state<boolean>(false); // I know it's just "cut"
@@ -85,20 +87,20 @@
 
   const onCut = async () => {
     setTimeout(() => cutted = false, FEEDBACK_DUR);
-    const value = inputElement?.value;
+    const value = self?.value;
 
-    if (value && inputElement) {
+    if (value && self) {
       await navigator.clipboard.writeText(value);
-      inputElement.value = "";
+      self.value = "";
       cutted = true;
     }
   };
 
   const onCopy = async () => {
     setTimeout(() => copied = false, FEEDBACK_DUR);
-    const value = inputElement?.value;
+    const value = self?.value;
 
-    if (value && inputElement) {
+    if (value && self) {
       await navigator.clipboard.writeText(value);
       copied = true;
     }
@@ -108,8 +110,8 @@
     setTimeout(() => pasted = false, FEEDBACK_DUR);
     const value = await navigator.clipboard.readText();
 
-    if (value && inputElement) {
-      inputElement.value = value;
+    if (value && self) {
+      self.value = value;
       pasted = true;
     }
   };
@@ -117,8 +119,8 @@
   const onClear = () => {
     setTimeout(() => cleared = false, FEEDBACK_DUR);
 
-    if (inputElement && inputElement.value) {
-      inputElement.value = "";
+    if (self && self.value) {
+      self.value = "";
       cleared = true;
     }
   };
@@ -136,7 +138,8 @@
 
 {#snippet input()}
   <input
-    bind:this={inputElement}
+    bind:this={self}
+    bind:value
     {...rest}
     class={["titchy", "input", rest.class]}
     type={hidden ? "password" : type === 'password' && !hidden || !ACCEPTED_TYPES.includes(type as any) ? 'text' : type}

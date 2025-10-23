@@ -2,7 +2,8 @@
   import { type Icon, Loader, LoaderCircle, LoaderPinwheel, RotateCw } from "@lucide/svelte";
 
   interface Props {
-    fill?: boolean;
+    self?:     HTMLSpanElement;
+    fill?:     boolean;
     duration?: number;
   }
 
@@ -32,7 +33,8 @@
     linear?:  boolean;
   }
 
-  const {
+  let {
+    self = $bindable(),
     fill,
     duration = 1000,
 
@@ -68,7 +70,11 @@
   </div>
 {/snippet}
 
-<span class="titchy loading" class:fill>
+<span
+  bind:this={self}
+  class="titchy loading"
+  class:fill
+>
   {#if variant === 'ellipses'}
     {#if text}
       <span class="text">

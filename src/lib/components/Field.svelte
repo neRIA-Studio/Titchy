@@ -2,16 +2,19 @@
   import type { HTMLLabelAttributes } from "svelte/elements";
 
   interface Props {
+    self?:       HTMLLabelElement;
     horizontal?: boolean;
   }
 
-  const {
+  let {
+    self = $bindable(),
     horizontal,
     ...rest
   }: Props & HTMLLabelAttributes = $props();
 </script>
 
 <label
+  bind:this={self}
   {...rest}
   class={["titchy", "field", { horizontal }, rest.class]}
 >

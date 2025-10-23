@@ -6,11 +6,13 @@
   import { Button } from ".";
 
   interface Props {
+    self?:    HTMLButtonElement;
     active?: boolean;
     icon?: 'hollow' | 'check' | 'x' | 'radio' | 'custom' | typeof Icon;
   }
 
   let {
+    self = $bindable(),
     active = $bindable(false),
     icon = 'hollow',
     ...rest
@@ -37,6 +39,7 @@
 {/snippet}
 
 <Button
+  bind:self
   variant="secondary"
   {...rest}
   class={["checkbox", { active }, rest.class]}

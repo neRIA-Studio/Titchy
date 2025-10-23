@@ -4,7 +4,8 @@
   import { ChevronLast, ChevronRight, ChevronsLeftRight, ChevronsRight, CircleChevronRight, SquareChevronRight, type Icon } from "@lucide/svelte";
 
   interface Props {
-    icon?:      'single' | 'double' | 'circle' | 'square' | 'dashed' | typeof Icon;
+    self?:         HTMLDetailsElement;
+    icon?:         'single' | 'double' | 'circle' | 'square' | 'dashed' | typeof Icon;
     summary:       Snippet | string;
     content?:      Snippet | string;
     children?:     Snippet;
@@ -12,6 +13,7 @@
   }
 
   let {
+    self = $bindable(),
     open = $bindable(false),
     icon,
     summary,
@@ -35,8 +37,9 @@
 {/snippet}
 
 <details
+  bind:this={self}
+  bind:open
   {...rest}
-  {open}
   class={["titchy", "details", rest.class]}
   class:has-chevron={icon}
 >

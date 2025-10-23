@@ -2,11 +2,13 @@
   import type { HTMLButtonAttributes } from "svelte/elements";
 
   interface Props {
+    self?:    HTMLButtonElement;
     variant?: 'primary' | 'secondary' | 'outline' | 'blank' | 'wrapper';
     rounded?: boolean;
   }
 
-  const {
+  let {
+    self = $bindable(),
     variant = 'primary',
     rounded,
     ...rest
@@ -14,6 +16,7 @@
 </script>
 
 <button
+  bind:this={self}
   {...rest}
   class={["titchy", "button", variant, { rounded }, rest.class]}
 >
