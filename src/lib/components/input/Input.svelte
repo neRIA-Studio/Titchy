@@ -4,7 +4,7 @@
   import { Check, Clipboard, Copy, Eye, EyeOff, Hash, KeyRound, Link, Mail, Phone, Scissors, Search, Type, X, type Icon } from "@lucide/svelte";
 
   import { entries, values, type ValueOf } from "$lib/utils";
-  import { Button } from ".";
+  import { Button } from "..";
 
   interface Props {
     self?:                  HTMLInputElement;

@@ -3,7 +3,7 @@
   import { blur } from "svelte/transition";
   import { Check, Circle, type Icon, X } from "@lucide/svelte";
 
-  import { Button } from ".";
+  import { Button } from "..";
 
   interface Props {
     self?:    HTMLButtonElement;

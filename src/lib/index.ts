@@ -1,1 +1,1 @@
-/* Banana */
+export * from "./components";
