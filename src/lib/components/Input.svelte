@@ -141,6 +141,7 @@
     class={["titchy", "input", rest.class]}
     type={hidden ? "password" : type === 'password' && !hidden || !ACCEPTED_TYPES.includes(type as any) ? 'text' : type}
     inputmode={
+      rest.inputmode ??
         type === 'email'  ? 'email'
       : type === 'tel'    ? 'tel'
       : type === 'number' ? 'numeric'
@@ -213,7 +214,7 @@
 {#if wrapped}
   <div
     class={["titchy input-wrapper", { disabled, labeled:!!label }]}
-    style="--action-count: {actionCount};--has-icon:{Number(!!icon)};{rest.style}"
+    style="--action-count: {actionCount};--has-icon:{Number(!!icon)};"
   >
     {@render input()}
     {#if icon}
