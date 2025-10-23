@@ -7,7 +7,7 @@
     self?:         HTMLDetailsElement;
     icon?:         'single' | 'double' | 'circle' | 'square' | 'dashed' | typeof Icon;
     summary:       Snippet | string;
-    content?:      Snippet | string;
+    details?:      Snippet | string;
     children?:     Snippet;
     'no-padding'?: boolean;
   }
@@ -17,7 +17,7 @@
     open = $bindable(false),
     icon,
     summary,
-    content,
+    details,
     children,
     'no-padding': noPadding,
     ...rest
@@ -40,7 +40,7 @@
   bind:this={self}
   bind:open
   {...rest}
-  class={["titchy", "details", rest.class]}
+  class={["titchy", "accordion", rest.class]}
   class:has-chevron={icon}
 >
   <summary>
@@ -54,10 +54,10 @@
     {/if}
   </summary>
   <content>
-    {#if typeof content === 'string'}
-      {content}
-    {:else if content}
-      {@render content()}
+    {#if typeof details === 'string'}
+      {details}
+    {:else if details}
+      {@render details()}
     {:else}
       {@render children?.()}
     {/if}
@@ -67,11 +67,11 @@
 <style lang="scss">
   @use "@/others/utils.scss" as *;
 
-  $accent-color: var(--details-accent-color, C(accent));
-  $opacity: var(--details-opacity, 7.5%);
+  $accent-color: var(--accordion-accent-color, C(accent));
+  $opacity: var(--accordion-opacity, 7.5%);
 
   :global
-  .titchy.details {
+  .titchy.accordion {
     // overflow: hidden;
     min-height: fit-content;
 
@@ -135,7 +135,7 @@
   }
 
   :global
-  .titchy.details[open] {
+  .titchy.accordion[open] {
     > summary {
       background-color: set-alpha($accent-color, 7.5%);
       border-bottom-width: 2px;

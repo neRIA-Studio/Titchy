@@ -2,7 +2,7 @@
   import "@/others/global.scss";
 
   import { Check, Cookie, Croissant, Hamburger, Pizza, X } from "@lucide/svelte";
-  import { Button, Checkbox, Details, Field, Input, Loading } from "$lib/components";
+  import { Accordion, Button, Checkbox, Field, Input, Loading } from "$lib/components";
 </script>
 
 <div class="items">
@@ -65,20 +65,20 @@
     </div>
   </div>
 
-  <div class="item details">
-    <h1 id="details">
-      Details
+  <div class="item accordion">
+    <h1 id="accordion">
+      Accordion
     </h1>
     <hr />
     <div class="showcase">
-      <Details summary="Hello! #1" name="details-showcase">
+      <Accordion summary="Hello! #1" name="accordion-showcase">
         These are more details.
-      </Details>
-      <Details summary="Hello! #2" name="details-showcase">
+      </Accordion>
+      <Accordion summary="Hello! #2" name="accordion-showcase">
         They can also be mutually exclusive.
-      </Details>
-      <Details summary="Summary blah blah blah.">
-        <Details summary="BOO!" icon="single">
+      </Accordion>
+      <Accordion summary="Summary blah blah blah.">
+        <Accordion summary="BOO!" icon="single">
           <span>
             <Loading variant="ellipses" char="HA" duration={800} />
             You should've seen your face!
@@ -87,8 +87,8 @@
             <br />
             Doing so handsomely as well.
           </span>
-        </Details>
-      </Details>
+        </Accordion>
+      </Accordion>
     </div>
   </div>
 
@@ -248,7 +248,7 @@
     }
   }
 
-  .details, .field {
+  .accordion, .field {
     .showcase {
       align-self: stretch;
       flex-direction: column;
