@@ -2,7 +2,9 @@
   import "@/others/global.scss";
 
   import { Check, Cookie, Croissant, Hamburger, Pizza, X } from "@lucide/svelte";
-  import { Accordion, Button, Checkbox, Field, Input, Loading } from "$lib/components";
+  import { Accordion, Button, Checkbox, Field, Input, Loading, useToaster } from "$lib/components";
+
+  const toaster = useToaster();
 </script>
 
 <div class="items">
@@ -213,6 +215,65 @@
       <Loading variant="ellipses" text="Searching" count={0} />
     </div>
   </div>
+
+  <div class="item toast">
+    <h1 id="toast">
+      Toast
+    </h1>
+    <hr />
+    <div class="showcase">
+      <Button
+        onclick={() => toaster.add({
+          type:    'info',
+          title:   'BOO!',
+          content: 'Bet you got scared again.',
+          dismissible: true,
+        })}
+      >
+        Show Info
+      </Button>
+      <Button
+        onclick={() => toaster.add({
+          type:    'success',
+          title:   'BOO!',
+          content: 'Bet you got scared again.',
+          dismissible: true,
+        })}
+      >
+        Show Success
+      </Button>
+      <Button
+        onclick={() => toaster.add({
+          type:    'warn',
+          title:   'BOO!',
+          content: 'Bet you got scared again.',
+          dismissible: false,
+        })}
+      >
+        Show Warn
+      </Button>
+      <Button
+        onclick={() => toaster.add({
+          type:    'error',
+          title:   'BOO!',
+          content: 'Bet you got scared again.',
+          dismissible: false,
+        })}
+      >
+        Show Error
+      </Button>
+      <Button
+        onclick={() => toaster.add({
+          type:    'danger',
+          title:   'BOO!',
+          content: 'Bet you got scared again.',
+          dismissible: false,
+        })}
+      >
+        Show Danger
+      </Button>
+    </div>
+  </div>
 </div>
 
 <style lang="scss">
@@ -226,7 +287,6 @@
   }
 
   .item {
-    font-family: Cascadia Code, monospace;
     color: C(secondary);
     background-color: #000;
     align-items: center;
@@ -234,7 +294,7 @@
     gap: 10px;
     padding: 15px;
     border: 2px solid C(tertiary);
-    border-radius: 10px;
+    border-radius: V(radius-1);
 
     h1 { margin: 0; }
     hr { width: 100%; margin: 0; border: 1px solid C(secondary); }
