@@ -41,6 +41,9 @@
 			"default": "./dist/styles/global.css"
 		}
 	},
+	"dependencies": {
+		"esm-env": "^1.2.2"
+	},
 	"peerDependencies": {
 		"@lucide/svelte": "^0.545.0",
 		"svelte": "^5.0.0"
@@ -63,8 +66,5 @@
 		"components",
 		"ui",
 		"ui-kit"
-	],
-	"dependencies": {
-		"esm-env": "^1.2.2"
-	}
+	]
 }
