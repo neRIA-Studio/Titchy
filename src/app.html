@@ -8,12 +8,15 @@
 			:root {
 				color: var(--x-color-secondary, #f0f0f0);
 				background-color: var(--x-color-primary, #0c0c0c);
+		    font-family: Cascadia Code, monospace;
 				user-select: none;
 			}
+
+			content { display: contents; }
 		</style>
 		%sveltekit.head%
 	</head>
 	<body data-sveltekit-preload-data="hover">
-		<div>%sveltekit.body%</div>
+		<content>%sveltekit.body%</content>
 	</body>
 </html>

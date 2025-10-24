@@ -17,6 +17,14 @@
   @include height($value, $mode);
 }
 
+@mixin fixed-fill() {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+
 @mixin focused() {
   outline-offset: V(spacing-1);
   outline-width: V(spacing-1);

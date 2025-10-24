@@ -2,28 +2,50 @@
 
 .titchy {
   /* COlORS: */
-  --x-color-primary:  #0c0c0c;
-  --x-color-secondary:  #f0f0f0;
+  --x-color-primary:   #0c0c0c;
+  --x-color-secondary: #f0f0f0;
   --x-color-tertiary:  #1f1f1f;
 
   // --x-color-accent: #15f760; // I'm considering this color instead
-  --x-color-accent: #a8f715;
+  --x-color-accent:  #a8f715;
+  --x-color-info:    #1ab6f3;
+  --x-color-notice:  #6d20e9;
+  --x-color-success: #15f760;
+  --x-color-warn:    #f5b220;
+  --x-color-error:   #dd1d1d;
 
   /* VALUES: */
-  --x-value-radius-1: 10px;
+  --x-value-radius-min:  0px;
+  --x-value-radius-1:   10px;
+  --x-value-radius-max: max(100dvh, 100dvw);
   // Spacings
-  --x-value-spacing-0:  0.5px;
-  --x-value-spacing-1:  2.5px;
-  --x-value-spacing-2:  5.0px;
-  --x-value-spacing-3:  7.5px;
-  --x-value-spacing-4: 10.0px;
-  --x-value-spacing-5: 12.5px;
-  --x-value-spacing-6: 15.0px;
-  --x-value-spacing-7: 27.5px;
+  --x-value-spacing-0:   0.5px;
+  --x-value-spacing-1:   2.5px;
+  --x-value-spacing-2:   5.0px;
+  --x-value-spacing-3:   7.5px;
+  --x-value-spacing-4:  10.0px;
+  --x-value-spacing-5:  12.5px;
+  --x-value-spacing-6:  15.0px;
+  --x-value-spacing-7:  17.5px;
+  --x-value-spacing-8:  20.0px;
+  --x-value-spacing-9:  22.5px;
+  --x-value-spacing-10: 25.0px;
+  --x-value-spacing-11: 27.5px;
+  --x-value-spacing-12: 30.0px;
+  --x-value-spacing-13: 32.5px;
+  --x-value-spacing-14: 35.0px;
+  --x-value-spacing-15: 37.5px;
+  --x-value-spacing-16: 40.0px;
+  --x-value-spacing-17: 42.5px;
+  --x-value-spacing-18: 45.0px;
+  --x-value-spacing-19: 47.5px;
+  --x-value-spacing-20: 50.0px;
   // Font Sizes
-  --x-value-text-s: 0.875rem;
-  --x-value-text-m: 1.000rem;
-  --x-value-text-l: 1.125rem;
+  --x-value-text-xs: 0.625rem;
+  --x-value-text-s:  0.875rem;
+  --x-value-text-m:  1.000rem;
+  --x-value-text-l:  1.125rem;
+  --x-value-text-xl: 1.375rem;
 }
 
 :root {
