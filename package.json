@@ -9,7 +9,8 @@
 		"email": "fastre@neria.studio"
 	},
 	"repository": {
-		"url": "https://github.com/neRIA-Studio/Titchy"
+		"type": "git",
+		"url": "git+https://github.com/neRIA-Studio/Titchy.git"
 	},
 	"scripts": {
 		"dev": "vite dev",
@@ -29,8 +30,8 @@
 	"sideEffects": [
 		"**/*.css"
 	],
-	"svelte": "./dist/index.js",
-	"types": "./dist/index.d.ts",
+	"svelte": "./dist/components/index.js",
+	"types": "./dist/components/index.d.ts",
 	"exports": {
 		".": {
 			"types": "./dist/components/index.d.ts",
@@ -62,5 +63,8 @@
 		"components",
 		"ui",
 		"ui-kit"
-	]
+	],
+	"dependencies": {
+		"esm-env": "^1.2.2"
+	}
 }

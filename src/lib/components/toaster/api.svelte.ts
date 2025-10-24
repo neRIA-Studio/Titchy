@@ -1,5 +1,5 @@
 import { mount, unmount, type ComponentProps } from "svelte";
-import { browser } from "$app/environment";
+import { BROWSER } from "esm-env";
 
 import { Toast, type ToastOptions } from "..";
 import { Toaster, type ToasterOptions } from ".";
@@ -16,7 +16,7 @@ export function useToaster({ timeout = 5_000 }: ToasterOptions = { }) {
   let toasts: ReturnType<typeof mount>[] = [];
 
   $effect(() => {
-    if (browser) {
+    if (BROWSER) {
       let element = document.body.querySelector(SELECTOR);
 
       if (!element) {
