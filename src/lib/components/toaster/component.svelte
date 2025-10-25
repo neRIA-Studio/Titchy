@@ -24,11 +24,11 @@
 
   $padding: var(--toaster-padding, V(spacing-11));
   $gap: var(--toaster-gap, V(spacing-4));
-  $z-index: var(--toaster-z-index, 10);
+  $z-index: var(--toaster-z-index, 100);
 
   :global
   .titchy.toaster {
-    @include fixed-fill();
+    @include fill-fixed();
 
     pointer-events: none;
     padding: $padding;

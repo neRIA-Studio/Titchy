@@ -17,12 +17,25 @@
   @include height($value, $mode);
 }
 
-@mixin fixed-fill() {
+@mixin fill-absolute() {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+
+@mixin fill-fixed() {
   position: fixed;
   top: 0;
   left: 0;
   bottom: 0;
   right: 0;
+}
+
+@mixin flex-center() {
+  justify-content: center;
+  align-items: center;
 }
 
 @mixin focused() {
