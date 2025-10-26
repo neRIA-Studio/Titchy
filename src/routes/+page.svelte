@@ -2,7 +2,7 @@
   import "@/others/global.scss";
 
   import { Check, Cookie, Croissant, Hamburger, Heart, Link, Lock, Mail, Pizza, Type, X } from "@lucide/svelte";
-  import { Accordion, Button, Checkbox, Field, Input, InputWrapper, Loading, Overlay, Textarea, useToaster } from "$lib/components";
+  import { Accordion, Button, Checkbox, Field, Input, InputWrapper, Loading, Overlay, Panel, Textarea, useToaster } from "$lib/components";
 
   const toaster = useToaster();
 
@@ -236,6 +236,29 @@
       <span>This is a fixed overlay.</span>
       <span>Click to dismiss.</span>
     </Overlay>
+  </div>
+
+  <div class="item panel">
+    <h1 id="panel">
+      Panel
+    </h1>
+    <hr />
+    <div class="showcase">
+      <Panel>
+        <span>
+          This is a panel component.
+          <br><br>
+          It can be used to group content together in a visually distinct container.
+          <br><br>
+          I know, it's pretty boring, boo!
+          <br>
+          Anyway, here's a button to make it look less so:
+        </span>
+        <Button variant="secondary" style="align-self: center;" onclick={() => toaster.add("Still boring, huh?")}>
+          Click Me!
+        </Button>
+      </Panel>
+    </div>
   </div>
 
   <div class="item toast">

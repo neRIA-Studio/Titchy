@@ -5,5 +5,6 @@ export * from "./field";
 export * from "./input";
 export * from "./loading";
 export * from "./overlay";
+export * from "./panel";
 export * from "./toast";
 export * from "./toaster";
