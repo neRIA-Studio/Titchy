@@ -1,1 +1,1 @@
-export { default as Toast } from "./component.svelte";
+export { default as Toast } from "./Toast.svelte";

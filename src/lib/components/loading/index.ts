@@ -1,1 +1,1 @@
-export { default as Loading } from "./component.svelte";
+export { default as Loading } from "./Loading.svelte";

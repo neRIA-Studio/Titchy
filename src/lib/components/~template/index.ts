@@ -1,1 +1,1 @@
-export { default as Template } from "./component.svelte";
+export { default as Template } from "./Template.svelte";

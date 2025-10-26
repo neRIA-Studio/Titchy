@@ -1,1 +1,1 @@
-export { default as Overlay } from "./component.svelte";
+export { default as Overlay } from "./Overlay.svelte";

@@ -1,1 +1,1 @@
-export { default as Checkbox } from "./component.svelte";
+export { default as Checkbox } from "./Checkbox.svelte";

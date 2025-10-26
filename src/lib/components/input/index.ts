@@ -1,1 +1,1 @@
-export { default as Input } from "./component.svelte";
+export { default as Input } from "./Input.svelte";

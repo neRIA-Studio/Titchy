@@ -1,1 +1,1 @@
-export { default as Field } from "./component.svelte";
+export { default as Field } from "./Field.svelte";
