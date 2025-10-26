@@ -2,9 +2,12 @@
   import "@/others/global.scss";
 
   import { Check, Cookie, Croissant, Hamburger, Pizza, X } from "@lucide/svelte";
-  import { Accordion, Button, Checkbox, Field, Input, Loading, useToaster } from "$lib/components";
+  import { Accordion, Button, Checkbox, Field, Input, Loading, Overlay, useToaster } from "$lib/components";
 
   const toaster = useToaster();
+
+  let absoluteOverlayActive = $state(false);
+  let fixedOverlayActive    = $state(false);
 </script>
 
 <div class="items">
@@ -216,6 +219,29 @@
     </div>
   </div>
 
+  <div class="item overlay">
+    <h1 id="overlay">
+      Overlay
+    </h1>
+    <hr />
+    <div class="showcase">
+      <Button onclick={() => absoluteOverlayActive = true}>
+        Show Absolute Overlay
+      </Button>
+      <Button onclick={() => fixedOverlayActive = true}>
+        Show Fixed Overlay
+      </Button>
+    </div>
+    <Overlay bind:active={absoluteOverlayActive} fill="absolute" center>
+      <span>This is an absolute overlay.</span>
+      <span>Click to dismiss.</span>
+    </Overlay>
+    <Overlay bind:active={fixedOverlayActive} fill="fixed" center>
+      <span>This is a fixed overlay.</span>
+      <span>Click to dismiss.</span>
+    </Overlay>
+  </div>
+
   <div class="item toast">
     <h1 id="toast">
       Toast
@@ -295,6 +321,7 @@
     padding: 15px;
     border: 2px solid C(tertiary);
     border-radius: V(radius-1);
+    overflow: hidden;
 
     h1 { margin: 0; }
     hr { width: 100%; margin: 0; border: 1px solid C(secondary); }
