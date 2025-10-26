@@ -38,12 +38,16 @@ export function useToaster({ timeout = 5_000 }: ToasterOptions = { }) {
 
     /**
      * Add a new toast message to the Toaster.
-     * @param options Options to the toast message.
+     * @param toastOptions Options to the toast message.
      * @returns A Svelte mount reference to toast message.
      */
-    add(options: ToastOptions) {
+    add(toastOptions: ToastOptions | string) {
       if (!toaster)
         return null;
+
+      const options: ToastOptions = typeof toastOptions === 'string'
+        ? { type:'info', content:toastOptions, dismissible:true }
+        : toastOptions;
 
       const props: ComponentProps<typeof Toast> = {
         options: {
