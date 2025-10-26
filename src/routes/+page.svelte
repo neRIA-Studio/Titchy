@@ -11,6 +11,35 @@
 </script>
 
 <div class="items">
+  <div class="item accordion">
+    <h1 id="accordion">
+      Accordion
+    </h1>
+    <hr />
+    <div class="showcase">
+      <Accordion summary="Hello! #1" name="accordion-showcase">
+        These are more details.
+      </Accordion>
+      <Accordion summary="Hello! #2" name="accordion-showcase">
+        They can also be mutually exclusive.
+      </Accordion>
+      <Accordion summary="Summary blah blah blah.">
+        <Accordion summary="BOO!" icon="single">
+          <span>
+            <Loading variant="ellipses" char="HA" duration={800} />
+            You should've seen your face!
+            <br /> <br />
+            They're also stackable.
+            <br />
+            Doing so handsomely as well.
+            <br />
+            With custom icons if you desire.
+          </span>
+        </Accordion>
+      </Accordion>
+    </div>
+  </div>
+
   <div class="item button">
     <h1 id="button">
       Button
@@ -67,33 +96,6 @@
       <Checkbox active icon="radio" />
       <Checkbox active icon={Hamburger} />
       <Checkbox active icon="custom">Hi</Checkbox>
-    </div>
-  </div>
-
-  <div class="item accordion">
-    <h1 id="accordion">
-      Accordion
-    </h1>
-    <hr />
-    <div class="showcase">
-      <Accordion summary="Hello! #1" name="accordion-showcase">
-        These are more details.
-      </Accordion>
-      <Accordion summary="Hello! #2" name="accordion-showcase">
-        They can also be mutually exclusive.
-      </Accordion>
-      <Accordion summary="Summary blah blah blah.">
-        <Accordion summary="BOO!" icon="single">
-          <span>
-            <Loading variant="ellipses" char="HA" duration={800} />
-            You should've seen your face!
-            <br /> <br />
-            They're also stackable.
-            <br />
-            Doing so handsomely as well.
-          </span>
-        </Accordion>
-      </Accordion>
     </div>
   </div>
 
@@ -308,7 +310,6 @@
   .items {
     flex: 1;
     align-self: center;
-    justify-content: center;
     gap: 10px;
   }
 

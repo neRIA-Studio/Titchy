@@ -352,6 +352,7 @@
         justify-content: center;
         padding: $action-padding;
         pointer-events: all;
+        border-radius: V(radius-max);
 
         &.hover { opacity: 0; }
 
