@@ -1,8 +1,8 @@
 <script lang="ts">
   import "@/others/global.scss";
 
-  import { Check, Cookie, Croissant, Hamburger, Pizza, X } from "@lucide/svelte";
-  import { Accordion, Button, Checkbox, Field, Input, Loading, Overlay, useToaster } from "$lib/components";
+  import { Check, Cookie, Croissant, Hamburger, Heart, Link, Lock, Mail, Pizza, Type, X } from "@lucide/svelte";
+  import { Accordion, Button, Checkbox, Field, Input, InputWrapper, Loading, Overlay, Textarea, useToaster } from "$lib/components";
 
   const toaster = useToaster();
 
@@ -107,7 +107,18 @@
     <div class="showcase">
       <Field>
         Username
-        <Input type="text" placeholder="john_doe" icon />
+        <InputWrapper
+          icon={Type}
+          side-actions={{
+            hidable:   'always',
+            cuttable:  'always',
+            copyable:  'always',
+            pastable:  'always',
+            clearable: 'always',
+          }}
+        >
+          <Input type="text" placeholder="john_doe" />
+        </InputWrapper>
       </Field>
     </div>
     <div class="showcase">
@@ -125,78 +136,61 @@
     <hr />
     <div class="showcase">
       <Input type="email" placeholder="john_doe@example.com" />
-      <Input type="password" placeholder="• • • • • • • • • • • •" />
+      <Input type="password" placeholder="••••••••••••" />
+    </div>
+  </div>
+
+  <div class="item input-wrapper">
+    <h1 id="input-wrapper">
+      Input Wrapper
+    </h1>
+    <hr />
+    <div class="showcase">
+      <InputWrapper
+        icon={Link}
+        side-actions={{ clearable: 'always' }}
+      >
+        <Input type="url" placeholder="www.example.com" />
+      </InputWrapper>
     </div>
     <div class="showcase">
-      <Input
-        type="email"
-        placeholder="john_doe@example.com"
-        icon
-        side-actions={{ pastable: 'always' }}
-      />
-      <Input
-        type="password"
-        placeholder="• • • • • • • • • • • •"
-        icon
-        side-actions={{ hidable: 'always' }}
-      />
-    </div>
-    <div class="showcase">
-      <Input
+      <InputWrapper
         label="Email"
-        type="email"
-        placeholder="john_doe@example.com"
-        icon
-        side-actions={{ pastable: 'always' }}
-      />
-      <Input
+        icon={Mail}
+        side-actions={{
+          hidable:   'always',
+          cuttable:  'always',
+          copyable:  'always',
+          pastable:  'always',
+          clearable: 'always',
+        }}
+      >
+        <Input type="email" placeholder="john_doe@example.com" />
+      </InputWrapper>
+      <InputWrapper
         label="Password"
-        type="password"
-        placeholder="• • • • • • • • • • • •"
-        icon
-        side-actions={{ hidable: 'always' }}
-      />
-    </div>
-    <div class="showcase">
-      <Input
-        label="Search"
-        type="search"
-        placeholder="The Treasure"
-        icon
-        side-actions={{
-          clearable: 'always',
-          hidable:   'hover',
-        }}
-      />
-    </div>
-    <div class="showcase">
-      <Input
-        type="url"
-        placeholder="example.com"
-        icon
+        icon={Lock}
         side-actions={{
           hidable:   'always',
-          cuttable:  'always',
-          copyable:  'always',
-          pastable:  'always',
-          clearable: 'always',
+          clearable: 'hover',
         }}
-      />
+      >
+        <Input type="password" placeholder="••••••••••••" />
+      </InputWrapper>
     </div>
     <div class="showcase">
-      <Input
-        type="url"
-        placeholder="example.com"
-        icon
-        disabled
+      <InputWrapper
+        label="Love Letter"
+        icon={Heart}
         side-actions={{
-          hidable:   'always',
-          cuttable:  'always',
-          copyable:  'always',
-          pastable:  'always',
           clearable: 'always',
+          cuttable:  'hover',
+          copyable:  'hover',
+          pastable:  'hover',
         }}
-      />
+      >
+        <Textarea placeholder="Your love letter goes here." />
+      </InputWrapper>
     </div>
   </div>
 
@@ -344,7 +338,7 @@
     }
   }
 
-  .input {
+  .input, .input-wrapper {
     .showcase {
       align-self: stretch;
       :global > * { flex: 1; width: 100%; }
