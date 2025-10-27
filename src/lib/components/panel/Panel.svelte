@@ -22,8 +22,6 @@
 <style lang="scss">
   @use "@/others/utils.scss" as *;
 
-  $accent-color: var(--panel-accent-color, C(accent));
-
   :global
   .titchy.panel {
     max-width: min(450px, 80dvw);

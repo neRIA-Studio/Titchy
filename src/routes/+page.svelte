@@ -138,9 +138,15 @@
       <Input type="email" placeholder="john_doe@example.com" />
       <Input type="password" placeholder="••••••••••••" />
     </div>
-  </div>
 
-  <div class="item input-wrapper">
+    <h1 id="input-wrapper">
+      Textarea
+    </h1>
+    <hr />
+    <div class="showcase">
+      <Textarea placeholder="Your message goes here." />
+    </div>
+
     <h1 id="input-wrapper">
       Input Wrapper
     </h1>
@@ -245,14 +251,10 @@
     <hr />
     <div class="showcase">
       <Panel>
+        <span>This is a panel component.</span>
+        <span>It can be used to group content together in a visually distinct container.</span>
         <span>
-          This is a panel component.
-          <br><br>
-          It can be used to group content together in a visually distinct container.
-          <br><br>
-          I know, it's pretty boring, boo!
-          <br>
-          Anyway, here's a button to make it look less so:
+          I know, it's pretty boring, boo!<br>Anyway, here's a button to make it look less so:
         </span>
         <Button variant="secondary" style="align-self: center;" onclick={() => toaster.add("Still boring, huh?")}>
           Click Me!
@@ -341,8 +343,19 @@
     border-radius: V(radius-1);
     overflow: hidden;
 
-    h1 { margin: 0; }
-    hr { width: 100%; margin: 0; border: 1px solid C(secondary); }
+    h1 {
+      margin: 0;
+
+      &:not(:first-child) {
+        margin-top: V(spacing-4);
+      }
+    }
+
+    hr {
+      width: 100%;
+      margin: 0;
+      border: 1px solid C(secondary);
+    }
 
     .showcase {
       gap: 15px;
@@ -361,7 +374,7 @@
     }
   }
 
-  .input, .input-wrapper {
+  .input {
     .showcase {
       align-self: stretch;
       :global > * { flex: 1; width: 100%; }
