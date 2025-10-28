@@ -28,3 +28,7 @@ export function entries<T extends object>(obj: T) {
   if (isNullable(obj)) return [];
   return Object.entries(obj) as [keyof T, T[keyof T]][];
 }
+
+export function define<T extends object, P extends object>(obj: T, props: P): T & P {
+  return Object.defineProperties(obj, Object.getOwnPropertyDescriptors(props)) as T & P;
+}

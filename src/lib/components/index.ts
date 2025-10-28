@@ -6,5 +6,6 @@ export * from "./input";
 export * from "./loading";
 export * from "./overlay";
 export * from "./panel";
+export * from "./select";
 export * from "./toast";
 export * from "./toaster";

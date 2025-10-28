@@ -2,7 +2,8 @@
   import "@/others/global.scss";
 
   import { Check, Cookie, Croissant, Hamburger, Heart, Link, Lock, Mail, Pizza, Type, X } from "@lucide/svelte";
-  import { Accordion, Button, Checkbox, Field, Input, InputWrapper, Loading, Overlay, Panel, Textarea, useToaster } from "$lib/components";
+  import { Accordion, Button, Checkbox, Field, Input, InputWrapper, Loading, Overlay, Panel, Select, Textarea, useToaster } from "$lib/components";
+  import Option from "@/lib/components/select/Option.svelte";
 
   const toaster = useToaster();
 
@@ -273,6 +274,29 @@
     </div>
   </div>
 
+  <div class="item select">
+    <h1 id="select">
+      Select
+    </h1>
+    <hr />
+    <div class="showcase">
+      <Select title="Favorite Color">
+        <Field>Colors</Field>
+        <Option value="red"   label="Red"   />
+        <Option value="green" label="Green" />
+        <Option value="blue"  label="Blue"  />
+      </Select>
+      <Select title="Food Item" details="Choose the yummiest" deselectable>
+        <Field>Food</Field>
+        <Option value="burger"    label="Burger"    details="Sandwich"         />
+        <Option value="pizza"     label="Pizza"     details="Pie"              />
+        <Option value="cookies"   label="Cookies"   details="Biscuit" disabled />
+        <Option value="croissant" label="Croissant" details="Viennoiserie"     />
+        <Field>shift-click to deselect</Field>
+      </Select>
+    </div>
+  </div>
+
   <div class="item toast">
     <h1 id="toast">
       Toast
@@ -389,5 +413,9 @@
       align-self: stretch;
       :global > * { flex: 1; width: 100%; }
     }
+  }
+
+  .select {
+    overflow: visible;
   }
 </style>
