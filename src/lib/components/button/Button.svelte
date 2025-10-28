@@ -5,12 +5,14 @@
     self?:    HTMLButtonElement;
     variant?: 'primary' | 'secondary' | 'outline' | 'blank' | 'wrapper';
     rounded?: boolean;
+    scaling?: boolean;
   }
 
   let {
     self = $bindable(),
     variant = 'primary',
     rounded,
+    scaling = true,
     ...rest
   }: Props & HTMLButtonAttributes = $props();
 </script>
@@ -18,7 +20,7 @@
 <button
   bind:this={self}
   {...rest}
-  class={["titchy", "button", variant, { rounded }, rest.class]}
+  class={["titchy", "button", variant, { scaling, rounded }, rest.class]}
 >
   {@render rest.children?.()}
 </button>
@@ -98,12 +100,12 @@
     }
 
     &:hover:not(:disabled) {
-      transform: scale(1.05);
+      &.scaling { transform: scale(1.05); }
       opacity: 1;
     }
 
     &:active:not(:disabled) {
-      transform: scale(0.95);
+      &.scaling { transform: scale(0.95); }
       opacity: 0.75;
     }
 

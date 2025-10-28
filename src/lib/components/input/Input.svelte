@@ -84,15 +84,7 @@
       padding-bottom: $padding;
       transition: all 200ms ease-out, height 0ms linear;
 
-      overflow: auto;
-      scrollbar-width: none;
-
-      &::-webkit-scrollbar {
-        display: none;
-        width: 0;
-        height: 0;
-        background: transparent;
-      }
+      @include hide-scrollbar();
     }
 
     &:hover:not(:disabled) {

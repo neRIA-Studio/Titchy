@@ -11,6 +11,16 @@
 </script>
 
 <div class="items">
+  <!-- <div class="item template">
+    <h1 id="template">
+      Template
+    </h1>
+    <hr />
+    <div class="showcase">
+      <Template />
+    </div>
+  </div> -->
+
   <div class="item accordion">
     <h1 id="accordion">
       Accordion

@@ -60,6 +60,8 @@
 
   :global
   .titchy.button.checkbox {
+    --button-accent-color: #{$accent-color};
+
     &.checkbox {
       @include size($size, 'all');
       padding: 0;

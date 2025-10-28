@@ -38,6 +38,12 @@
   align-items: center;
 }
 
+@mixin hide-scrollbar() {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  &::-webkit-scrollbar { display: none; }
+}
+
 @mixin focused() {
   outline-offset: V(spacing-1);
   outline-width: V(spacing-1);

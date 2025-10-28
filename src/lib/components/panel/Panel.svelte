@@ -25,7 +25,7 @@
   :global
   .titchy.panel {
     max-width: min(450px, 80dvw);
-    padding: V(spacing-5);
+    padding: V(spacing-10);
     gap: V(spacing-5);
 
     background-color: C(primary);
