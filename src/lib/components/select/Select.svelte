@@ -175,7 +175,7 @@
         border: 2px solid C(tertiary);
         border-radius: V(radius-1);
 
-        > label.field {
+        > label.label {
           align-items: center;
 
           color: set-alpha($highlight-color, 60%);

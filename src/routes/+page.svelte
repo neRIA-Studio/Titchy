@@ -2,8 +2,7 @@
   import "@/others/global.scss";
 
   import { Check, Cookie, Croissant, Hamburger, Heart, Link, Lock, Mail, Pizza, Type, X } from "@lucide/svelte";
-  import { Accordion, Button, Checkbox, Field, Input, InputWrapper, Loading, Overlay, Panel, Select, Textarea, useToaster } from "$lib/components";
-  import Option from "@/lib/components/select/Option.svelte";
+  import { Accordion, Button, Checkbox, Input, InputWrapper, Label, Loading, Option, Overlay, Panel, Select, Textarea, useToaster } from "$lib/components";
 
   const toaster = useToaster();
 
@@ -61,12 +60,11 @@
         <Hamburger /> Primary
       </Button>
       <Button variant="secondary">
-        <Pizza /> Secondary
+        <Pizza /> SecondaryLabel
       </Button>
       <Button variant="outline">
-        <Cookie /> Outline
-      </Button>
-      <Button variant="blank">
+        <Cookie /> OutlineLabel
+      </Button>LabelLabel    <Button variant="blank">
         <Croissant /> Blank
       </Button>
     </div>
@@ -107,16 +105,16 @@
       <Checkbox active icon="radio" />
       <Checkbox active icon={Hamburger} />
       <Checkbox active icon="custom">Hi</Checkbox>
-    </div>
+    </div>LabelLabel
   </div>
 
-  <div class="item field">
-    <h1 id="field">
-      Field
+  <div class="item label">
+    <h1 id="label">
+      Label
     </h1>
     <hr />
     <div class="showcase">
-      <Field>
+      <Label>
         Username
         <InputWrapper
           icon={Type}
@@ -130,13 +128,13 @@
         >
           <Input type="text" placeholder="john_doe" />
         </InputWrapper>
-      </Field>
+      </Label>
     </div>
     <div class="showcase">
-      <Field horizontal>
+      <Label horizontal>
         <Checkbox />
         Pineapple on pizza is a crime.
-      </Field>
+      </Label>
     </div>
   </div>
 
@@ -281,18 +279,18 @@
     <hr />
     <div class="showcase">
       <Select title="Favorite Color">
-        <Field>Colors</Field>
+        <Label>Colors</Label>
         <Option value="red"   label="Red"   />
         <Option value="green" label="Green" />
         <Option value="blue"  label="Blue"  />
       </Select>
       <Select title="Food Item" details="Choose the yummiest" deselectable>
-        <Field>Food</Field>
+        <Label>Food</Label>
         <Option value="burger"    label="Burger"    details="Sandwich"         />
         <Option value="pizza"     label="Pizza"     details="Pie"              />
         <Option value="cookies"   label="Cookies"   details="Biscuit" disabled />
         <Option value="croissant" label="Croissant" details="Viennoiserie"     />
-        <Field>shift-click to deselect</Field>
+        <Label>shift-click to deselect</Label>
       </Select>
     </div>
   </div>
@@ -400,7 +398,7 @@
     }
   }
 
-  .accordion, .field {
+  .accordion, .label {
     .showcase {
       align-self: stretch;
       flex-direction: column;

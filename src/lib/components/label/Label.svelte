@@ -16,7 +16,7 @@
 <label
   bind:this={self}
   {...rest}
-  class={["titchy", "field", { horizontal }, rest.class]}
+  class={["titchy", "label", { horizontal }, rest.class]}
 >
   {@render rest.children?.()}
 </label>
@@ -25,7 +25,7 @@
   @use "@/others/utils.scss" as *;
 
   :global
-  .titchy.field {
+  .titchy.label {
     gap: V(spacing-4);
     font-size: V(text-s);
     > * { font-size: V(text-m); }
