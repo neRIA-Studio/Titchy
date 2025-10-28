@@ -17,7 +17,7 @@
 
   let {
     self         = $bindable(),
-    active       = $bindable(true),
+    active       = $bindable(),
     value        = $bindable(""),
     title        = "Select",
     deselectable = false,
