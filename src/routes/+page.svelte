@@ -60,11 +60,12 @@
         <Hamburger /> Primary
       </Button>
       <Button variant="secondary">
-        <Pizza /> SecondaryLabel
+        <Pizza /> Secondary
       </Button>
       <Button variant="outline">
-        <Cookie /> OutlineLabel
-      </Button>LabelLabel    <Button variant="blank">
+        <Cookie /> Outline
+      </Button>
+    <Button variant="blank">
         <Croissant /> Blank
       </Button>
     </div>
@@ -105,7 +106,7 @@
       <Checkbox active icon="radio" />
       <Checkbox active icon={Hamburger} />
       <Checkbox active icon="custom">Hi</Checkbox>
-    </div>LabelLabel
+    </div>
   </div>
 
   <div class="item label">
