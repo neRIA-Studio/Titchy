@@ -7,5 +7,6 @@ export * from "./loading";
 export * from "./overlay";
 export * from "./panel";
 export * from "./select";
+export * from "./slider";
 export * from "./toast";
 export * from "./toaster";

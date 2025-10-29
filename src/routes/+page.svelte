@@ -2,7 +2,7 @@
   import "@/others/global.scss";
 
   import { Check, Cookie, Croissant, Hamburger, Heart, Link, Lock, Mail, Pizza, Type, X } from "@lucide/svelte";
-  import { Accordion, Button, Checkbox, Input, InputWrapper, Label, Loading, Option, Overlay, Panel, Select, Textarea, useToaster } from "$lib/components";
+  import { Accordion, Button, Checkbox, Input, InputWrapper, Label, Loading, Option, Overlay, Panel, Select, Slider, Textarea, useToaster } from "$lib/components";
 
   const toaster = useToaster();
 
@@ -293,6 +293,17 @@
         <Option value="croissant" label="Croissant" details="Viennoiserie"     />
         <Label>shift-click to deselect</Label>
       </Select>
+    </div>
+  </div>
+
+  <div class="item slider">
+    <h1 id="slider">
+      Slider
+    </h1>
+    <hr />
+    <div class="showcase">
+      <Slider />
+      <Slider disabled />
     </div>
   </div>
 

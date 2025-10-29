@@ -77,8 +77,8 @@
   @return color-mix(in oklab, $colors);
 }
 
-@function set-alpha($color, $alpha: 100%) {
-  @return mix($color $alpha, transparent);
+@function set-alpha($color, $alpha: 100%, $opaque: false) {
+  @return mix($color $alpha, if($opaque, black, transparent));
 }
 
 @function V($value) {
