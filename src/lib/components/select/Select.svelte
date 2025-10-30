@@ -10,7 +10,7 @@
     self?:         HTMLDivElement;
     active?:       boolean;
     value?:        string;
-    title?:        string;
+    label?:        string;
     deselectable?: boolean;
     details?:      boolean | string;
   }
@@ -19,7 +19,7 @@
     self         = $bindable(),
     active       = $bindable(),
     value        = $bindable(""),
-    title        = "Select",
+    label        = "Select",
     deselectable = false,
     details      = false,
     ...rest
@@ -88,12 +88,12 @@
 >
   <Button class="trigger" scaling={false} {onclick}>
     <div class="text">
-      <span class="title">
-        {selectedLabel || value || title}
+      <span class="label">
+        {selectedLabel || value || label}
       </span>
       {#if details}
         <span class="details">
-          {value ? selectedDetails || title : typeof details === 'string' ? details : "Select an option"}
+          {value ? selectedDetails || label : typeof details === 'string' ? details : "Select an option"}
         </span>
       {/if}
     </div>
@@ -137,7 +137,7 @@
       padding: V(spacing-3) V(spacing-4);
 
       > div.text {
-        > span.title {
+        > span.label {
           font-weight: bold;
         }
 

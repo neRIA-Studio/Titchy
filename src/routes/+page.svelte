@@ -260,11 +260,13 @@
     </h1>
     <hr />
     <div class="showcase">
-      <Panel>
+      <Panel constrained>
         <span>This is a panel component.</span>
         <span>It can be used to group content together in a visually distinct container.</span>
         <span>
-          I know, it's pretty boring, boo!<br>Anyway, here's a button to make it look less so:
+          I know, it's pretty boring, boo!
+          <br>
+          Anyway, here's a button to make it look less so:
         </span>
         <Button variant="secondary" style="align-self: center;" onclick={() => toaster.add("Still boring, huh?")}>
           Click Me!
@@ -279,13 +281,13 @@
     </h1>
     <hr />
     <div class="showcase">
-      <Select title="Favorite Color">
+      <Select label="Favorite Color">
         <Label>Colors</Label>
         <Option value="red"   label="Red"   />
         <Option value="green" label="Green" />
         <Option value="blue"  label="Blue"  />
       </Select>
-      <Select title="Food Item" details="Choose the yummiest" deselectable>
+      <Select label="Food Item" details="Choose the yummiest" deselectable>
         <Label>Food</Label>
         <Option value="burger"    label="Burger"    details="Sandwich"         />
         <Option value="pizza"     label="Pizza"     details="Pie"              />

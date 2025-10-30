@@ -3,7 +3,7 @@
 
   interface Props {
     self?:     HTMLSpanElement;
-    fill?:     boolean;
+    flexible?: boolean;
     duration?: number;
   }
 
@@ -35,7 +35,7 @@
 
   let {
     self = $bindable(),
-    fill,
+    flexible,
     duration = 1000,
 
     variant = 'spinner',
@@ -73,7 +73,7 @@
 <span
   bind:this={self}
   class="titchy loading"
-  class:fill
+  class:flexible
 >
   {#if variant === 'ellipses'}
     {#if text}
@@ -115,7 +115,7 @@
     height: 1.5em;
     gap: 0.25em;
 
-    &.fill {
+    &.flexible {
       flex: 1;
       align-items: center;
       justify-content: center;
