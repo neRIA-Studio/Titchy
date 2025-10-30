@@ -5,6 +5,7 @@ export * from "./input";
 export * from "./label";
 export * from "./loading";
 export * from "./overlay";
+export * from "./pager";
 export * from "./panel";
 export * from "./select";
 export * from "./slider";

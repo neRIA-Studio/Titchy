@@ -2,7 +2,7 @@
   import "@/others/global.scss";
 
   import { Check, Cookie, Croissant, Hamburger, Heart, Link, Lock, Mail, Pizza, Type, X } from "@lucide/svelte";
-  import { Accordion, Button, Checkbox, Input, InputWrapper, Label, Loading, Option, Overlay, Panel, Select, Slider, Textarea, useToaster } from "$lib/components";
+  import { Accordion, Button, Checkbox, Input, InputWrapper, Label, Loading, Option, Overlay, Pager, Panel, Select, Slider, Textarea, useToaster } from "$lib/components";
 
   const toaster = useToaster();
 
@@ -254,6 +254,37 @@
     </Overlay>
   </div>
 
+  <div class="item pager">
+    <h1 id="pager">
+      Pager
+    </h1>
+    <hr />
+    <div class="showcase">
+      <Pager />
+      <Pager>
+        <Panel>
+          <span>
+            <h2>Hi!</h2>
+            Also, you can do that.
+            <br>
+            Add children to the pager.
+          </span>
+        </Panel>
+      </Pager>
+      <Pager label="•-[ $page$ ]-•" content-placement='top'>
+        <Panel>
+          <span>
+            Children can also be at the top.
+            <br>
+            With custom labels as well!
+            <br>
+            Replacing $page$ with the page number in the label.
+          </span>
+        </Panel>
+      </Pager>
+    </div>
+  </div>
+
   <div class="item panel">
     <h1 id="panel">
       Panel
@@ -412,7 +443,7 @@
     }
   }
 
-  .accordion, .label {
+  .accordion, .label, .pager {
     .showcase {
       align-self: stretch;
       flex-direction: column;
