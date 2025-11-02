@@ -9,5 +9,6 @@ export * from "./pager";
 export * from "./panel";
 export * from "./select";
 export * from "./slider";
+export * from "./table";
 export * from "./toast";
 export * from "./toaster";

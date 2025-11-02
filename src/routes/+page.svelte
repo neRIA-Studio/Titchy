@@ -2,7 +2,7 @@
   import "@/others/global.scss";
 
   import { Check, Cookie, Croissant, Hamburger, Heart, Link, Lock, Mail, Pizza, Type, X } from "@lucide/svelte";
-  import { Accordion, Button, Checkbox, Input, InputWrapper, Label, Loading, Option, Overlay, Pager, Panel, Select, Slider, Textarea, useToaster } from "$lib/components";
+  import { Accordion, Button, Checkbox, Input, InputWrapper, Label, Loading, Option, Overlay, Pager, Panel, Select, Slider, Table, Textarea, useToaster } from "$lib/components";
 
   const toaster = useToaster();
 
@@ -337,6 +337,33 @@
     <div class="showcase">
       <Slider />
       <Slider disabled />
+    </div>
+  </div>
+
+  <div class="item table">
+    <h1 id="table">
+      Table
+    </h1>
+    <hr />
+    <div class="showcase">
+      {#snippet render(data: { num:number; even:boolean }, r: number, c: number)}
+        <span>
+          {JSON.stringify(data)}
+          <br>
+          r:{r} c:{c}
+        </span>
+      {/snippet}
+      <Table
+        headers={{
+          num:  { label: 'Number'  },
+          even: { label: 'is Even' },
+          odd:  { label: 'Render', render },
+        }}
+        data={
+          [1,2,3,4,5,6,7,8,9]
+          .map(num => ({ num, even:!(num % 2) }))
+        }
+      />
     </div>
   </div>
 
