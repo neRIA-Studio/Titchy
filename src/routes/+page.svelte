@@ -273,7 +273,7 @@
           </span>
         </Panel>
       </Pager>
-      <Pager label="•-[ $page$ ]-•" content-placement='top'>
+      <Pager label="•-[ $page$ ]-•" min={69} max={420}  content-placement='top'>
         <Panel>
           <span>
             Children can also be at the top.
@@ -369,17 +369,17 @@
       <Table
         headers={[
           { key:'num',  label: 'Number',  size:"1fr", align:'center' },
-          { key:'even', label: 'Even', size:"1fr", align:'center' },
-          { key:'even', label: 'Odd', size:"1fr", align:'center', transform: v => !v },
-          { label: 'Custom Data Render', size:"5fr", render:{ data } },
+          { key:'even', label: 'Even',    size:"1fr", align:'center' },
+          { key:'even', label: 'Odd',     size:"1fr", align:'center', transform: v => !v },
+          { label: 'Custom Data Render',  size:"5fr", render:{ data } },
         ]}
         data={[0,1,2,3,4,5,6,7,8,9].map(num => ({ num, even:!(num % 2) }))}
       >
         <Label>
           <Hash/>
-          Test
+          Number Gayometer
         </Label>
-        <Pager />
+        <Pager min={0} max={9} />
       </Table>
       <small><i>* Gay means happy.</i></small>
     </div>

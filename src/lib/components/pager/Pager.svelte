@@ -16,9 +16,9 @@
 
   let {
     self                            = $bindable(),
-    value                           = $bindable(1),
     min                             = 1,
     max                             = Infinity,
+    value                           = $bindable(min),
     label                           = undefined,
     flexible                        = false,
     'content-placement': cntntPlace = 'bottom',
