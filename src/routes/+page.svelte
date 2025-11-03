@@ -1,7 +1,7 @@
 <script lang="ts">
   import "@/others/global.scss";
 
-  import { Bell, Check, Cookie, Croissant, Hamburger, Heart, Link, Lock, Mail, Pizza, Type, X } from "@lucide/svelte";
+  import { Bell, Check, Cookie, Croissant, Hamburger, Hash, Heart, Link, Lock, Mail, Pizza, Type, X } from "@lucide/svelte";
   import { Accordion, Button, Checkbox, Input, InputWrapper, Label, Loading, Option, Overlay, Pager, Panel, Select, Slider, Table, Textarea, useToaster, type TableHeader } from "$lib/components";
 
   const toaster = useToaster();
@@ -355,24 +355,32 @@
               <b style:color="var(--x-color-accent)">{data?.num}</b>
               is {data?.even ? "not gay" : "gay"}.
             </i>
-            <small><small>(r:{row} c:{col})</small></small>
+            <small><small>(r:{row},c:{col})</small></small>
           </span>
           <Button
             variant="secondary"
             onclick={() => toaster.add(`'${data?.num}' is indeed ${data?.even ? "even" : "odd"}.`)}
+            style="min-width: unset; min-height: unset;"
           >
-            <Bell />
+            <Bell style="width: 1em; height: 1em" />
           </Button>
         </div>
       {/snippet}
       <Table
         headers={[
           { key:'num',  label: 'Number',  size:"1fr", align:'center' },
-          { key:'even', label: 'is Even', size:"2fr" },
-          { label: 'Custom Data Render', size:"4fr", render:{ data } },
+          { key:'even', label: 'Even', size:"1fr", align:'center' },
+          { key:'even', label: 'Odd', size:"1fr", align:'center', transform: v => !v },
+          { label: 'Custom Data Render', size:"5fr", render:{ data } },
         ]}
         data={[0,1,2,3,4,5,6,7,8,9].map(num => ({ num, even:!(num % 2) }))}
-      />
+      >
+        <Label>
+          <Hash/>
+          Test
+        </Label>
+        <Pager />
+      </Table>
       <small><i>* Gay means happy.</i></small>
     </div>
   </div>

@@ -1,20 +1,21 @@
 <script lang="ts" generics="Datum extends object">
   import type { HTMLAttributes } from "svelte/elements";
-
   import { Cell, type TableHeader as H } from ".";
 
   type Header = H<Datum>;
 
   interface Props {
-    self?:     HTMLDivElement;
-    headers:   Header[];
-    data:      Datum[];
+    self?:              HTMLDivElement;
+    headers:            Header[];
+    data:               Datum[];
+  'content-placement'?: 'top' | 'bottom';
   }
 
   let {
-    self        = $bindable(),
+    self                            = $bindable(),
     headers,
-    data        = [],
+    data                            = [],
+    'content-placement': cntntPlace = 'top',
     ...rest
   }: Props & HTMLAttributes<HTMLDivElement> = $props();
 
@@ -26,6 +27,9 @@
   {...rest}
   class={["titchy", "table", rest.class]}
 >
+  {#if cntntPlace === 'top'}
+    {@render rest.children?.()}
+  {/if}
   <div
     class="grid"
     style="grid-template-columns: {headers.map(h => h.size ?? "auto").join(" ")};"
@@ -57,6 +61,9 @@
     {/each}
     <!-- I'm basically using these comments as separators, Svelte's '{#}' blocks look ugly -->
   </div>
+  {#if cntntPlace === 'bottom'}
+    {@render rest.children?.()}
+  {/if}
 </div>
 
 <style lang="scss">
@@ -76,25 +83,25 @@
     border: 2px solid set-alpha($accent-color, 20%);
     border-radius: 10px;
 
-    .pager { border: none; border-radius: 0; }
+    > .label, > .pager {
+      padding: $cell-padding;
+      background-color: set-alpha($accent-color, 10%);
+
+      border: none;
+      border-radius: 0;
+    }
+
+    > .label {
+      font-size: V(text-xl);
+      font-weight: bold;
+
+      flex-direction: row;
+      align-items: center;
+    }
 
     .grid {
       flex: 1;
       display: grid;
-
-      .cell {
-        padding: $cell-padding;
-
-        &.head {
-          background-color: set-alpha($accent-color, 10%);
-          border-bottom: 2px solid set-alpha($accent-color, 10%);
-          font-weight: bold;
-        }
-
-        &.row-last {
-          border-bottom: none;
-        }
-      }
     }
   }
 </style>

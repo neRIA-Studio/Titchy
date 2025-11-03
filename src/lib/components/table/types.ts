@@ -1,4 +1,4 @@
-import type { CSS } from "@/lib/utils";
+import type { CSS, ValueOf } from "@/lib/utils";
 import type { Snippet } from "svelte";
 
 export type TablePlacement =
@@ -14,11 +14,13 @@ export type TableSizing =
   | `${number}${CSS.Units.Length | CSS.Units.Frac}`;
 
 export type TableHeader<D extends object> = {
-  key?:     keyof D | (string & { });
-  label:    string;
-  size?:    TableSizing;
-  align?:   TablePlacement;
-  justify?: TablePlacement;
+  key?:       keyof D | (string & { });
+  label:      string;
+  size?:      TableSizing;
+  align?:     TablePlacement;
+  justify?:   TablePlacement;
+  transform?: (value: ValueOf<D> | undefined) => any;
+
   render?: {
     head?: Snippet<[TableHeader<D>, number]>;
     data?: Snippet<[TableHeader<D>, D | undefined, number, number]>;

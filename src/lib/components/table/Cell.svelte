@@ -1,8 +1,7 @@
 <script lang="ts" generics="Datum extends object">
   import type { HTMLAttributes } from "svelte/elements";
-
-  import type { ValueOf } from "@/lib/utils";
   import type { TableHeader as H } from ".";
+  import { Check, X } from "@lucide/svelte";
 
   type Header = H<Datum>;
 
@@ -36,6 +35,13 @@
 
   const R = $derived(row + 1);
   const C = $derived(col + 1);
+
+  const value = $derived.by(() => {
+    const val = datum?.[key as keyof Datum];
+    if (header.transform)
+      return header.transform(val)
+    return val;
+  });
 </script>
 
 <div
@@ -62,7 +68,12 @@
     {#if header?.render?.data}
       {@render header.render.data(header, datum, row, col)}
     {:else}
-      {datum?.[key as keyof Datum] ?? "???"}
+      {#if typeof value === 'boolean'}
+        {@const Symbol = value ? Check : X}
+        <Symbol class={value.toString()} />
+      {:else}
+        {value?.toLocaleString() ?? placeholder}
+      {/if}
     {/if}
   {/if}
 </div>
@@ -77,7 +88,12 @@
 
   :global
   .titchy.cell {
+    justify-content: center;
     padding: $cell-padding;
+    border-bottom: 2px dashed set-alpha($accent-color, 15%);
+
+    > svg.true  { color: C(success); }
+    > svg.false { color: C(error);   }
 
     &.head {
       background-color: set-alpha($accent-color, 10%);

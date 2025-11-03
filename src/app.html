@@ -1,35 +1,41 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en" class="titchy">
-	<head>
-		<meta charset="utf-8" />
-		<title>Titchy</title>
-		<link rel="icon" href="%sveltekit.assets%/favicon.svg" />
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<style>
-			:root {
-				color: var(--x-color-secondary, #f0f0f0);
-				background-color: var(--x-color-primary, #0c0c0c);
-		    font-family: Cascadia Code, monospace;
-				-webkit-user-select: none;
-				user-select: none;
-			}
+  <head>
+    <meta charset="utf-8" />
+    <title>Titchy</title>
+    <link rel="icon" href="%sveltekit.assets%/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+      :root {
+        color: var(--x-color-secondary, #f0f0f0);
+        background-color: var(--x-color-primary, #0c0c0c);
+        font-family: Cascadia Code, monospace;
+        -webkit-user-select: none;
+        user-select: none;
+      }
 
-			body {
-				margin: 0;
-				padding: 10px;
-			}
+      body {
+        margin: 0;
+        padding: 10px;
+      }
 
-			content { display: contents; }
+      content {
+        display: contents;
+      }
 
-			h1, h2, h3,
-			h4, h5, h6 {
-				margin: 0;
-				margin-bottom: 15px;
-			}
-		</style>
-		%sveltekit.head%
-	</head>
-	<body data-sveltekit-preload-data="hover">
-		<content>%sveltekit.body%</content>
-	</body>
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        margin: 0;
+        margin-bottom: 15px;
+      }
+    </style>
+    %sveltekit.head%
+  </head>
+  <body data-sveltekit-preload-data="hover">
+    <content>%sveltekit.body%</content>
+  </body>
 </html>
