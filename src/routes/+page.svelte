@@ -1,13 +1,15 @@
 <script lang="ts">
   import "@/others/global.scss";
 
-  import { Check, Cookie, Croissant, Hamburger, Heart, Link, Lock, Mail, Pizza, Type, X } from "@lucide/svelte";
-  import { Accordion, Button, Checkbox, Input, InputWrapper, Label, Loading, Option, Overlay, Pager, Panel, Select, Slider, Table, Textarea, useToaster } from "$lib/components";
+  import { Bell, Check, Cookie, Croissant, Hamburger, Heart, Link, Lock, Mail, Pizza, Type, X } from "@lucide/svelte";
+  import { Accordion, Button, Checkbox, Input, InputWrapper, Label, Loading, Option, Overlay, Pager, Panel, Select, Slider, Table, Textarea, useToaster, type TableHeader } from "$lib/components";
 
   const toaster = useToaster();
 
   let absoluteOverlayActive = $state(false);
   let fixedOverlayActive    = $state(false);
+
+  type TableData = { num:number; even:boolean };
 </script>
 
 <div class="items">
@@ -346,24 +348,32 @@
     </h1>
     <hr />
     <div class="showcase">
-      {#snippet render(data: { num:number; even:boolean }, r: number, c: number)}
-        <span>
-          {JSON.stringify(data)}
-          <br>
-          r:{r} c:{c}
-        </span>
+      {#snippet data(_head: TableHeader<TableData>, data: TableData | undefined, row: number, col: number)}
+        <div style="flex-direction: row; align-items: center; justify-content: space-between;">
+          <span>
+            <i>
+              <b style:color="var(--x-color-accent)">{data?.num}</b>
+              is {data?.even ? "not gay" : "gay"}.
+            </i>
+            <small><small>(r:{row} c:{col})</small></small>
+          </span>
+          <Button
+            variant="secondary"
+            onclick={() => toaster.add(`'${data?.num}' is indeed ${data?.even ? "even" : "odd"}.`)}
+          >
+            <Bell />
+          </Button>
+        </div>
       {/snippet}
       <Table
-        headers={{
-          num:  { label: 'Number'  },
-          even: { label: 'is Even' },
-          odd:  { label: 'Render', render },
-        }}
-        data={
-          [1,2,3,4,5,6,7,8,9]
-          .map(num => ({ num, even:!(num % 2) }))
-        }
+        headers={[
+          { key:'num',  label: 'Number',  size:"1fr", align:'center' },
+          { key:'even', label: 'is Even', size:"2fr" },
+          { label: 'Custom Data Render', size:"4fr", render:{ data } },
+        ]}
+        data={[0,1,2,3,4,5,6,7,8,9].map(num => ({ num, even:!(num % 2) }))}
       />
+      <small><i>* Gay means happy.</i></small>
     </div>
   </div>
 
@@ -470,7 +480,7 @@
     }
   }
 
-  .accordion, .label, .pager {
+  .accordion, .label, .pager, .table {
     .showcase {
       align-self: stretch;
       flex-direction: column;

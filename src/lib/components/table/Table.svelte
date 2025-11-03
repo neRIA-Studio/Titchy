@@ -1,60 +1,25 @@
 <script lang="ts" generics="Datum extends object">
-  import type { Snippet } from "svelte";
   import type { HTMLAttributes } from "svelte/elements";
 
-  import { keys } from "@/lib/utils";
+  import { Cell, type TableHeader as H } from ".";
+
+  type Header = H<Datum>;
 
   interface Props {
-    self?:        HTMLDivElement;
-    template?:    string;
-    orientation?: 'columns' | 'rows';
-    headers:      Header;
-    data:         Datum[];
+    self?:     HTMLDivElement;
+    headers:   Header[];
+    data:      Datum[];
   }
-
-  type Header = {
-    [K in keyof Datum | (string & {})]: {
-      label:   string;
-      render?: Snippet<[Datum, number, number]>;
-    };
-  };
 
   let {
     self        = $bindable(),
     headers,
     data        = [],
-    template,
-    orientation = 'columns',
     ...rest
   }: Props & HTMLAttributes<HTMLDivElement> = $props();
 
-  const hKeys = $derived(keys(headers));
+  const keys = $derived(headers.map(h => h.key));
 </script>
-
-<!-- TODO: SIMPLIFY THAT MASSIVE PIECE OF SHIT -->
-
-{#snippet cell(type: 'head' | 'data', datum: string | Datum, field: keyof Header, render: Header[string]['render'], r: number, c: number)}
-  {@const R = r + 1}
-  {@const C = c + 1}
-
-  <div
-    class={[
-      "cell", type, `f-${field.toString()}`,
-
-      `row-${R}`, R % 2 ? "row-odd" : "row-even",
-      { 'row-first':R === 1, 'row-last':R === data.length  },
-
-      `col-${C}`, C % 2 ? "col-odd" : "col-even",
-      { 'col-first':C === 1, 'col-last':C === hKeys.length },
-    ]}
-  >
-    {#if render && typeof datum !== 'string'}
-      {@render render(datum, r, c)}
-    {:else}
-      {(typeof datum === 'string' ? datum : datum[field as keyof Datum]) ?? "---"}
-    {/if}
-  </div>
-{/snippet}
 
 <div
   bind:this={self}
@@ -63,16 +28,31 @@
 >
   <div
     class="grid"
-    style="grid-template-{orientation}: {template ?? `repeat(${hKeys.length}, auto)`};"
+    style="grid-template-columns: {headers.map(h => h.size ?? "auto").join(" ")};"
   >
     <!-- Rendering the header -->
-    {#each hKeys as h, c (c)}
-      {@render cell('head', headers[h].label, h, undefined, -1, c)}
+    {#each keys as f, c (c)}
+      {@const header = headers[c]}
+      <Cell
+        {header}
+        type="head"
+        row={-1} col={c}
+        row-length={data.length}
+        col-length={keys.length}
+      />
     {/each}
     <!-- Looping through each data entry and rendering each datum according to the corresponding header -->
     {#each data as datum, r (r)}
-      {#each hKeys as h, c (c)}
-        {@render cell('data', datum, h, headers[h].render, r, c)}
+      {#each keys as key, c (c)}
+        {@const header = headers[c]}
+        <Cell
+          {header}
+          {datum} {key}
+          type="data"
+          row={r} col={c}
+          row-length={data.length}
+          col-length={keys.length}
+        />
       {/each}
     {/each}
     <!-- I'm basically using these comments as separators, Svelte's '{#}' blocks look ugly -->
@@ -84,7 +64,7 @@
 
   $accent-color: var(--table-accent-color, C(accent));
 
-  $min-width: var(--table-min-width, 350px);
+  $min-width: var(--table-min-width, min(80dvw, 450px));
   $cell-padding: var(--table-cell-padding, V(spacing-4));
 
   :global

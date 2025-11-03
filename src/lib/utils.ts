@@ -3,6 +3,14 @@
 export type KeyOf<T> = keyof T;
 export type ValueOf<T> = T[keyof T];
 
+export namespace CSS {
+  export namespace Units {
+    export type Frac   = 'fr';
+    export type Length = 'px' | 'rem' | 'em' | '%' | 'vw' | 'vh' | 'vmin' | 'vmax' | 'vi' | 'vb' | 'lvw' | 'svw' | 'dvw' | 'lvh' | 'svh' | 'dvh' | 'lvmin' | 'svmin' | 'dvmin' | 'lvmax' | 'svmax' | 'dvmax' | 'cm' | 'mm' | 'q' | 'in' | 'pt' | 'pc' | 'ch' | 'ex' | 'lh' | 'rlh' | 'cap' | 'ic';
+    export type Angle  = 'deg' | 'rad' | 'grad' | 'turn';
+  }
+};
+
 /* ================================ Functions =============================== */
 
 export function isNullable(obj: unknown): obj is null | undefined {
