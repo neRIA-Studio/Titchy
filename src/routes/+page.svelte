@@ -1,8 +1,8 @@
 <script lang="ts">
   import "@/others/global.scss";
 
-  import { Bell, Check, Cookie, Croissant, Hamburger, Hash, Heart, Link, Lock, Mail, Pizza, Type, X } from "@lucide/svelte";
-  import { Accordion, Button, Checkbox, Input, InputWrapper, Label, Loading, Option, Overlay, Pager, Panel, Select, Slider, Table, Textarea, useToaster, type TableHeader } from "$lib/components";
+  import { ArrowLeft, ArrowRight, Banknote, Bell, Check, ChevronFirst, ChevronLast, Cookie, Croissant, DollarSign, Euro, Hamburger, Hash, Heart, IndianRupee, JapaneseYen, Link, Lock, Mail, Pizza, Play, PoundSterling, Send, SwissFranc, Type, X } from "@lucide/svelte";
+  import { Accordion, Button, ButtonGroup, Checkbox, Input, InputWrapper, Label, Loading, Option, Overlay, Pager, Panel, Select, Slider, Table, Textarea, useToaster, type TableHeader } from "$lib/components";
 
   const toaster = useToaster();
 
@@ -93,6 +93,72 @@
         <X />
       </Button>
     </div>
+    <h1 id="button-group">
+      Button Group
+    </h1>
+    <hr />
+    <div class="showcase">
+      <ButtonGroup>
+        <Button variant="secondary">
+          <ArrowLeft />
+          Left
+        </Button>
+        <Button variant="secondary">
+          Continue
+        </Button>
+        <Button variant="secondary">
+          Right
+          <ArrowRight />
+        </Button>
+      </ButtonGroup>
+      <ButtonGroup>
+        <Button variant="secondary" style="width: 50px" rounded>
+          <ChevronFirst />
+        </Button>
+        <Button variant="primary" style="width: 50px" rounded>
+          <Play />
+        </Button>
+        <Button variant="secondary" style="width: 50px" rounded>
+          <ChevronLast />
+        </Button>
+      </ButtonGroup>
+    </div>
+    <div class="showcase">
+      <ButtonGroup>
+        <InputWrapper side-actions={{ clearable:'always' }}>
+          <Input placeholder="Message..." />
+        </InputWrapper>
+        <Button variant="primary">
+          <Send />
+        </Button>
+      </ButtonGroup>
+      <ButtonGroup>
+        <InputWrapper icon={Banknote}>
+          <Input placeholder="Amount" />
+        </InputWrapper>
+        <Select constrained={false}>
+          {#snippet label()}
+            <DollarSign />
+          {/snippet}
+          <Option style="align-items: center">
+            <PoundSterling />
+          </Option>
+          <Option style="align-items: center">
+            <Euro />
+          </Option>
+          <Option style="align-items: center">
+            <JapaneseYen />
+          </Option>
+          <Option style="align-items: center">
+            <IndianRupee />
+          </Option>
+          <Option style="align-items: center">
+            <SwissFranc />
+          </Option>
+        </Select>
+        <Button>SEND</Button>
+      </ButtonGroup>
+    </div>
   </div>
 
   <div class="item checkbox">
@@ -151,7 +217,7 @@
       <Input type="password" placeholder="••••••••••••" />
     </div>
 
-    <h1 id="input-wrapper">
+    <h1 id="textarea">
       Textarea
     </h1>
     <hr />
@@ -503,7 +569,7 @@
     }
   }
 
-  .select {
+  .select, .button {
     overflow: visible;
   }
 </style>
