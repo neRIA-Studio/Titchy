@@ -2,6 +2,7 @@ export * from "./accordion";
 export * from "./button";
 export * from "./checkbox";
 export * from "./input";
+export * from "./kbd";
 export * from "./label";
 export * from "./loading";
 export * from "./overlay";

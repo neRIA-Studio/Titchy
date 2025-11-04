@@ -2,7 +2,7 @@
   import "@/others/global.scss";
 
   import { ArrowLeft, ArrowRight, Banknote, Bell, Check, ChevronFirst, ChevronLast, Cookie, Croissant, DollarSign, Euro, Hamburger, Hash, Heart, IndianRupee, JapaneseYen, Link, Lock, Mail, Pizza, Play, PoundSterling, Send, SwissFranc, Type, X } from "@lucide/svelte";
-  import { Accordion, Button, ButtonGroup, Checkbox, Input, InputWrapper, Label, Loading, Option, Overlay, Pager, Panel, Select, Slider, Table, Textarea, useToaster, type TableHeader } from "$lib/components";
+  import { Accordion, Button, ButtonGroup, Checkbox, Input, InputWrapper, KBD, Label, Loading, Option, Overlay, Pager, Panel, Select, Slider, Table, Textarea, useToaster, type TableHeader } from "$lib/components";
 
   const toaster = useToaster();
 
@@ -174,6 +174,20 @@
       <Checkbox active icon="radio" />
       <Checkbox active icon={Hamburger} />
       <Checkbox active icon="custom">Hi</Checkbox>
+    </div>
+  </div>
+
+  <div class="item kbd">
+    <h1 id="kbd">
+      KBD
+    </h1>
+    <hr />
+    <div class="showcase">
+      <span>
+        Press
+        <KBD key={["Ctrl", "Shift", "W"]} />
+        for a treat.
+      </span>
     </div>
   </div>
 
