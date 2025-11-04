@@ -45,6 +45,7 @@
 }
 
 @mixin focused() {
+  z-index: 10;
   outline-offset: V(spacing-1);
   outline-width: V(spacing-1);
   outline-style: solid;

@@ -1,4 +1,5 @@
 <script lang="ts">
+  import type { Snippet } from "svelte";
   import type { HTMLAttributes, MouseEventHandler } from "svelte/elements";
   import { slide } from "svelte/transition";
   import { ChevronDown } from "@lucide/svelte";
@@ -10,7 +11,8 @@
     self?:         HTMLDivElement;
     active?:       boolean;
     value?:        string;
-    label?:        string;
+    label?:        string | Snippet;
+    constrained?:  boolean;
     deselectable?: boolean;
     details?:      boolean | string;
   }
@@ -20,6 +22,7 @@
     active       = $bindable(),
     value        = $bindable(""),
     label        = "Select",
+    constrained  = true,
     deselectable = false,
     details      = false,
     ...rest
@@ -86,10 +89,16 @@
   {...rest}
   class={["titchy", "select", { active }, rest.class]}
 >
-  <Button class="trigger" scaling={false} {onclick}>
+  <Button class={["trigger", { constrained }]} scaling={false} {onclick}>
     <div class="text">
       <span class="label">
-        {selectedLabel || value || label}
+        {#if selectedLabel || value}
+          {selectedLabel || value}
+        {:else if typeof label === 'string'}
+          {label}
+        {:else}
+          {@render label()}
+        {/if}
       </span>
       {#if details}
         <span class="details">
@@ -128,13 +137,16 @@
     align-items: stretch;
     justify-content: stretch;
 
+    svg { @include size(V(spacing-6)); }
+
     > button.trigger {
     --button-accent-color: #{$accent-color};
 
       flex: 1;
-      min-width: $min-width;
       justify-content: space-between;
       padding: V(spacing-3) V(spacing-4);
+
+      &.constrained { min-width: $min-width; }
 
       > div.text {
         > span.label {
@@ -147,16 +159,13 @@
         }
       }
 
-      > svg.chevron {
-        @include size(V(spacing-5));
-        stroke-width: 4px;
-      }
+      > svg.chevron { stroke-width: 4px; }
     }
 
     > div.options-container {
       position: absolute;
       top: 100%;
-      z-index: 1;
+      z-index: 10;
 
       @include width(100%, 'all');
       gap: $gap;

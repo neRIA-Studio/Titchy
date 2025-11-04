@@ -279,6 +279,8 @@
       }
     }
 
+    &:focus-within > * { z-index: 10; }
+
     .input {
       padding-left: $displacement-left;
       padding-right: $displacement-right;
@@ -288,11 +290,11 @@
     .actions .action.hover { opacity: 1; }
 
     .symbol {
-      color: $highlight-color;
-      pointer-events: none;
-
       position: absolute;
       left: calc(V(spacing-2) + 2px /*border*/ + $action-padding);
+
+      color: $highlight-color;
+      pointer-events: none;
 
       align-items: center;
       justify-content: center;
