@@ -76,7 +76,7 @@ _Example:_
   /* You can change the kit-wise variables in your global styles file,
      also every component has its custom variables prefixed with `--{component-name}`. */
   :global .titchy {
-    --x-color-accent: cyan;
+    --titchy-color-accent: cyan;
   }
 </style>
 ```

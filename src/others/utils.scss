@@ -83,13 +83,13 @@
 }
 
 @function V($value) {
-  @return var(--x-value-#{$value});
+  @return var(--titchy-value-#{$value});
 }
 
 @function C($color, $alpha: 100%) {
   @if $alpha == 100% {
-    @return var(--x-color-#{$color});
+    @return var(--titchy-color-#{$color});
   } @else {
-    @return set-alpha(var(--x-color-#{$color}), $alpha);
+    @return set-alpha(var(--titchy-color-#{$color}), $alpha);
   }
 }

@@ -432,7 +432,7 @@
         <div style="flex-direction: row; align-items: center; justify-content: space-between;">
           <span>
             <i>
-              <b style:color="var(--x-color-accent)">{data?.num}</b>
+              <b style:color="var(--titchy-color-accent)">{data?.num}</b>
               is {data?.even ? "not gay" : "gay"}.
             </i>
             <small><small>(r:{row},c:{col})</small></small>
