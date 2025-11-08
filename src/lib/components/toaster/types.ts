@@ -18,5 +18,6 @@ export interface ToastOptions {
 };
 
 export interface ToasterOptions {
+  preload?: boolean;
   timeout?: number;
 };

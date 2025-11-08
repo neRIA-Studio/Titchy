@@ -11,7 +11,7 @@ const SELECTOR = 'section.titchy.toaster';
  * @param timeout The default timeout for toast messages for this Toaster ref. _(default: 5000)_
  * @returns Toaster API reference
  */
-export function useToaster({ timeout = 5_000 }: ToasterOptions = { }) {
+export function useToaster({ preload = true, timeout = 5_000 }: ToasterOptions = { }) {
   let toaster: Element | null = null;
   let toasts: ReturnType<typeof mount>[] = [];
 
@@ -28,7 +28,12 @@ export function useToaster({ timeout = 5_000 }: ToasterOptions = { }) {
     }
   });
 
-  return {
+  $effect(() => {
+    if (preload)
+      api.add({ type:'info', timeout:0 });
+  });
+
+  const api = {
     /** Whether the Toaster API is ready for usage or not. */
     get ready()   { return !!toaster; },
     /** Array containing all Svelte mount refs to toast messages. */
@@ -95,4 +100,6 @@ export function useToaster({ timeout = 5_000 }: ToasterOptions = { }) {
       }
     },
   };
+
+  return api;
 }
