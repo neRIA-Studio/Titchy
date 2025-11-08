@@ -1,8 +1,8 @@
 <script lang="ts">
   import "@/others/global.scss";
 
-  import { ArrowLeft, ArrowRight, Banknote, Bell, Check, ChevronFirst, ChevronLast, Cookie, Croissant, DollarSign, Euro, Hamburger, Hash, Heart, IndianRupee, JapaneseYen, Link, Lock, Mail, Pizza, Play, PoundSterling, Send, SwissFranc, Type, X } from "@lucide/svelte";
-  import { Accordion, Button, ButtonGroup, Checkbox, Input, InputWrapper, KBD, Label, Loading, Option, Overlay, Pager, Panel, Select, Slider, Table, Textarea, useToaster, type TableHeader } from "$lib/components";
+  import { ArrowLeft, ArrowRight, Banknote, Bell, Check, ChevronFirst, ChevronLast, Cookie, Croissant, DollarSign, Euro, Hamburger, Hash, Heart, IndianRupee, JapaneseYen, Link as LinkIcon, Lock, Mail, Pizza, Play, PoundSterling, Send, SwissFranc, Type, X } from "@lucide/svelte";
+  import { Accordion, Button, ButtonGroup, Checkbox, Input, InputWrapper, KBD, Label, Link, Loading, Option, Overlay, Pager, Panel, Select, Slider, Table, Textarea, useToaster, type TableHeader } from "$lib/components";
 
   const toaster = useToaster();
 
@@ -245,7 +245,7 @@
     <hr />
     <div class="showcase">
       <InputWrapper
-        icon={Link}
+        icon={LinkIcon}
         side-actions={{ clearable: 'always' }}
       >
         <Input type="url" placeholder="www.example.com" />
@@ -289,6 +289,32 @@
       >
         <Textarea placeholder="Your love letter goes here." />
       </InputWrapper>
+    </div>
+  </div>
+
+  <div class="item link">
+    <h1 id="link">
+      Link
+    </h1>
+    <hr />
+    <div class="showcase">
+      <Link href="https://neria.studio" scaling>
+        neRIA STUDIO
+      </Link>
+      <Link href="https://www.google.com" disabled external>
+        Google
+      </Link>
+    </div>
+    <div class="showcase">
+      <Link href="https://github.com/neRIA-Studio/Titchy" variant="wrapper" external>
+        <Panel>
+          <span>
+            Can also act like a container.
+            <br>
+            Click anywhere in the panel to visit our <b>Github</b>.
+          </span>
+        </Panel>
+      </Link>
     </div>
   </div>
 
