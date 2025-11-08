@@ -1,6 +1,6 @@
 {
 	"name": "titchy",
-	"version": "0.0.22",
+	"version": "0.0.23",
 	"license": "MIT",
 	"type": "module",
 	"homepage": "https://titchy.neria.studio",
@@ -46,11 +46,11 @@
 		"esm-env": "^1.2.2"
 	},
 	"peerDependencies": {
-		"@lucide/svelte": "^0.545.0",
+		"@lucide/svelte": ">=0.545.0",
 		"svelte": "^5.0.0"
 	},
 	"devDependencies": {
-		"@lucide/svelte": "^0.545.0",
+		"@lucide/svelte": ">=0.545.0",
 		"@sveltejs/adapter-auto": "^6.1.0",
 		"@sveltejs/kit": "^2.43.2",
 		"@sveltejs/package": "^2.5.4",
