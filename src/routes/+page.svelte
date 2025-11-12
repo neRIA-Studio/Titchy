@@ -399,7 +399,31 @@
     </h1>
     <hr />
     <div class="showcase">
-      <Panel constrained>
+      <Panel variant='primary' constrained>
+        <span>This is a panel component.</span>
+        <span>It can be used to group content together in a visually distinct container.</span>
+        <span>
+          I know, it's pretty boring, boo!
+          <br>
+          Anyway, here's a button to make it look less so:
+        </span>
+        <Button variant="secondary" style="align-self: center;" onclick={() => toaster.add("Still boring, huh?")}>
+          Click Me!
+        </Button>
+      </Panel>
+      <Panel variant='secondary' constrained>
+        <span>This is a panel component.</span>
+        <span>It can be used to group content together in a visually distinct container.</span>
+        <span>
+          I know, it's pretty boring, boo!
+          <br>
+          Anyway, here's a button to make it look less so:
+        </span>
+        <Button variant="secondary" style="align-self: center;" onclick={() => toaster.add("Still boring, huh?")}>
+          Click Me!
+        </Button>
+      </Panel>
+      <Panel variant='wrapper' constrained>
         <span>This is a panel component.</span>
         <span>It can be used to group content together in a visually distinct container.</span>
         <span>
@@ -611,5 +635,11 @@
 
   .select, .button {
     overflow: visible;
+  }
+
+  .panel {
+    .showcase {
+      flex-direction: column;
+    }
   }
 </style>

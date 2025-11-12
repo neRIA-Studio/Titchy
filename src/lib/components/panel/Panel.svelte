@@ -3,11 +3,13 @@
 
   interface Props {
     self?:      HTMLDivElement;
+    variant?: 'primary' | 'secondary' | 'wrapper';
     constrained?: boolean;
   }
 
   let {
-    self = $bindable(),
+    self    = $bindable(),
+    variant = 'primary',
     constrained,
     ...rest
   }: Props & HTMLAttributes<HTMLDivElement> = $props();
@@ -16,7 +18,7 @@
 <div
   bind:this={self}
   {...rest}
-  class={["titchy", "panel", { constrained }, rest.class]}
+  class={["titchy", "panel", variant, { constrained }, rest.class]}
 >
   {@render rest.children?.()}
 </div>
@@ -24,17 +26,29 @@
 <style lang="scss">
   @use "@/others/utils.scss" as *;
 
-  $max-width:  var(--panel-max-width, min(450px, 80dvw));
-  $max-height: var(--panel-max-height, min(450px, 80dvh));
+  $accent-color:    var(--panel-accent-color, C(accent));
+  $shadow-color:    var(--panel-shadow-color, C(primary));
+  $highlight-color: var(--panel-highlight-color, C(secondary));
+
+  $max-width:    var(--panel-max-width, min(450px, 80dvw));
+  $max-height:   var(--panel-max-height, min(450px, 80dvh));
 
   :global
   .titchy.panel {
     padding: V(spacing-10);
     gap: V(spacing-5);
-
-    background-color: C(primary);
-    border: 2px solid C(tertiary);
+    border: 2px solid transparent;
     border-radius: V(radius-1);
+
+    &.primary {
+      background-color: set-alpha($shadow-color);
+      border-color: set-alpha($highlight-color, 10%);
+    }
+
+    &.secondary {
+      background-color: set-alpha($accent-color, 10%);
+      border-color: set-alpha($accent-color, 35%);
+    }
 
     &.constrained {
       max-width: $max-width;
