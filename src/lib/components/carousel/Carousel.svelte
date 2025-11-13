@@ -26,6 +26,7 @@
   let touchStartX = $state<number>(0);
   let touchEndX   = $state<number>(0);
   let swipeOffset = $state<number>(0);
+  let touched   = $state<boolean>(false);
 
   let min = $derived(0);
   let max = $derived(length - count);
@@ -41,18 +42,24 @@
       };
 
       const touchstart = (e: TouchEvent) => {
-        e.preventDefault();
+        const target    = e.target as HTMLElement;
+        const clickable = target.closest("a, button, input, summary, [onclick]") !== null;
+
+        if (!clickable)
+          e.preventDefault();
+
         touchStartX = e.changedTouches[0].screenX;
+        touched     = true;
       };
 
       const touchmove = (e: TouchEvent) => {
-        e.preventDefault();
         swipeOffset = touchStartX - e.changedTouches[0].screenX;
       };
 
       const touchend = (e: TouchEvent) => {
         swipeOffset = 0;
         touchEndX   = e.changedTouches[0].screenX;
+        touched     = false;
 
         if (touchStartX > touchEndX)
           move(+1)();
@@ -98,7 +105,7 @@
   tabindex="0"
 >
   <div bind:this={container} class="container">
-    <div bind:this={content} class="content">
+    <div bind:this={content} class={["content", { touched }]}>
       {@render rest.children?.()}
     </div>
   </div>
@@ -172,6 +179,8 @@
         flex-direction: row;
         gap: $gap;
         left: calc(-1 * ((($w + $gap) * $i) / $c) - var(--swipe-offset));
+
+        &.touched { transition: none; }
 
         > .titchy.panel {
           @include width(calc($content-width / $c), 'all');
