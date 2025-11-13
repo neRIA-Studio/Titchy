@@ -19,18 +19,19 @@
   }: Props & HTMLAttributes<HTMLDivElement> = $props();
 
 
-  let content = $state<HTMLDivElement>();
-  let length  = $state<number>(0);
+  let container = $state<HTMLDivElement>();
+  let content   = $state<HTMLDivElement>();
 
-  let touchStartX = $state(0);
-  let touchEndX   = $state(0);
-  let swipeOffset = $state(0);
+  let length      = $state<number>(0);
+  let touchStartX = $state<number>(0);
+  let touchEndX   = $state<number>(0);
+  let swipeOffset = $state<number>(0);
 
   let min = $derived(0);
   let max = $derived(length - count);
 
   onMount(() => {
-    if (self) {
+    if (self && container) {
       const keydown = (e: KeyboardEvent) => {
         if (e.key === 'ArrowRight')
           move(+1)();
@@ -44,10 +45,10 @@
         touchStartX = e.changedTouches[0].screenX;
       };
 
-      // const touchmove = (e: TouchEvent) => {
-      //   e.preventDefault();
-      //   swipeOffset = touchStartX - e.changedTouches[0].screenX;
-      // };
+      const touchmove = (e: TouchEvent) => {
+        e.preventDefault();
+        swipeOffset = touchStartX - e.changedTouches[0].screenX;
+      };
 
       const touchend = (e: TouchEvent) => {
         swipeOffset = 0;
@@ -61,16 +62,16 @@
       };
 
       self.addEventListener('keydown',    keydown);
-      self.addEventListener('touchstart', touchstart);
-      // self.addEventListener('touchmove',  touchmove);
-      self.addEventListener('touchend',   touchend);
+      container.addEventListener('touchstart', touchstart);
+      container.addEventListener('touchmove',  touchmove);
+      container.addEventListener('touchend',   touchend);
 
       return () => {
-        if (self) {
+        if (self && container) {
           self.removeEventListener('keydown',    keydown)
-          self.removeEventListener('touchstart', touchstart);
-          // self.removeEventListener('touchmove',  touchmove);
-          self.removeEventListener('touchend',   touchend);
+          container.removeEventListener('touchstart', touchstart);
+          container.removeEventListener('touchmove',  touchmove);
+          container.removeEventListener('touchend',   touchend);
         }
       };
     }
@@ -96,7 +97,7 @@
   style="--count: {count}; --index: {index}; --swipe-offset: {swipeOffset}px"
   tabindex="0"
 >
-  <div class="container">
+  <div bind:this={container} class="container">
     <div bind:this={content} class="content">
       {@render rest.children?.()}
     </div>

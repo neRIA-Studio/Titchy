@@ -44,9 +44,8 @@
   .titchy.link {
     &.anchor {
       color: $accent-color;
-      font-style: italic;
-      text-decoration: underline dashed set-alpha($accent-color, 30%) 2px;
-      text-underline-offset: 3px;
+      text-decoration: underline dashed set-alpha($accent-color, 50%) 1px;
+      text-underline-offset: 2px;
     }
 
     &.wrapper {
