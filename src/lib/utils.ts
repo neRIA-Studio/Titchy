@@ -40,3 +40,7 @@ export function entries<T extends object>(obj: T) {
 export function define<T extends object, P extends object>(obj: T, props: P): T & P {
   return Object.defineProperties(obj, Object.getOwnPropertyDescriptors(props)) as T & P;
 }
+
+export function clamp(num: number, min: number, max: number) {
+  return Math.min(Math.max(num, min), max);
+}

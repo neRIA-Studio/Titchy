@@ -2,14 +2,16 @@
   import type { HTMLAttributes } from "svelte/elements";
 
   interface Props {
-    self?:      HTMLDivElement;
-    variant?: 'primary' | 'secondary' | 'wrapper';
+    self?:        HTMLDivElement;
+    variant?:     'primary' | 'secondary' | 'wrapper';
+    centered?:    boolean;
     constrained?: boolean;
   }
 
   let {
     self    = $bindable(),
     variant = 'primary',
+    centered,
     constrained,
     ...rest
   }: Props & HTMLAttributes<HTMLDivElement> = $props();
@@ -18,7 +20,7 @@
 <div
   bind:this={self}
   {...rest}
-  class={["titchy", "panel", variant, { constrained }, rest.class]}
+  class={["titchy", "panel", variant, { centered, constrained }, rest.class]}
 >
   {@render rest.children?.()}
 </div>
@@ -53,6 +55,11 @@
     &.constrained {
       max-width: $max-width;
       max-height: $max-height;
+    }
+
+    &.centered {
+      align-items: center;
+      justify-content: center;
     }
   }
 </style>
