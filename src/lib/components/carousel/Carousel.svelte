@@ -8,13 +8,13 @@
   interface Props {
     self?:   HTMLDivElement;
     index?:  number;
-    amount?: number;
+    count?: number;
   }
 
   let {
-    self   = $bindable(),
-    index  = $bindable(0),
-    amount = 1,
+    self  = $bindable(),
+    index = $bindable(0),
+    count = 1,
     ...rest
   }: Props & HTMLAttributes<HTMLDivElement> = $props();
 
@@ -27,7 +27,7 @@
   let swipeOffset = $state(0);
 
   let min = $derived(0);
-  let max = $derived(length - amount);
+  let max = $derived(length - count);
 
   onMount(() => {
     if (self) {
@@ -93,7 +93,7 @@
   bind:this={self}
   {...rest}
   class={["titchy", "carousel", rest.class]}
-  style="--amount: {amount}; --index: {index}; --swipe-offset: {swipeOffset}px"
+  style="--count: {count}; --index: {index}; --swipe-offset: {swipeOffset}px"
   tabindex="0"
 >
   <div class="container">
@@ -162,18 +162,18 @@
       );
 
       > .content {
-        $a: var(--amount);
+        $c: var(--count);
         $i: var(--index);
-        $w: calc($content-width + $gap * ($a - 1));
+        $w: calc($content-width + $gap * ($c - 1));
 
         @include width($w, 'all');
 
         flex-direction: row;
         gap: $gap;
-        left: calc(-1 * ((($w + $gap) * $i) / $a) - var(--swipe-offset));
+        left: calc(-1 * ((($w + $gap) * $i) / $c) - var(--swipe-offset));
 
         > .titchy.panel {
-          @include width(calc($content-width / $a), 'all');
+          @include width(calc($content-width / $c), 'all');
         }
 
         > :not(.titchy.panel) {

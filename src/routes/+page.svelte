@@ -193,7 +193,7 @@
       </Select>
     </div>
     <div class="showcase">
-      <Carousel amount={Number(carouselAmount)}>
+      <Carousel count={Number(carouselAmount)}>
         {#each { length:12 } as _, i}
           <Panel variant={i % 2 ? "secondary" : "primary"} centered>
             <h1>{i+1}</h1>
