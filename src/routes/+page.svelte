@@ -2,7 +2,7 @@
   import "@/others/global.scss";
 
   import { ArrowLeft, ArrowRight, Banknote, Bell, Check, ChevronFirst, ChevronLast, Cookie, Croissant, DollarSign, Euro, Hamburger, Hash, Heart, IndianRupee, JapaneseYen, Link as LinkIcon, Lock, Mail, Pizza, Play, PoundSterling, Send, SwissFranc, Type, X } from "@lucide/svelte";
-  import { Accordion, Button, ButtonGroup, Checkbox, Input, InputWrapper, KBD, Label, Link, Loading, Option, Overlay, Pager, Panel, Select, Slider, Table, Textarea, useToaster, type TableHeader } from "$lib/components";
+  import { Accordion, Button, ButtonGroup, Carousel, Checkbox, Input, InputWrapper, KBD, Label, Link, Loading, Option, Overlay, Pager, Panel, Select, Slider, Table, Textarea, useToaster, type TableHeader } from "$lib/components";
 
   const toaster = useToaster();
 
@@ -10,6 +10,8 @@
   let fixedOverlayActive    = $state(false);
 
   type TableData = { num:number; even:boolean };
+
+  let carouselAmount = $state("1");
 </script>
 
 <div class="items">
@@ -174,6 +176,31 @@
       <Checkbox active icon="radio" />
       <Checkbox active icon={Hamburger} />
       <Checkbox active icon="custom">Hi</Checkbox>
+    </div>
+  </div>
+
+  <div class="item carousel">
+    <h1 id="carousel">
+      Carousel
+    </h1>
+    <hr />
+    <div class="showcase" style:gap="5px">
+      <span>Try Different <b><em>amount</em></b>s:</span>
+      <Select bind:value={carouselAmount}>
+        <Option>1</Option>
+        <Option>2</Option>
+        <Option>3</Option>
+      </Select>
+    </div>
+    <div class="showcase">
+      <Carousel amount={Number(carouselAmount)}>
+        {#each { length:12 } as _, i}
+          <Panel variant={i % 2 ? "secondary" : "primary"} centered>
+            <h1>{i+1}</h1>
+            <span>{i % 2 ? "Secondary" : "Primary"}</span>
+          </Panel>
+        {/each}
+      </Carousel>
     </div>
   </div>
 
@@ -637,7 +664,7 @@
     overflow: visible;
   }
 
-  .panel {
+  .panel, .carousel {
     .showcase {
       flex-direction: column;
     }
