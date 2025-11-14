@@ -6,6 +6,7 @@
 
   import { Button } from "../button";
   import { Option } from ".";
+  import { Popover } from "../popover";
 
   interface Props {
     self?:         HTMLDivElement;
@@ -19,7 +20,7 @@
 
   let {
     self         = $bindable(),
-    active       = $bindable(),
+    active       = $bindable(false),
     value        = $bindable(""),
     label        = "Select",
     constrained  = true,
@@ -108,18 +109,17 @@
     </div>
     <ChevronDown class="chevron" />
   </Button>
-  {#if active}
-    <div class="options-container" transition:slide={{ axis: "y" }}>
-      <div bind:this={optionsDiv} class="options">
-        {@render rest.children?.()}
-      </div>
-      {#if deselectable}
-        <div class="options">
-          {@render action("Deselect", resetSelection)}
-        </div>
-      {/if}
+
+  <Popover bind:active parent={self} inherit-size="width">
+    <div bind:this={optionsDiv} class="options">
+      {@render rest.children?.()}
     </div>
-  {/if}
+    {#if deselectable}
+      <div class="options">
+        {@render action("Deselect", resetSelection)}
+      </div>
+    {/if}
+  </Popover>
 </div>
 
 <style lang="scss">
@@ -139,8 +139,8 @@
 
     svg { @include size(V(spacing-6)); }
 
-    > button.trigger {
-    --button-accent-color: #{$accent-color};
+    > .trigger {
+      --button-accent-color: #{$accent-color};
 
       flex: 1;
       justify-content: space-between;
@@ -148,12 +148,12 @@
 
       &.constrained { min-width: $min-width; }
 
-      > div.text {
-        > span.label {
+      > .text {
+        > .label {
           font-weight: bold;
         }
 
-        > span.details {
+        > .details {
           color: set-alpha($highlight-color, 80%);
           font-size: V(text-xs);
         }
@@ -162,16 +162,8 @@
       > svg.chevron { stroke-width: 4px; }
     }
 
-    > div.options-container {
-      position: absolute;
-      top: 100%;
-      z-index: 10;
-
-      @include width(100%, 'all');
-      gap: $gap;
-      padding: $gap 0;
-
-      > div.options {
+    > .titchy.popover {
+      > .options {
         max-height: 32dvh;
         overflow-y: auto;
         @include hide-scrollbar();
@@ -184,10 +176,10 @@
         border: 2px solid C(tertiary);
         border-radius: V(radius-1);
 
-        > label.label {
+        > .label {
           align-items: center;
 
-          color: set-alpha($highlight-color, 60%);
+          color: set-alpha($accent-color, 60%);
           font-size: V(text-xs);
 
           padding: 0 $gap;
@@ -197,15 +189,16 @@
           &:last-child  { padding-bottom: $gap; }
         }
 
-        > button.action {
+        > .action {
           // align-items: center;
+          color: set-alpha($accent-color);
           font-size: V(text-xs);
         }
       }
     }
 
     &.active {
-      > button.trigger {
+      > .trigger {
         > svg.chevron {
           rotate: 90deg;
         }

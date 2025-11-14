@@ -660,10 +660,6 @@
     }
   }
 
-  .select, .button {
-    overflow: visible;
-  }
-
   .panel, .carousel {
     .showcase {
       flex-direction: column;
