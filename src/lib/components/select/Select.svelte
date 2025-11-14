@@ -16,19 +16,24 @@
     constrained?:  boolean;
     deselectable?: boolean;
     details?:      boolean | string;
+    'copy-html'?:  boolean;
+    'inherit-size'?: 'none' | 'width' | 'height' | 'both';
   }
 
   let {
-    self         = $bindable(),
-    active       = $bindable(false),
-    value        = $bindable(""),
-    label        = "Select",
-    constrained  = true,
-    deselectable = false,
-    details      = false,
+    self                        = $bindable(),
+    active                      = $bindable(false),
+    value                       = $bindable(""),
+    label                       = "Select",
+    constrained                 = true,
+    deselectable                = false,
+    details                     = false,
+    'copy-html': copyHTML       = false,
+    'inherit-size': inheritSize = "width",
     ...rest
   }: Props & HTMLAttributes<HTMLDivElement> = $props();
 
+  let selectedHTML    = $state<string>("");
   let selectedLabel   = $state<string>("");
   let selectedDetails = $state<string>("");
   let optionsDiv      = $state<HTMLDivElement>();
@@ -55,6 +60,7 @@
 
   const resetSelection = () => {
     active          = false;
+    selectedHTML    = "";
     selectedLabel   = "";
     selectedDetails = "";
     value           = "";
@@ -72,6 +78,7 @@
       return;
 
     active          = false;
+    selectedHTML    = op.innerHTML;
     selectedLabel   = op.getAttribute("data-label") || op.textContent || "";
     selectedDetails = op.getAttribute("data-description") || "";
     value           = op.getAttribute("data-value") || selectedLabel;
@@ -93,8 +100,12 @@
   <Button class={["trigger", { constrained }]} scaling={false} {onclick}>
     <div class="text">
       <span class="label">
-        {#if selectedLabel || value}
-          {selectedLabel || value}
+        {#if selectedLabel || value || selectedHTML}
+          {#if copyHTML && selectedHTML}
+            {@html selectedHTML}
+          {:else}
+            {selectedLabel || value}
+          {/if}
         {:else if typeof label === 'string'}
           {label}
         {:else}
@@ -110,7 +121,7 @@
     <ChevronDown class="chevron" />
   </Button>
 
-  <Popover bind:active parent={self} inherit-size="width">
+  <Popover bind:active parent={self} inherit-size={inheritSize}>
     <div bind:this={optionsDiv} class="options">
       {@render rest.children?.()}
     </div>
