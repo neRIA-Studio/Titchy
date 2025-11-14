@@ -67,7 +67,7 @@
 </div>
 
 <style lang="scss">
-  @use "@/others/utils.scss" as *;
+  @use "$lib/styles/utils.scss" as *;
 
   $accent-color: var(--table-accent-color, C(accent));
 

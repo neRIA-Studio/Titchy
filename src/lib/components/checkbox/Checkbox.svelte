@@ -53,7 +53,7 @@
 </Button>
 
 <style lang="scss">
-  @use "@/others/utils.scss" as *;
+  @use "$lib/styles/utils.scss" as *;
 
   $size:  var(--checkbox-size, V(spacing-11));
   $accent-color: var(--checkbox-accent-color, C(accent));

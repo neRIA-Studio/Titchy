@@ -45,10 +45,6 @@ export function clamp(num: number, min: number, max: number) {
   return Math.min(Math.max(num, min), max);
 }
 
-export function px(value: number) {
-  return `${Math.round(value * 10) / 10}px`;
-}
-
 export function objToCss(obj: Record<string, unknown>) {
   let style = "";
 

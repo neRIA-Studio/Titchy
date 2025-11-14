@@ -20,7 +20,7 @@
 </div>
 
 <style lang="scss">
-  @use "@/others/utils.scss" as *;
+  @use "$lib/styles/utils.scss" as *;
 
   $accent-color: var(--template-accent-color, C(accent));
 

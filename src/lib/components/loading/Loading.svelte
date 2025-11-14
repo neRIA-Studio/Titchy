@@ -99,7 +99,7 @@
 </span>
 
 <style lang="scss">
-  @use "@/others/utils.scss" as *;
+  @use "$lib/styles/utils.scss" as *;
 
   $spinner-color: var(--loading-spinner-color, C(accent));
   $dots-color: var(--loading-dots-color, C(secondary));

@@ -20,7 +20,7 @@
 ></section>
 
 <style lang="scss">
-  @use "@/others/utils.scss" as *;
+  @use "$lib/styles/utils.scss" as *;
 
   $padding: var(--toaster-padding, V(spacing-11));
   $gap: var(--toaster-gap, V(spacing-4));

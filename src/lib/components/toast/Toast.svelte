@@ -97,7 +97,7 @@
 </div>
 
 <style lang="scss">
-  @use "@/others/utils.scss" as *;
+  @use "$lib/styles/utils.scss" as *;
 
   $min-width: var(--toast-min-width, min(350px, 80dvw));
   $accent-color: var(--toast-accent-color, C(accent));

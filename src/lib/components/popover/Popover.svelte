@@ -3,7 +3,11 @@
   import type { HTMLAttributes } from "svelte/elements";
   import { slide } from "svelte/transition";
 
-  import { objToCss, px } from "@/lib/utils";
+  import { objToCss } from "$lib/utils";
+
+  function px(value: number) {
+    return `${Math.round(value * 10) / 10}px`;
+  }
 
   interface Props {
     self?:           HTMLDivElement;
@@ -139,7 +143,7 @@
 {/if}
 
 <style lang="scss">
-  @use "@/others/utils.scss" as *;
+  @use "$lib/styles/utils.scss" as *;
 
   $accent-color: var(--popover-accent-color, C(accent));
   $gap: var(--popover-gap, V(spacing-2));

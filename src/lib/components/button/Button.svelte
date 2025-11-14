@@ -26,7 +26,7 @@
 </button>
 
 <style lang="scss">
-  @use "@/others/utils.scss" as *;
+  @use "$lib/styles/utils.scss" as *;
 
   $accent-color: var(--button-accent-color, C(accent));
   $shadow-color: var(--button-shadow-color, C(primary));

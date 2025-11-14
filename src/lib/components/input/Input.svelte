@@ -43,7 +43,7 @@
 />
 
 <style lang="scss">
-  @use "@/others/utils.scss" as *;
+  @use "$lib/styles/utils.scss" as *;
 
   $height: var(--input-height, 36px);
   $height-surplus: var(--input-height-surplus, 28px);

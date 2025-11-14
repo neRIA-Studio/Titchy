@@ -52,7 +52,7 @@
 {/if}
 
 <style lang="scss">
-  @use "@/others/utils.scss" as *;
+  @use "$lib/styles/utils.scss" as *;
 
   $z-index: var(--overlay-z-index, 10);
   $bg-color: var(--overlay-background-color, C(primary, 50%));

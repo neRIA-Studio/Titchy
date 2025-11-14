@@ -65,7 +65,7 @@
 </details>
 
 <style lang="scss">
-  @use "@/others/utils.scss" as *;
+  @use "$lib/styles/utils.scss" as *;
 
   $accent-color: var(--accordion-accent-color, C(accent));
   $opacity: var(--accordion-opacity, 7.5%);

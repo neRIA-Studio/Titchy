@@ -1,5 +1,5 @@
 <script lang="ts">
-  import "@/others/global.scss";
+  import "$lib/styles/global.scss";
 
   import { ArrowLeft, ArrowRight, Banknote, Bell, Check, ChevronFirst, ChevronLast, Cookie, Croissant, DollarSign, Euro, Hamburger, Hash, Heart, IndianRupee, JapaneseYen, Link as LinkIcon, Lock, Mail, Pizza, Play, PoundSterling, Send, SwissFranc, Type, X } from "@lucide/svelte";
   import { Accordion, Button, ButtonGroup, Carousel, Checkbox, Input, InputWrapper, KBD, Label, Link, Loading, Option, Overlay, Pager, Panel, Select, Slider, Table, Textarea, useToaster, type TableHeader } from "$lib/components";
@@ -619,7 +619,7 @@
 </div>
 
 <style lang="scss">
-  @use "@/others/utils.scss" as *;
+  @use "$lib/styles/utils.scss" as *;
 
   .items {
     flex: 1;

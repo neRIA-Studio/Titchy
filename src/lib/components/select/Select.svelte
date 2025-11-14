@@ -1,12 +1,11 @@
 <script lang="ts">
   import type { Snippet } from "svelte";
   import type { HTMLAttributes, MouseEventHandler } from "svelte/elements";
-  import { slide } from "svelte/transition";
   import { ChevronDown } from "@lucide/svelte";
 
   import { Button } from "../button";
-  import { Option } from ".";
   import { Popover } from "../popover";
+  import { Option } from ".";
 
   interface Props {
     self?:         HTMLDivElement;
@@ -134,7 +133,7 @@
 </div>
 
 <style lang="scss">
-  @use "@/others/utils.scss" as *;
+  @use "$lib/styles/utils.scss" as *;
 
   $accent-color: var(--select-accent-color, C(accent));
   $highlight-color: var(--select-highlight-color, C(secondary));

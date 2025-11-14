@@ -26,7 +26,7 @@
 </div>
 
 <style lang="scss">
-  @use "@/others/utils.scss" as *;
+  @use "$lib/styles/utils.scss" as *;
 
   $accent-color:    var(--panel-accent-color, C(accent));
   $shadow-color:    var(--panel-shadow-color, C(primary));

@@ -32,7 +32,7 @@
 {/each}
 
 <style lang="scss">
-  @use "@/others/utils.scss" as *;
+  @use "$lib/styles/utils.scss" as *;
 
   $accent-color: var(--kbd-accent-color, C(accent));
 

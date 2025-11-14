@@ -1,4 +1,4 @@
-import type { CSS, ValueOf } from "@/lib/utils";
+import type { CSS, ValueOf } from "$lib/utils";
 import type { Snippet } from "svelte";
 
 export type TablePlacement =

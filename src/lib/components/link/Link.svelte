@@ -36,7 +36,7 @@
 </a>
 
 <style lang="scss">
-  @use "@/others/utils.scss" as *;
+  @use "$lib/styles/utils.scss" as *;
 
   $accent-color: var(--link-accent-color, C(accent));
 

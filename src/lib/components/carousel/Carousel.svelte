@@ -1,9 +1,10 @@
 <script lang="ts">
-  import type { HTMLAttributes } from "svelte/elements";
-  import { Button } from "../button";
-  import { ArrowLeft, ArrowRight } from "@lucide/svelte";
-  import { clamp } from "@/lib/utils";
   import { onMount } from "svelte";
+  import type { HTMLAttributes } from "svelte/elements";
+  import { ArrowLeft, ArrowRight } from "@lucide/svelte";
+
+  import { clamp } from "$lib/utils";
+  import { Button } from "../button";
 
   interface Props {
     self?:   HTMLDivElement;
@@ -138,7 +139,7 @@
 </div>
 
 <style lang="scss">
-  @use "@/others/utils.scss" as *;
+  @use "$lib/styles/utils.scss" as *;
 
   $accent-color: var(--carousel-accent-color, C(accent));
   $shadow-color: var(--carousel-shadow-color, black);

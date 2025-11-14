@@ -44,7 +44,7 @@
 </Button>
 
 <style lang="scss">
-  @use "@/others/utils.scss" as *;
+  @use "$lib/styles/utils.scss" as *;
 
   $highlight-color: var(--option-highlight-color, C(secondary));
 

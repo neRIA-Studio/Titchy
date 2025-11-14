@@ -34,7 +34,7 @@
 />
 
 <style lang="scss">
-  @use "@/others/utils.scss" as *;
+  @use "$lib/styles/utils.scss" as *;
 
   $accent-color: var(--slider-accent-color, C(accent));
   $highlight-color: var(--slider-highlight-color, C(secondary));

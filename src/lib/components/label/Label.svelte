@@ -22,7 +22,7 @@
 </label>
 
 <style lang="scss">
-  @use "@/others/utils.scss" as *;
+  @use "$lib/styles/utils.scss" as *;
 
   :global
   .titchy.label {
