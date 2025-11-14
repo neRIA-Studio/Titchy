@@ -10,6 +10,7 @@ export * from "./loading";
 export * from "./overlay";
 export * from "./pager";
 export * from "./panel";
+export * from "./popover";
 export * from "./select";
 export * from "./slider";
 export * from "./table";

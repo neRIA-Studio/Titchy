@@ -44,3 +44,17 @@ export function define<T extends object, P extends object>(obj: T, props: P): T 
 export function clamp(num: number, min: number, max: number) {
   return Math.min(Math.max(num, min), max);
 }
+
+export function px(value: number) {
+  return `${Math.round(value * 10) / 10}px`;
+}
+
+export function objToCss(obj: Record<string, unknown>) {
+  let style = "";
+
+  for (const [key, value] of entries(obj))
+    if (!isNullable(value))
+      style += `--${key}: ${value};`;
+
+  return style;
+}
