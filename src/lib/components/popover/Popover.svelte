@@ -11,7 +11,8 @@
     parent?:         P;
     axis?:           "y" | "x";
     anchor?:         "end" | "start";
-    'inherit-size'?: P extends never ? never : ('width' | 'height' | 'both');
+    'axis-center'?:  P extends never ? never : boolean;
+    'inherit-size'?: P extends never ? never : ('none' | 'width' | 'height' | 'both');
   }
 
   type Position = Record<"top" | "left" | "bottom" | "right" | "width" | "height", string>;
@@ -22,7 +23,8 @@
     parent,
     axis                        = "y",
     anchor                      = "end",
-    'inherit-size': inheritSize,
+    'axis-center': axisCenter   = true as Props['axis-center'],
+    'inherit-size': inheritSize = "none" as Props['inherit-size'],
     ...rest
   }: Props & HTMLAttributes<HTMLDivElement> = $props();
 
@@ -59,26 +61,33 @@
 
     pos = { } as Position;
 
+    // Calculating the size
     if (inheritSize === 'width' || inheritSize === 'both')
       pos.width = px(parentRect.width);
 
     if (inheritSize === 'height' || inheritSize === 'both')
       pos.height = px(parentRect.height);
 
+    // Calculating the justification
     if (axis === 'y') {
-      if (parentRect.left + selfRect.width > width)
+      if (axisCenter)
+        pos.left = px(Math.max(parentRect.left - (selfRect.width - parentRect.width) / 2, 0));
+      else if (parentRect.left + selfRect.width > width)
         pos.right = px(Math.max(width - parentRect.right, 0));
       else
         pos.left = px(Math.max(parentRect.left, 0));
     }
 
     if (axis === 'x') {
-      if (parentRect.top + selfRect.height > height)
+      if (axisCenter)
+        pos.top = px(Math.max(parentRect.top - (selfRect.height - parentRect.height) / 2, 0));
+      else if (parentRect.top + selfRect.height > height)
         pos.bottom = px(Math.max(height - parentRect.bottom, 0));
       else
         pos.top = px(Math.max(parentRect.top, 0));
     }
 
+    // Calculating the alignment
     if (anchor === "end") {
       if (nearStart) goEnd();
       else goStart();
