@@ -134,14 +134,21 @@
           <Send />
         </Button>
       </ButtonGroup>
+    </div>
+    <div class="showcase">
       <ButtonGroup>
         <InputWrapper icon={Banknote}>
           <Input placeholder="Amount" />
         </InputWrapper>
-        <Select constrained={false}>
+        <Select constrained={false} copy-html deselectable inherit-size="none">
           {#snippet label()}
-            <DollarSign />
+            <small>
+              Currency
+            </small>
           {/snippet}
+          <Option style="align-items: center">
+            <DollarSign />
+          </Option>
           <Option style="align-items: center">
             <PoundSterling />
           </Option>
@@ -156,6 +163,15 @@
           </Option>
           <Option style="align-items: center">
             <SwissFranc />
+          </Option>
+          <Option style="align-items: center">
+            EGP
+          </Option>
+          <Option style="align-items: center">
+            DZD
+          </Option>
+          <Option style="align-items: center">
+            IQD
           </Option>
         </Select>
         <Button>SEND</Button>
