@@ -93,7 +93,7 @@
     border-bottom: 2px dashed set-alpha($accent-color, 15%);
 
     > svg.true  { color: C(success); }
-    > svg.false { color: C(error);   }
+    > svg.false { color: C(danger);  }
 
     &.head {
       background-color: set-alpha($accent-color, 10%);

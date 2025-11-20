@@ -8,7 +8,7 @@ export interface ToastAction {
 }
 
 export interface ToastOptions {
-  type:         'info' | 'success' | 'warn' | 'danger' | 'error';
+  type:         'info' | 'success' | 'warn' | 'error' | 'urgent';
   title?:       string;
   content?:     string | string[];
   icon?:        typeof Icon;

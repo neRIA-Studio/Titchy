@@ -565,6 +565,7 @@
     <hr />
     <div class="showcase">
       <Button
+        style="--button-accent-color: var(--titchy-color-info)"
         onclick={() => toaster.add({
           type:    'info',
           title:   'BOO!',
@@ -575,6 +576,7 @@
         Show Info
       </Button>
       <Button
+        style="--button-accent-color: var(--titchy-color-success)"
         onclick={() => toaster.add({
           type:    'success',
           title:   'BOO!',
@@ -585,6 +587,7 @@
         Show Success
       </Button>
       <Button
+        style="--button-accent-color: var(--titchy-color-warn)"
         onclick={() => toaster.add({
           type:    'warn',
           title:   'BOO!',
@@ -595,6 +598,7 @@
         Show Warn
       </Button>
       <Button
+        style="--button-accent-color: var(--titchy-color-danger)"
         onclick={() => toaster.add({
           type:    'error',
           title:   'BOO!',
@@ -605,14 +609,15 @@
         Show Error
       </Button>
       <Button
+        style="--button-accent-color: var(--titchy-color-notice)"
         onclick={() => toaster.add({
-          type:    'danger',
+          type:    'urgent',
           title:   'BOO!',
           content: 'Bet you got scared again.',
           dismissible: false,
         })}
       >
-        Show Danger
+        Show Urgent
       </Button>
     </div>
   </div>

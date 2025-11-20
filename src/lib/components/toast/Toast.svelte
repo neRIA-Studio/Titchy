@@ -46,7 +46,7 @@
     : options.type === 'success' ? CircleCheck
     : options.type === 'warn'    ? TriangleAlert
     : options.type === 'error'   ? CircleX
-    : options.type === 'danger'  ? Skull
+    : options.type === 'urgent'  ? Skull
     : null}
 
   {#if Symbol}
@@ -109,8 +109,8 @@
     &.info    { --toast-accent-color: #{C(info)};    }
     &.success { --toast-accent-color: #{C(success)}; }
     &.warn    { --toast-accent-color: #{C(warn)};    }
-    &.error   { --toast-accent-color: #{C(error)};   }
-    &.danger  { --toast-accent-color: #{C(notice)};  }
+    &.error   { --toast-accent-color: #{C(danger)};  }
+    &.urgent  { --toast-accent-color: #{C(notice)};  }
 
     pointer-events: all;
     min-width: $min-width;
