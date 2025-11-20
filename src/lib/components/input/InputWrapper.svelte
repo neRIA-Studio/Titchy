@@ -42,7 +42,8 @@
     'side-actions': sideActions,
     'custom-side-actions': customSideActions,
     'actions-on-hover':actionsOnHover,
-  }: Props = $props();
+    ...rest
+  }: Props & HTMLAttributes<HTMLDivElement> = $props();
 
   /* =============================== Constants ============================== */
 
@@ -207,8 +208,9 @@
 
 <div
   bind:this={root}
-  class={["titchy input-wrapper", { disabled:input?.disabled, labeled:!!label }]}
-  style="--action-count: {actionCount};--has-icon:{Number(!!icon)};"
+  {...rest}
+  class={["titchy input-wrapper", { disabled:input?.disabled, labeled:!!label }, rest.class]}
+  style="--action-count: {actionCount};--has-icon:{Number(!!icon)};{rest.style}"
 >
   {@render children?.()}
   {#if icon}
