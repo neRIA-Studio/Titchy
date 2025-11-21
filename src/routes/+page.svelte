@@ -510,7 +510,7 @@
     </h1>
     <Separator />
     <div class="showcase">
-      <Panel style="flex-direction: row;">
+      <Panel style="flex-direction: row" borderless>
         <div style:justify-content="center" style:align-items="center">
           <small>Commit Legal</small>
           <small>Segregation</small>

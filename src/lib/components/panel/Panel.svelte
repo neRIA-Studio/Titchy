@@ -5,6 +5,7 @@
     self?:        HTMLDivElement;
     variant?:     'primary' | 'secondary' | 'wrapper';
     centered?:    boolean;
+    borderless?:  boolean;
     constrained?: boolean;
   }
 
@@ -12,6 +13,7 @@
     self    = $bindable(),
     variant = 'primary',
     centered,
+    borderless,
     constrained,
     ...rest
   }: Props & HTMLAttributes<HTMLDivElement> = $props();
@@ -20,7 +22,7 @@
 <div
   bind:this={self}
   {...rest}
-  class={["titchy", "panel", variant, { centered, constrained }, rest.class]}
+  class={["titchy", "panel", variant, { centered, borderless, constrained }, rest.class]}
 >
   {@render rest.children?.()}
 </div>
@@ -37,7 +39,7 @@
 
   :global
   .titchy.panel {
-    padding: V(spacing-10);
+    padding: V(spacing-6);
     gap: V(spacing-5);
     border: 2px solid transparent;
     border-radius: V(radius-1);
@@ -55,6 +57,10 @@
     &.constrained {
       max-width: $max-width;
       max-height: $max-height;
+    }
+
+    &.borderless {
+      border-width: 0;
     }
 
     &.centered {
