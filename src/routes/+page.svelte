@@ -2,7 +2,7 @@
   import "$lib/styles/global.scss";
 
   import { ArrowLeft, ArrowRight, Banknote, Bell, Check, ChevronFirst, ChevronLast, Cookie, Croissant, DollarSign, Euro, Hamburger, Hash, Heart, IndianRupee, JapaneseYen, Link as LinkIcon, Lock, Mail, Pizza, Play, PoundSterling, Send, SwissFranc, Type, X } from "@lucide/svelte";
-  import { Accordion, Button, ButtonGroup, Carousel, Checkbox, Input, InputWrapper, KBD, Label, Link, Loading, Option, Overlay, Pager, Panel, Select, Slider, Table, Textarea, useToaster, type TableHeader } from "$lib/components";
+  import { Accordion, Button, ButtonGroup, Carousel, Checkbox, Input, InputWrapper, KBD, Label, Link, Loading, Option, Overlay, Pager, Panel, Select, Separator, Slider, Table, Textarea, useToaster, type TableHeader } from "$lib/components";
 
   const toaster = useToaster();
 
@@ -19,7 +19,7 @@
     <h1 id="template">
       Template
     </h1>
-    <hr />
+    <Separator />
     <div class="showcase">
       <Template />
     </div>
@@ -29,7 +29,7 @@
     <h1 id="accordion">
       Accordion
     </h1>
-    <hr />
+    <Separator />
     <div class="showcase">
       <Accordion summary="Hello! #1" name="accordion-showcase">
         These are more details.
@@ -58,7 +58,7 @@
     <h1 id="button">
       Button
     </h1>
-    <hr />
+    <Separator />
     <div class="showcase">
       <Button variant="primary">
         <Hamburger /> Primary
@@ -98,7 +98,7 @@
     <h1 id="button-group">
       Button Group
     </h1>
-    <hr />
+    <Separator />
     <div class="showcase">
       <ButtonGroup>
         <Button variant="secondary">
@@ -183,7 +183,7 @@
     <h1 id="checkbox">
       Checkbox
     </h1>
-    <hr />
+    <Separator />
     <div class="showcase">
       <Checkbox />
       <Checkbox active icon="hollow" />
@@ -199,7 +199,7 @@
     <h1 id="carousel">
       Carousel
     </h1>
-    <hr />
+    <Separator />
     <div class="showcase" style:gap="5px">
       <span>Try Different <b><em>amount</em></b>s:</span>
       <Select bind:value={carouselAmount}>
@@ -224,7 +224,7 @@
     <h1 id="kbd">
       KBD
     </h1>
-    <hr />
+    <Separator />
     <div class="showcase">
       <span>
         Press
@@ -238,7 +238,7 @@
     <h1 id="label">
       Label
     </h1>
-    <hr />
+    <Separator />
     <div class="showcase">
       <Label>
         Username
@@ -268,7 +268,7 @@
     <h1 id="input">
       Input
     </h1>
-    <hr />
+    <Separator />
     <div class="showcase">
       <Input type="email" placeholder="john_doe@example.com" />
       <Input type="password" placeholder="••••••••••••" />
@@ -277,7 +277,7 @@
     <h1 id="textarea">
       Textarea
     </h1>
-    <hr />
+    <Separator />
     <div class="showcase">
       <Textarea placeholder="Your message goes here." />
     </div>
@@ -285,7 +285,7 @@
     <h1 id="input-wrapper">
       Input Wrapper
     </h1>
-    <hr />
+    <Separator />
     <div class="showcase">
       <InputWrapper
         icon={LinkIcon}
@@ -339,7 +339,7 @@
     <h1 id="link">
       Link
     </h1>
-    <hr />
+    <Separator />
     <div class="showcase">
       <Link href="https://neria.studio" scaling>
         neRIA STUDIO
@@ -365,7 +365,7 @@
     <h1 id="loading">
       Loading
     </h1>
-    <hr />
+    <Separator />
     <div class="showcase">
       <Loading variant="spinner" icon="circle" />
       <Loading variant="spinner" icon="throbber" />
@@ -386,7 +386,7 @@
     <h1 id="overlay">
       Overlay
     </h1>
-    <hr />
+    <Separator />
     <div class="showcase">
       <Button onclick={() => absoluteOverlayActive = true}>
         Show Absolute Overlay
@@ -409,7 +409,7 @@
     <h1 id="pager">
       Pager
     </h1>
-    <hr />
+    <Separator />
     <div class="showcase">
       <Pager />
       <Pager>
@@ -440,7 +440,7 @@
     <h1 id="panel">
       Panel
     </h1>
-    <hr />
+    <Separator />
     <div class="showcase">
       <Panel variant='primary' constrained>
         <span>This is a panel component.</span>
@@ -485,7 +485,7 @@
     <h1 id="select">
       Select
     </h1>
-    <hr />
+    <Separator />
     <div class="showcase">
       <Select label="Favorite Color">
         <Label>Colors</Label>
@@ -504,11 +504,44 @@
     </div>
   </div>
 
+  <div class="item separator">
+    <h1 id="separator">
+      Separator
+    </h1>
+    <Separator />
+    <div class="showcase">
+      <Panel style="flex-direction: row;">
+        <div style:justify-content="center" style:align-items="center">
+          <small>Commit Legal</small>
+          <small>Segregation</small>
+        </div>
+        <Separator orientation="vertical" line="solid" />
+        <div style:gap="10px">
+          <Checkbox active />
+          <Separator orientation="horizontal" line="solid" />
+          <Checkbox active />
+        </div>
+        <Separator orientation="vertical" line="dashed"/>
+        <div style:gap="10px">
+          <Checkbox active />
+          <Separator orientation="horizontal" line="dashed" />
+          <Checkbox active />
+        </div>
+        <Separator orientation="vertical" line="dotted"/>
+        <div style:gap="10px">
+          <Checkbox active />
+          <Separator orientation="horizontal" line="dotted" />
+          <Checkbox active />
+        </div>
+      </Panel>
+    </div>
+  </div>
+
   <div class="item slider">
     <h1 id="slider">
       Slider
     </h1>
-    <hr />
+    <Separator />
     <div class="showcase">
       <Slider />
       <Slider disabled />
@@ -519,7 +552,7 @@
     <h1 id="table">
       Table
     </h1>
-    <hr />
+    <Separator />
     <div class="showcase">
       {#snippet data(_head: TableHeader<TableData>, data: TableData | undefined, row: number, col: number)}
         <div style="flex-direction: row; align-items: center; justify-content: space-between;">
@@ -562,7 +595,7 @@
     <h1 id="toast">
       Toast
     </h1>
-    <hr />
+    <Separator />
     <div class="showcase">
       <Button
         style="--button-accent-color: var(--titchy-color-info)"
@@ -649,12 +682,6 @@
       &:not(:first-child) {
         margin-top: V(spacing-4);
       }
-    }
-
-    hr {
-      width: 100%;
-      margin: 0;
-      border: 1px solid C(secondary);
     }
 
     .showcase {
