@@ -90,19 +90,19 @@
   .titchy.cell {
     justify-content: center;
     padding: $cell-padding;
-    border-bottom: 2px dashed set-alpha($accent-color, 15%);
+    border-block-end: 2px dashed set-alpha($accent-color, 15%);
 
     > svg.true  { color: C(success); }
     > svg.false { color: C(danger);  }
 
     &.head {
       background-color: set-alpha($accent-color, 10%);
-      border-bottom: 2px solid set-alpha($accent-color, 10%);
+      border-block-end: 2px solid set-alpha($accent-color, 10%);
       font-weight: bold;
     }
 
     &.row-last {
-      border-bottom: none;
+      border-block-end: none;
     }
   }
 </style>

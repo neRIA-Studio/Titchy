@@ -1,6 +1,6 @@
 <script lang="ts">
   import { untrack, type Snippet } from "svelte";
-  import type { MouseEventHandler } from "svelte/elements";
+  import type { HTMLAttributes, MouseEventHandler } from "svelte/elements";
   import { blur } from "svelte/transition";
   import { Check, Clipboard, Copy, Eye, EyeOff, Scissors, X, type Icon } from "@lucide/svelte";
 
@@ -243,8 +243,8 @@
   $action-count: var(--action-count, 0);
 
   $padding: calc(2 * (V(spacing-2)));
-  $displacement-left: calc($padding + $has-icon * ($icon-size + 2 * $action-padding));
-  $displacement-right: calc($padding + $action-count * ($action-size + $action-padding * 2) + max(0, $action-count - 1) * ($action-padding));
+  $displacement-inline-start: calc($padding + $has-icon * ($icon-size + 2 * $action-padding));
+  $displacement-inline-end: calc($padding + $action-count * ($action-size + $action-padding * 2) + max(0, $action-count - 1) * ($action-padding));
 
   :global
   .titchy.input-wrapper {
@@ -259,24 +259,24 @@
     &.labeled {
       .input {
         height: calc($height + $height-surplus);
-        padding-top: $height-surplus;
-        padding-left: $padding;
-        padding-right: $padding;
+        padding-block-start: $height-surplus;
+        padding-inline-start: $padding;
+        padding-inline-end: $padding;
 
         &:is(textarea) {
           min-height: calc($height * 2 + $height-surplus);
           max-height: calc($height * 8 + $height-surplus);
-          padding-top: calc($height-surplus + $padding / 2);
+          padding-block-start: calc($height-surplus + $padding / 2);
         }
       }
 
       .symbol {
-        top: calc($height-surplus);
+        inset-block-start: calc($height-surplus);
         transform: translateY(-100%);
       }
 
       .actions {
-        top: calc($height-surplus);
+        inset-block-start: calc($height-surplus);
         transform: translateY(-100%);
       }
     }
@@ -284,8 +284,8 @@
     &:focus-within > * { z-index: 10; }
 
     .input {
-      padding-left: $displacement-left;
-      padding-right: $displacement-right;
+      padding-inline-start: $displacement-inline-start;
+      padding-inline-end: $displacement-inline-end;
     }
 
     &:is(:hover, :focus-within)
@@ -293,7 +293,7 @@
 
     .symbol {
       position: absolute;
-      left: calc(V(spacing-2) + 2px /*border*/ + $action-padding);
+      inset-inline-start: calc(V(spacing-2) + 2px /*border*/ + $action-padding);
 
       color: $highlight-color;
       pointer-events: none;
@@ -309,7 +309,7 @@
 
     .actions {
       position: absolute;
-      right: calc(V(spacing-2) + 2px /*border*/);
+      inset-inline-end:  calc(V(spacing-2) + 2px /*border*/);
       pointer-events: none;
 
       flex-direction: row-reverse;
@@ -337,8 +337,8 @@
 
     .label {
       position: absolute;
-      top: calc($height-surplus);
-      left: calc($displacement-left + 2px);
+      inset-block-start: calc($height-surplus);
+      inset-inline-start: calc($displacement-inline-start + 2px);
 
       height: $icon-size;
       justify-content: center;

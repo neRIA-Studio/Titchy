@@ -59,7 +59,7 @@
     .description {
       font-size: V(text-xs);
       color: set-alpha($highlight-color, 50%);
-      margin-top: V(spacing-1);
+      margin-block-start: V(spacing-1);
     }
   }
 </style>

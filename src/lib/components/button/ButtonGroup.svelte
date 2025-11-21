@@ -2,11 +2,13 @@
   import type { HTMLAttributes } from "svelte/elements";
 
   interface Props {
-    self?: HTMLDivElement;
+    self?:            HTMLDivElement;
+    'remove-corner'?: 'start' | 'end' | 'both';
   }
 
   let {
-    self = $bindable(),
+    self                          = $bindable(),
+    'remove-corner': removeCorner = 'end',
     ...rest
   }: Props & HTMLAttributes<HTMLDivElement> = $props();
 </script>
@@ -14,7 +16,7 @@
 <div
   bind:this={self}
   {...rest}
-  class={["titchy", "button-group", rest.class]}
+  class={["titchy", "button-group", `remove-${removeCorner}`, rest.class]}
 >
   {@render rest.children?.()}
 </div>
@@ -34,21 +36,36 @@
       }
     }
 
-    > * {
-      box-shadow: none;
+    &:is(.remove-both, .remove-start) {
+      > *:not(:first-child) {
+        &, .input, .button, .link {
+          border-inline-start: none;
+        }
+      }
+    }
 
+    &:is(.remove-both, .remove-end) {
+      > *:not(:last-child) {
+        &, .input, .button, .link {
+          border-inline-end: none;
+        }
+      }
+    }
+
+    * { box-shadow: none; }
+
+    > * {
       &:not(:first-child) {
-        &, .input, .button {
-          border-left: none;
-          border-top-left-radius: 0px;
-          border-bottom-left-radius: 0px;
+        &, .input, .button, .link {
+          border-start-start-radius: 0;
+          border-end-start-radius: 0;
         }
       }
 
       &:not(:last-child) {
-        &, .input, .button {
-          border-top-right-radius: 0px;
-          border-bottom-right-radius: 0px;
+        &, .input, .button, .link {
+          border-start-end-radius: 0;
+          border-end-end-radius: 0;
         }
       }
     }

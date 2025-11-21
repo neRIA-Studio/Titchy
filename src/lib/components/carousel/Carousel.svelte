@@ -179,7 +179,7 @@
 
         flex-direction: row;
         gap: $gap;
-        left: calc(-1 * ((($w + $gap) * $i) / $c) - var(--swipe-offset));
+        inset-inline-start: calc(-1 * ((($w + $gap) * $i) / $c) - var(--swipe-offset));
 
         &.touched { transition: none; }
 

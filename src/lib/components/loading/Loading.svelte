@@ -144,7 +144,7 @@
       animation-iteration-count: infinite;
 
       &.stretch  { animation-name: bounce-with-stretch; }
-      &.has-text { top: 5px; }
+      &.has-text { inset-block-start: 5px; }
     }
 
     .spinner {

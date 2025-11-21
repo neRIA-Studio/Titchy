@@ -55,8 +55,8 @@
       content: '';
 
       position: absolute;
-      top: $progress-padding;
-      left: $progress-padding;
+      inset-block-start: $progress-padding;
+      inset-inline-start: $progress-padding;
 
       max-width: calc(100% - 2 * $progress-padding);
       width: var(--progress, 0%);

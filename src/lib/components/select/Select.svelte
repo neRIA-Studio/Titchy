@@ -195,8 +195,8 @@
           padding: 0 $gap;
           font-weight: bold;
 
-          &:first-child { padding-top:    $gap; }
-          &:last-child  { padding-bottom: $gap; }
+          &:first-child { padding-block-start: $gap; }
+          &:last-child  { padding-block-end:   $gap; }
         }
 
         > .action {

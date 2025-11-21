@@ -41,7 +41,7 @@
     display: inline-flex;
     flex-direction: row;
     background-color: $accent-color;
-    padding-bottom: 2px;
+    padding-block-end: 2px;
     border-radius: 10px;
 
     &:active .key { transform: translateY(1px); }

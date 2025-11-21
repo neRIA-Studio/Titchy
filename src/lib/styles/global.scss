@@ -58,14 +58,20 @@
     nav, main, section, div,
     form, label, button, a[type=button],
     article, details, summary, content
-  ) {
-    @include flex(true);
-  }
+  ) { @include flex(true); }
 
-  &:where(
-    svg.lucide
-  ) {
+  &:where(svg.lucide) {
     @include size(20px);
+
+    // Aren't I a fucking genius?
+    // These are all the RTL languages I could find
+    @include is-rtl {
+      &[class*="-left"], &[class*="-right"],
+      &[class*="-first"], &[class*="-last"],
+      &[class*="-start"], &[class*="-end"] {
+        transform: scaleX(-1);
+      }
+    }
   }
 
   & { @include default(); }

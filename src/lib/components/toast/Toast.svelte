@@ -137,7 +137,7 @@
       opacity: 0;
       border: none;
       filter: blur(25px);
-      margin-bottom: calc(-1 * $gap);
+      margin-block-end: calc(-1 * $gap);
     }
 
     &.entering {

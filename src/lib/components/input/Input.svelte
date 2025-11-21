@@ -80,8 +80,8 @@
       min-height: calc($height * 2);
       max-height: calc($height * 8);
       line-height: 1.4;
-      padding-top: $padding;
-      padding-bottom: $padding;
+      padding-block-start: $padding;
+      padding-block-end: $padding;
       transition: all 200ms ease-out, height 0ms linear;
 
       @include hide-scrollbar();

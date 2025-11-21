@@ -1,5 +1,13 @@
 /* ================================= Mixins ================================= */
 
+@mixin is-rtl {
+  &:dir(rtl),
+  &:lang(ar), &:lang(he),
+  &:lang(yi), &:lang(ji),
+  &:lang(fa), &:lang(ku),
+  &:lang(ps), &:lang(ur) { @content }
+}
+
 @mixin width($value, $mode: 'none') {
   width: $value;
   @if $mode == 'min' or $mode == 'all' { min-width: $value; }
