@@ -11,7 +11,7 @@
 
   let {
     self        = $bindable(),
-    variant     = 'secondary',
+    variant     = 'primary',
     line        = 'solid',
     orientation = 'horizontal',
     thickness   = 'm',
@@ -22,16 +22,16 @@
 <hr
   bind:this={self}
   {...rest}
-  class={["titchy", "sep", variant, orientation, line, thickness, rest.class]}
+  class={["titchy", "separator", variant, orientation, line, thickness, rest.class]}
 />
 
 <style lang="scss">
   @use "$lib/styles/utils.scss" as *;
 
-  $accent-color: var(--sep-accent-color, C(accent, 60%));
-  $highlight-color: var(--sep-accent-highlight, C(secondary, 60%));
+  $accent-color: var(--separator-accent-color, C(accent, 60%));
+  $highlight-color: var(--separator-accent-highlight, C(secondary, 60%));
 
-  @mixin sep($side: top) {
+  @mixin separator($side: top) {
     border-#{$side}: 2px solid $highlight-color;
 
     &.primary   { border-#{$side}-color: $highlight-color; }
@@ -41,13 +41,13 @@
     &.dashed { border-#{$side}-style: dashed; }
     &.dotted { border-#{$side}-style: dotted; }
 
-    &.s { border-#{$side}-width: 1.5px; }
-    &.m { border-#{$side}-width: 2.5px; }
-    &.l { border-#{$side}-width: 3.5px; }
+    &.s { border-#{$side}-width: 0.5px; }
+    &.m { border-#{$side}-width: 2.0px; }
+    &.l { border-#{$side}-width: 5.0px; }
   }
 
   :global
-  .titchy.sep {
+  .titchy.separator {
     @include flex(true);
 
     border: none;
@@ -57,14 +57,14 @@
       min-width: 100%;
       max-width: 100%;
 
-      @include sep(top);
+      @include separator(top);
     }
 
     &.vertical {
       min-height: 100%;
       max-height: 100%;
 
-      @include sep(left);
+      @include separator(left);
     }
   }
 </style>
