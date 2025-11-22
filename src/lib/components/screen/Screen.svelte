@@ -20,7 +20,7 @@
 <main
   bind:this={self}
   {...rest}
-  class={["titchy", "screen", safeArea, fill, { expandable }, rest.class]}
+  class={["titchy", "screen", `safe-area-${safeArea}`, `fill-${fill}`, { expandable }, rest.class]}
 >
   {@render rest.children?.()}
 </main>
@@ -37,41 +37,31 @@
   .titchy.screen {
     overflow: hidden;
 
-    &:is(.height, .both) {
-      @include height(calc(100dvh), 'all');
-    }
+    &:is(.fill-width,  .fill-both) { @include  width(calc(100dvw), 'all'); }
+    &:is(.fill-height, .fill-both) { @include height(calc(100dvh), 'all'); }
 
-    &:is(.width, .both) {
-      @include width(calc(100dvw), 'all');
-    }
-
-    &.padding {
-      padding-top: $inset-top;
-      padding-left: $inset-left;
+    &.safe-area-padding {
+      padding-top:    $inset-top;
+      padding-left:   $inset-left;
       padding-bottom: $inset-bottom;
-      padding-right: $inset-right;
+      padding-right:  $inset-right;
     }
 
-    &.margin {
-      margin-top: $inset-top;
-      margin-left: $inset-left;
+    &.safe-area-margin {
+      margin-top:    $inset-top;
+      margin-left:   $inset-left;
       margin-bottom: $inset-bottom;
-      margin-right: $inset-right;
+      margin-right:  $inset-right;
     }
 
-    &.size {
-      &:is(.height, .both) {
-        @include height(calc(100dvh - $inset-top - $inset-bottom), 'all');
-      }
-
-      &:is(.width, .both) {
-        @include width(calc(100dvw - $inset-left - $inset-right), 'all');
-      }
+    &.safe-area-size {
+      &:is(.fill-width,  .fill-both) { @include  width(calc(100dvw - $inset-left - $inset-right), 'all'); }
+      &:is(.fill-height, .fill-both) { @include height(calc(100dvh - $inset-top - $inset-bottom), 'all'); }
     }
 
     &.expandable {
-      max-height: unset;
-      min-height: fit-content;
+      &:is(.fill-width,  .fill-both) { width:  fit-content; max-width:  unset; }
+      &:is(.fill-height, .fill-both) { height: fit-content; max-height: unset; }
     }
   }
 </style>
