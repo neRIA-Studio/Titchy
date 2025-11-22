@@ -72,7 +72,7 @@
 
 <span
   bind:this={self}
-  class="titchy loading"
+  class={["titchy", "loading", variant]}
   class:flexible
 >
   {#if variant === 'ellipses'}
@@ -110,7 +110,7 @@
   .titchy.loading {
     display: inline-flex;
     flex-direction: row;
-    align-items: end;
+    align-items: center;
     justify-content: center;
     height: 1.5em;
     gap: 0.25em;
@@ -119,6 +119,10 @@
       flex: 1;
       align-items: center;
       justify-content: center;
+    }
+
+    &.ellipses {
+      align-items: end;
     }
 
     .text {
