@@ -22,6 +22,7 @@
 </div>
 
 <style lang="scss">
+  @use "sass:string";
   @use "$lib/styles/utils.scss" as *;
 
   :global
@@ -36,7 +37,7 @@
       }
     }
 
-    $interactable: unquote('input.input, button.button, a.link');
+    $interactable: string.unquote('input.input, button.button, a.link');
 
     &:is(.remove-both, .remove-start) {
       > *:not(:first-child) {
