@@ -36,9 +36,11 @@
       }
     }
 
+    $interactable: unquote('input.input, button.button, a.link');
+
     &:is(.remove-both, .remove-start) {
       > *:not(:first-child) {
-        &, .input, .button, .link {
+        &, #{$interactable} {
           border-inline-start: none;
         }
       }
@@ -46,24 +48,24 @@
 
     &:is(.remove-both, .remove-end) {
       > *:not(:last-child) {
-        &, .input, .button, .link {
+        &, #{$interactable} {
           border-inline-end: none;
         }
       }
     }
 
-    * { box-shadow: none; }
+    #{$interactable} { box-shadow: none; }
 
     > * {
       &:not(:first-child) {
-        &, .input, .button, .link {
+        &, #{$interactable} {
           border-start-start-radius: 0;
           border-end-start-radius: 0;
         }
       }
 
       &:not(:last-child) {
-        &, .input, .button, .link {
+        &, #{$interactable} {
           border-start-end-radius: 0;
           border-end-end-radius: 0;
         }
