@@ -17,6 +17,10 @@
   bind:this={self}
   bind:value
   {...rest}
-  class={["titchy", "input", rest.class]}
+  class={["titchy", "textarea", "input", rest.class]}
   {disabled}
 ></textarea>
+
+<style lang="scss">
+  @use "./Input.scss";
+</style>

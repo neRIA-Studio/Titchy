@@ -1,7 +1,7 @@
 <script lang="ts">
   import "$lib/styles/global.scss";
 
-  import { AlignEndVertical, ArrowLeft, ArrowRight, Banknote, Bell, Check, ChevronFirst, ChevronLast, Cookie, Croissant, DollarSign, Euro, Hamburger, Hash, Heart, IndianRupee, JapaneseYen, Link as LinkIcon, Lock, Mail, Pizza, Play, PoundSterling, Send, SwissFranc, Type, X } from "@lucide/svelte";
+  import { ArrowLeft, ArrowRight, Banknote, Bell, Check, ChevronFirst, ChevronLast, Cookie, Croissant, DollarSign, Euro, Hamburger, Hash, Heart, IndianRupee, JapaneseYen, Link as LinkIcon, Lock, Mail, Pizza, Play, PoundSterling, Send, SwissFranc, Type, X } from "@lucide/svelte";
   import { Accordion, Button, ButtonGroup, Carousel, Checkbox, Input, InputWrapper, KBD, Label, Link, Loading, Option, Overlay, Pager, Panel, Select, Separator, Slider, Table, Textarea, useToaster, type TableHeader } from "$lib/components";
 
   const toaster = useToaster();
@@ -24,8 +24,6 @@
       <Template />
     </div>
   </div> -->
-
-  <AlignEndVertical />
 
   <div class="item accordion">
     <h1 id="accordion">

@@ -257,13 +257,13 @@
     }
 
     &.labeled {
-      .input {
+      .input, .textarea {
         height: calc($height + $height-surplus);
         padding-block-start: $height-surplus;
         padding-inline-start: $padding;
         padding-inline-end: $padding;
 
-        &:is(textarea) {
+        &:where(.textarea) {
           min-height: calc($height * 2 + $height-surplus);
           max-height: calc($height * 8 + $height-surplus);
           padding-block-start: calc($height-surplus + $padding / 2);
@@ -283,7 +283,7 @@
 
     &:focus-within > * { z-index: 10; }
 
-    .input {
+    .input, .textarea {
       padding-inline-start: $displacement-inline-start;
       padding-inline-end: $displacement-inline-end;
     }
