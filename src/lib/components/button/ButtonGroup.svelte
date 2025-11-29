@@ -42,7 +42,7 @@
     &:is(.remove-both, .remove-start) {
       > *:not(:first-child) {
         &, #{$interactable} {
-          border-inline-start: none;
+          border-inline-start: none !important;
         }
       }
     }
@@ -50,7 +50,7 @@
     &:is(.remove-both, .remove-end) {
       > *:not(:last-child) {
         &, #{$interactable} {
-          border-inline-end: none;
+          border-inline-end: none !important;
         }
       }
     }
@@ -60,15 +60,15 @@
     > * {
       &:not(:first-child) {
         &, #{$interactable} {
-          border-start-start-radius: 0;
-          border-end-start-radius: 0;
+          border-start-start-radius: 0 !important;
+          border-end-start-radius: 0 !important;
         }
       }
 
       &:not(:last-child) {
         &, #{$interactable} {
-          border-start-end-radius: 0;
-          border-end-end-radius: 0;
+          border-start-end-radius: 0 !important;
+          border-end-end-radius: 0 !important;
         }
       }
     }
