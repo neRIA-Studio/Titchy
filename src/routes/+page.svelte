@@ -140,37 +140,37 @@
         <InputWrapper icon={Banknote}>
           <Input placeholder="Amount" />
         </InputWrapper>
-        <Select constrained={false} copy-html deselectable inherit-size="none">
+        <Select value="USD" constrained={false} copy-html deselectable inherit-size="none">
           {#snippet label()}
             <small>
               Currency
             </small>
           {/snippet}
-          <Option style="align-items: center">
+          <Option value="USD" style="align-items: center">
             <DollarSign />
           </Option>
-          <Option style="align-items: center">
+          <Option value="GBP" style="align-items: center">
             <PoundSterling />
           </Option>
-          <Option style="align-items: center">
+          <Option value="EUR" style="align-items: center">
             <Euro />
           </Option>
-          <Option style="align-items: center">
+          <Option value="JPY" style="align-items: center">
             <JapaneseYen />
           </Option>
-          <Option style="align-items: center">
+          <Option value="INR" style="align-items: center">
             <IndianRupee />
           </Option>
-          <Option style="align-items: center">
+          <Option value="CHF" style="align-items: center">
             <SwissFranc />
           </Option>
-          <Option style="align-items: center">
+          <Option value="EGP" style="align-items: center">
             EGP
           </Option>
-          <Option style="align-items: center">
+          <Option value="DZD" style="align-items: center">
             DZD
           </Option>
-          <Option style="align-items: center">
+          <Option value="IQD" style="align-items: center">
             IQD
           </Option>
         </Select>

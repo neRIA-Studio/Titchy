@@ -1,5 +1,5 @@
 <script lang="ts">
-  import type { Snippet } from "svelte";
+  import { onMount, untrack, type Snippet } from "svelte";
   import type { HTMLAttributes, MouseEventHandler } from "svelte/elements";
   import { ChevronDown } from "@lucide/svelte";
 
@@ -17,6 +17,8 @@
     details?:      boolean | string;
     'copy-html'?:  boolean;
     'inherit-size'?: 'none' | 'width' | 'height' | 'both';
+    // Temp
+    texts?: { deselect:string, details:string };
   }
 
   let {
@@ -29,6 +31,8 @@
     details                     = false,
     'copy-html': copyHTML       = false,
     'inherit-size': inheritSize = "width",
+    // Temp
+    texts = { deselect:"Deselect", details:"Select an option" },
     ...rest
   }: Props & HTMLAttributes<HTMLDivElement> = $props();
 
@@ -57,6 +61,17 @@
       op.onclick = onselect(op);
   });
 
+  onMount(() => {
+    for (const op of options) {
+      const opVal = op.getAttribute("data-value");
+      const init  = untrack(() => value);
+        console.log({ opVal, init })
+
+      if (opVal === init)
+        op.onclick?.({ } as any);
+    }
+  });
+
   const resetSelection = () => {
     active          = false;
     selectedHTML    = "";
@@ -72,8 +87,8 @@
       resetSelection();
   };
 
-  const onselect = (op: HTMLButtonElement) => (e: MouseEvent) => {
-    if (e.defaultPrevented)
+  const onselect = (op: HTMLButtonElement) => (e?: MouseEvent) => {
+    if (e?.defaultPrevented)
       return;
 
     active          = false;
@@ -97,23 +112,23 @@
   class={["titchy", "select", { active }, rest.class]}
 >
   <Button class={["trigger", { constrained }]} scaling={false} {onclick}>
-    <div class="text">
-      <span class="label">
-        {#if selectedLabel || value || selectedHTML}
-          {#if copyHTML && selectedHTML}
-            {@html selectedHTML}
-          {:else}
+    <div class="content">
+      {#if selectedHTML && copyHTML}
+        {@html selectedHTML}
+      {:else}
+        <span class="label">
+          {#if selectedLabel || value}
             {selectedLabel || value}
+          {:else if typeof label === 'string'}
+            {label}
+          {:else}
+            {@render label()}
           {/if}
-        {:else if typeof label === 'string'}
-          {label}
-        {:else}
-          {@render label()}
-        {/if}
-      </span>
+        </span>
+      {/if}
       {#if details}
         <span class="details">
-          {value ? selectedDetails || label : typeof details === 'string' ? details : "Select an option"}
+          {value ? selectedDetails || label : typeof details === 'string' ? details : texts.details}
         </span>
       {/if}
     </div>
@@ -126,7 +141,7 @@
     </div>
     {#if deselectable}
       <div class="options">
-        {@render action("Deselect", resetSelection)}
+        {@render action(texts.deselect, resetSelection)}
       </div>
     {/if}
   </Popover>
@@ -158,7 +173,7 @@
 
       &.constrained { min-width: $min-width; }
 
-      > .text {
+      > .content {
         > .label {
           font-weight: bold;
         }

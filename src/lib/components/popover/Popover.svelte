@@ -140,6 +140,10 @@
   >
     {@render rest.children?.()}
   </div>
+{:else}
+  <div class="titchy popover shadow">
+    {@render rest.children?.()}
+  </div>
 {/if}
 
 <style lang="scss">
@@ -201,5 +205,13 @@
         right: calc($r + $gap);
       }
     }
+  }
+
+  :global
+  .titchy.popover.shadow {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
   }
 </style>
