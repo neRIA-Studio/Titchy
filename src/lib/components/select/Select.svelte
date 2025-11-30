@@ -65,7 +65,6 @@
     for (const op of options) {
       const opVal = op.getAttribute("data-value");
       const init  = untrack(() => value);
-        console.log({ opVal, init })
 
       if (opVal === init)
         op.onclick?.({ } as any);
